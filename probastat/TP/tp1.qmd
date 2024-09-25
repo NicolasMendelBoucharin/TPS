@@ -1,0 +1,306 @@
+---
+title: "TP1"
+author: "Nicolas Mendel-Boucharin"
+format: html
+---
+
+```{python}
+import numpy as np
+import scipy.stats as stats
+import scipy.linalg as linalg
+import matplotlib.pyplot as plt
+import matplotlib
+import random
+```
+
+## Exercice 1 : 
+
+```{python}
+import  csv
+with open('/home/aldaron/Documents/Cours/probastat/TP/donnees.csv' , newline = '') as f:
+        lignes = [ligne for ligne in csv.reader(f)]
+
+
+newline1 = list(map(float, lignes[0][1:]))
+newline2 = list(map(float, lignes[1][1:]))
+
+plt.plot(newline1, newline2)
+plt.show()
+
+```
+
+## Exercice 2 :
+
+```{python}
+L = [random.randint(0,10) for i in range(40)]
+print(L, '\n')
+numberofone=0
+
+for l in L:
+    if l == 1 : 
+        numberofone +=1
+print('Il y a exactement %d fois le nombre 1 dans la liste \n'% numberofone)
+
+L.insert(L.index(2), 'ici')
+print(L)
+```
+
+## Exercice 3 :
+
+```{python}
+M=np.empty((3,4))
+for i in range(3):
+    for j in range(4):
+        M[i, j] = i-j
+print('La matrice est \n', M,'\n')
+print('La première ligne de la matrice est \n', M[0,:],'\n')
+print('Les 2 premières ligne de la matrice sont \n', M[:2,:],'\n')
+print('La première colonne de la matrice est \n',M[:, 0],'\n')
+print('La dernière colonne de la matrice est \n',M[:, 3], '\n')
+print("Le terme d'en bas à droite est",M[2, 3], '\n')
+print("La sous matrice qui contient les deux premières lignes et les deux dernières colonnes est \n", M[:2,2:], '\n')
+```
+
+
+## Exercice 4 :
+
+```{python}
+L = [random.randint(0,50) for i in range(1000)]
+np.array(L)
+divisibles=[]
+for l in L:
+    if (l%2 == 0) or (l%5 == 0) :
+        divisibles.append(l)
+print(divisibles)
+```
+
+## Exercice 5 :
+
+```{python}
+np.random.seed(35)
+V=stats.norm.rvs(size=10)
+print("Mon vecteur aléatoire est", V, '\n')
+
+Vinv=V[::-1]
+print("Mon vecteur aléatoire inversé est", Vinv, '\n')
+```
+
+## Exercice 6 :
+
+```{python}
+n=10
+V=[]
+for i in range(n):
+    if i%2==0:
+        V.append(1)
+    else :
+        V.append(-1)
+
+print(V)
+```
+
+## Exercice 7 :
+
+```{python}
+A=2*np.eye(3)
+A[0,2], A[2,0] = 1, 1
+print('A = \n', A, '\n')
+
+B=np.ones((3,3))
+B[1,0], B[1,2] = 2, 2
+print ('B = \n', B, '\n')
+
+C=np.ones((3,3))
+C[1,1], C[2,2] = 2, 3
+print ('C = \n', C, '\n')
+```
+
+## Exercice 8
+
+### 1.
+
+```{python}
+A=np.zeros((6,6))
+for i in range(6): 
+    A[i, i] = i+1
+print(A)
+```
+
+### 2.
+
+```{python}
+A=[i+1 for i in range(36)]
+A=np.array(A).reshape(6,6)
+print(A)
+```
+
+### 3.
+
+```{python}
+A=np.empty((6,6))
+for i in range(6):
+    A[i,:]=[j+1 for j in range(6)]
+print(A)
+```
+
+### 4.
+
+```{python}
+A=2*np.ones((2,2))
+B=[i+1 for i in range(16)]
+B=np.array(B).reshape(4,4).T
+C=linalg.block_diag(A, B)
+print(C)
+```
+
+### 5.
+
+```{python}
+A=np.empty((6,6))
+for i in range(6):
+    for j in range(6):
+        A[i,j]=(-1)**(i+j)
+print(A)
+```
+
+### 6.
+
+```{python}
+F=np.diag(np.ones(6))
+for i in range(1,6):
+    haut=(i+1)*np.diag(np.ones(6-i),i)
+    bas =(i+1)*np.diag(np.ones(6-i),-i)
+   
+    F+=haut
+    F+=bas
+print(F)
+```
+
+## Exercice 9 :
+
+### 1.
+
+```{python}
+A=[i+1 for i in range(144)]
+A=np.array(A).reshape((12,12))
+B=A[0:6, 6:12]
+print(A, '\n')
+print(B)
+```
+
+### 2.
+
+```{python}
+A=[i+1 for i in range(144)]
+A=np.array(A).reshape((12,12))
+B=A[::2, ::2]
+print(B)
+```
+
+### 3.
+
+```{python}
+A=[i+1 for i in range(144)]
+A=np.array(A).reshape((12,12))
+B=A[[0,1,4,5,8,9],:][:, [0,1,4,5,8,9]]
+print(A)
+print(B)
+```
+
+## Exercice 10 : 
+
+```{python}
+def dif(A):
+    B=[A[i] for i in range(len(A))]
+   
+    for n in range(1,len(A)):
+        
+        A[n]=A[n]-B[n-1]
+    return A
+
+#pour tester:
+
+Vecteur=np.array([random.randint(0,10) for i in range(6)])
+print(Vecteur)
+print(np.cumsum(Vecteur))
+print(dif(np.cumsum(Vecteur)))
+```
+
+## Exercice 11 :
+
+```{python}
+n=12
+zorro=np.fliplr(np.eye(n))
+zorro[0,:]=zorro[n-1,:]=1
+print(zorro)
+```
+
+## Exercice 12 : 
+
+À faire mieux...
+
+```{python}
+def isinsidetriangle(A1, A2, A3, M):
+    A1=np.array(A1)
+    A2=np.array(A2)
+    A3=np.array(A3)
+    M=np.array(M)
+    if np.cross((A2-A1),(M-A1))*np.cross((M-A1),(A3-A1)) >= 0 & np.cross((A1-A2),(M-A2))*np.cross((M-A2),(A3-A2)) >= 0 & np.cross((A1-A3),(M-A3))*np.cross((M-A3),(A2-A3)) >= 0:
+        return True
+    else : 
+        return False
+
+isinsidetriangle([-2, 0], [0, 2], [2, 0], [0, 1])
+```
+
+
+## Exercice 13 :
+
+```{python}
+def pascal(n):
+    matrix=np.zeros((n+1,n+1))
+   
+    for i in range(n+1):
+        if i==0:
+            matrix[i,0]=1
+        else:
+
+            for j in range(i+1):
+                if j==0:
+                    matrix[i,0] =1
+                else:
+                    matrix[i,j]=matrix[i-1, j-1] + matrix[i-1, j]
+    return matrix
+
+pascal(6)
+```
+
+## Exercice 14 :
+ne marche pas...
+
+
+```{python}
+def heratosthene(n):
+    list=[i+1 for i in range(n)]
+    for i in range (2, n):
+        for j in range (i+1, n-1):
+            if i%j==0:
+                list[j+1]=0
+    return list
+
+heratosthene(10)
+
+```
+
+## Exercice 15 :
+
+```{python}
+def vandermonde(X):
+    n=len(X)
+    A=np.ones((n,n))
+    for i in range(1, n):
+        A[i]=np.array(X)**i
+    return A, np.linalg.det(A)
+
+vandermonde([1,2,3])
+```
