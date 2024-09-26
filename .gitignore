@@ -2,4 +2,5 @@
 *.csv
 *_files
 *_checkpoints
-Interactive*
+*qmd.ipynb
+
