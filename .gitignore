@@ -3,4 +3,5 @@
 *_files
 *_checkpoints
 *.qmd.ipynb
+*.zip
 
