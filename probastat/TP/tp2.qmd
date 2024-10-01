@@ -1,0 +1,117 @@
+---
+title: TP2
+author: Nicolas Mendel-Boucharin
+format: html
+---
+
+```{python}
+import numpy as np
+import scipy.stats as stats
+import scipy.linalg as linalg
+import matplotlib.pyplot as plt
+import matplotlib
+import random
+import math
+```
+
+## Exercice 1:
+
+```{python}
+import  csv
+with open('/home/aldaron/Documents/Cours/probastat/TP/donnees2.csv' , newline = '') as f:
+        lignes = [ligne for ligne in csv.reader(f)]
+
+
+print(lignes)
+colonne1 = [eval(lignes[i][0]) for i in range(len(lignes))]
+
+colonne2 = [eval(lignes[i][1]) for i in range(len(lignes))]
+print(colonne1)
+print(colonne2)
+
+plt.plot(colonne2, colonne1)
+plt.show()
+
+
+```
+
+## Exercice 2:
+
+```{python}
+import  csv
+with open('/home/aldaron/Documents/Cours/probastat/TP/donnees3.csv' , newline = '') as f:
+        lignes = [ligne for ligne in csv.reader(f)]
+colonne1 = [eval(lignes[i][0]) for i in range(len(lignes))]
+colonne2 = [eval(lignes[i][1]) for i in range(len(lignes))]
+
+plt.plot(colonne1, colonne2, '^')
+
+```
+
+## Exercice 3:
+
+```{python}
+fig, axs=plt.subplots(3,2)
+X=np.linspace(-np.pi, np.pi, 1000)
+Z=[-(np.pi)/2, (np.pi)/2]
+axs[0][0].plot(X, np.cos(X), 'b')
+axs[1][0].plot(X, np.sin(X), 'g')
+axs[2][0].plot(Z, np.tan(Z), 'r')
+Y=np.linspace(-1, 1, 1000)
+axs[0][1].plot(Y, np.arccos(Y), 'b')
+axs[1][1].plot(Y, np.arcsin(Y), 'g')
+axs[2][1].plot(Y, np.arctan(Y), 'r')
+plt.show()
+```
+
+## Exercice 4: 
+
+Ne marche pas
+
+```{python}
+def binom(n):
+    C=[]
+    for k in range(n):
+        C.append(math.factorial(n)/(math.factorial(k)*math.factorial(n-k)))
+    X = np.linspace(0, n, 100*n)
+    Y = []
+    for i in range(n):
+        for j in range(100):
+            Y.append(C[i])
+    
+    plt.plot(X,Y)
+    plt.show
+
+binom(10)
+
+```
+
+
+### Exercice 5:
+
+```{python}
+from mpl_toolkits.mplot3d import Axes3D
+import  csv
+with open('/home/aldaron/Documents/Cours/probastat/TP/donnees4.csv' , newline = '') as f:
+        lignes = np.array([np.array(ligne) for ligne in csv.reader(f)])
+X = lignes[0][1:]
+print(len(X))
+X = X.astype(float)
+
+Y = [eval(lignes[i+1][0]) for i in range(len(lignes)-1)]
+print(len(Y))
+Z=lignes[1:][1:]
+print(lignes[1, 1])
+print(Z[0][0])
+
+Z=Z.astype(float)
+print(np.shape(Z))
+
+
+```
+
+### Exercice 6:
+
+```{python}
+
+```
