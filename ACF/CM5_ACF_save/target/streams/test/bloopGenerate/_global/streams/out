@@ -1,0 +1,4 @@
+[debug] [cm5_acf_save-test] Classpath dependencies List()
+[debug] [cm5_acf_save-test] Dependencies from configurations List(cm5_acf_save)
+[debug] Bloop wrote the configuration of project 'cm5_acf_save-test' to '/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/.bloop/cm5_acf_save-test.json'
+[success] Generated .bloop/cm5_acf_save-test.json

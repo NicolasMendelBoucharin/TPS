@@ -1,0 +1,177 @@
+{
+    "version": "1.4.0",
+    "project": {
+        "name": "cm5_acf_save",
+        "directory": "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save",
+        "workspaceDir": "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save",
+        "sources": [
+            "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/src/main/scala",
+            "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/src/main/scala-2.13",
+            "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/src/main/scala-2",
+            "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/src/main/java",
+            "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/target/scala-2.13/src_managed/main"
+        ],
+        "dependencies": [
+            
+        ],
+        "classpath": [
+            "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.3/scala-library-2.13.3.jar"
+        ],
+        "out": "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/.bloop/cm5_acf_save",
+        "classesDir": "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/.bloop/cm5_acf_save/scala-2.13/classes",
+        "resources": [
+            "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/src/main/resources",
+            "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/target/scala-2.13/resource_managed/main"
+        ],
+        "scala": {
+            "organization": "org.scala-lang",
+            "name": "scala-compiler",
+            "version": "2.13.3",
+            "options": [
+                
+            ],
+            "jars": [
+                "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.3/scala-library-2.13.3.jar",
+                "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-compiler/2.13.3/scala-compiler-2.13.3.jar",
+                "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-reflect/2.13.3/scala-reflect-2.13.3.jar",
+                "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/org/jline/jline/3.15.0/jline-3.15.0.jar",
+                "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/net/java/dev/jna/jna/5.3.1/jna-5.3.1.jar"
+            ],
+            "setup": {
+                "order": "mixed",
+                "addLibraryToBootClasspath": true,
+                "addCompilerToClasspath": false,
+                "addExtraJarsToClasspath": false,
+                "manageBootClasspath": true,
+                "filterLibraryFromClasspath": true
+            }
+        },
+        "java": {
+            "options": [
+                
+            ]
+        },
+        "test": {
+            "frameworks": [
+                {
+                    "names": [
+                        "org.scalacheck.ScalaCheckFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs2.runner.Specs2Framework",
+                        "org.specs2.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.specs.runner.SpecsFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "org.scalatest.tools.Framework",
+                        "org.scalatest.tools.ScalaTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "com.novocode.junit.JUnitFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "munit.Framework"
+                    ]
+                },
+                {
+                    "names": [
+                        "zio.test.sbt.ZTestFramework"
+                    ]
+                },
+                {
+                    "names": [
+                        "weaver.framework.CatsEffect"
+                    ]
+                },
+                {
+                    "names": [
+                        "hedgehog.sbt.Framework"
+                    ]
+                }
+            ],
+            "options": {
+                "excludes": [
+                    
+                ],
+                "arguments": [
+                    
+                ]
+            }
+        },
+        "platform": {
+            "name": "jvm",
+            "config": {
+                "home": "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/arc/https/github.com/adoptium/temurin17-binaries/releases/download/jdk-17%252B35/OpenJDK17-jdk_x64_linux_hotspot_17_35.tar.gz/jdk-17+35",
+                "options": [
+                    "-Duser.dir=/home/aldaron/Documents/Cours/ACF/CM5_ACF_save"
+                ]
+            },
+            "mainClass": [
+                
+            ],
+            "runtimeConfig": {
+                "home": "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/arc/https/github.com/adoptium/temurin17-binaries/releases/download/jdk-17%252B35/OpenJDK17-jdk_x64_linux_hotspot_17_35.tar.gz/jdk-17+35",
+                "options": [
+                    "-Duser.dir=/home/aldaron/Documents/Cours/ACF/CM5_ACF_save"
+                ]
+            },
+            "classpath": [
+                "/home/aldaron/Documents/Cours/ACF/CM5_ACF_save/.bloop/cm5_acf_save/scala-2.13/classes",
+                "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.3/scala-library-2.13.3.jar"
+            ]
+        },
+        "resolution": {
+            "modules": [
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.13.3",
+                    "configurations": "default",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.3/scala-library-2.13.3.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.3/scala-library-2.13.3-sources.jar"
+                        }
+                    ]
+                },
+                {
+                    "organization": "org.scala-lang",
+                    "name": "scala-library",
+                    "version": "2.13.3",
+                    "configurations": "optional",
+                    "artifacts": [
+                        {
+                            "name": "scala-library",
+                            "path": "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.3/scala-library-2.13.3.jar"
+                        },
+                        {
+                            "name": "scala-library",
+                            "classifier": "sources",
+                            "path": "/home/aldaron/.var/app/com.vscodium.codium/cache/coursier/v1/https/repo1.maven.org/maven2/org/scala-lang/scala-library/2.13.3/scala-library-2.13.3-sources.jar"
+                        }
+                    ]
+                }
+            ]
+        },
+        "tags": [
+            "library"
+        ]
+    }
+}

@@ -66,8 +66,6 @@ plt.show()
 
 ## Exercice 4: 
 
-Ne marche pas
-
 ```{python}
 def binom(n):
     C=[]
@@ -94,24 +92,113 @@ from mpl_toolkits.mplot3d import Axes3D
 import  csv
 with open('/home/aldaron/Documents/Cours/probastat/TP/donnees4.csv' , newline = '') as f:
         lignes = np.array([np.array(ligne) for ligne in csv.reader(f)])
-X = lignes[0][1:]
-print(len(X))
-X = X.astype(float)
+X = lignes[0, 1:].astype(float)
+Y = lignes[1:, 0].astype(float)
+Z = lignes[1:, 1:].astype(float)
 
-Y = [eval(lignes[i+1][0]) for i in range(len(lignes)-1)]
-print(len(Y))
-Z=lignes[1:][1:]
-print(lignes[1, 1])
-print(Z[0][0])
-
-Z=Z.astype(float)
-print(np.shape(Z))
-
-
+fig = plt.figure()
+ax = fig.add_subplot(1,1,1, projection='3d')
+X, Y = np.meshgrid(X,Y)
+surf= ax.plot_surface(X, Y, Z, antialiased=False)
+plt.show()
 ```
 
 ### Exercice 6:
 
 ```{python}
+M=stats.expon.rvs(scale = 1, size=(100,200))
+
+Z=[((np.sum(M[i,:])/200)-1)/(1/np.sqrt(200)) for i in range(100)]
+
+plt.hist(Z, bins=10, density=True, label ="histogramme")
+X=np.linspace(-4, 4, 10000)
+plt.plot(X, stats.norm.pdf(X, loc = 0, scale = 1))
+```
+
+### Exercice 7:
+
+```{python}
+
+def va():
+        x=stats.uniform.rvs(loc=0, scale =1)
+        print(x)
+        if x<=0.1:
+                return(0)
+        elif x>0.1 and x<=0.4:
+                return(1)
+        elif x>0.4 and x<=0.6:
+                return(2)
+        else:
+                return(3)
+
+va()
+        
+
+```
+
+
+### Exercice 8:
+
+#### 1.
+
+```{python}
+def bernou(n):
+        x=stats.uniform.rvs(loc=0, scale =1, size=n)
+        y=[]
+        for i in range(n):
+                if x[i]<=0.5:
+                        y.append(0)
+                else:
+                        y.append(1)
+        return y
+
+print(bernou(10))
+
+def bernou1(n):
+        x=stats.uniform.rvs(loc=0, scale =1, size=n)
+        y=[]
+        for i in range(n):
+                if x[i]<=0.5:
+                        y.append(-1)
+                else:
+                        y.append(1)
+        return y
+
+print(bernou1(11))
+
+```
+
+#### 2.
+
+```{python}
+def uniform4(n):
+        x=stats.uniform.rvs(loc=0, scale =1, size=n)
+        y=[]
+        for i in range(n):
+
+                if x[i]<=0.25:
+                        y.append(0)
+                elif x[i]>0.25 and x[i]<=0.5:
+                        y.append(1)
+                elif x[i]>0.5 and x[i]<=0.75:
+                        y.append(2)
+                else:
+                        y.append(3)    
+        return y
+print(uniform4(10))
+```
+
+#### 3.
+
+```{python}
+def expo(n, lam):
+        y=[]
+        z=[]
+        u=stats.uniform.rvs(loc=0, scale=1, size=n)
+        for i in range(n):
+                y.append(-np.log(1-u[i])/lam)
+        z=np.cumsum(y)/np.arange(1, n+1, 1)
+        plt.plot(np.arange(1, n+1, 1), z)
+print(expo(500, 1))
 
 ```
