@@ -1,4 +1,4 @@
-theory TP2
+theory TP2_3
   imports Main
 begin
 
@@ -110,8 +110,7 @@ isSet(L) \<and> isSet(K) \<longrightarrow> isSet(intersection L K)
 
 fun union :: "'a list  \<Rightarrow> 'a list \<Rightarrow> 'a list"
   where 
-"union [] xs = xs" |
-"union (x#xs) ys = union xs (x#(delete x ys))"
+"union L K = clean (append L K)"
 
 value " union [1::nat, 2, 3] [2::nat, 5, 4]"
 
@@ -119,21 +118,17 @@ value " union [1::nat, 2, 3] [2::nat, 5, 4]"
 
 
 (*Exercice 11:*)
-lemma memberunionhelp: "
-((List.member L x )) \<longrightarrow> (List.member (union L K) x)
 
+
+
+lemma memberunion:"
+(List.member (union L K) x) = ((List.member L x) \<or> (List.member K x))
 "
 
   apply (induct L)
-  using member_rec(2) apply force
-  
+  apply (simp add: member_rec(2) memberclean)
+  by (metis append_Cons member_rec(1) memberclean union.simps)
 
-
-lemma memberunion: "
-List.member (union L K) x =((List.member L x) \<or> (List.member K x))
-"
-
-  
   
 
 
@@ -147,15 +142,6 @@ lemma "
 
 
 (*Exercice 13:*)
-
-(*
-fun equal:: "'a list \<Rightarrow> 'a list \<Rightarrow> bool"
-  where 
-"equal [] [] = True" |
-"equal xs [] = False" |
-"equal [] ys = False" |
-"equal (x#xs) ys =( if List.member ys x then ( equal xs (delete x ys)) else False)"
-*)
 
 fun includee:: " 'a list \<Rightarrow> 'a list \<Rightarrow> bool"
   where
@@ -172,10 +158,22 @@ fun equal:: "'a list \<Rightarrow> 'a list \<Rightarrow> bool"
 value "equal [1::nat, 2 , 3] [2::nat, 1, 3, 4] "
 
 (*Exercice 14:*)
-lemma "
- (equal xs ys) \<longleftrightarrow> ((List.member ys x) \<longleftrightarrow> (List.member xs x))
+
+lemma equalmemberhelp1: "
+
+(\<forall>x. equal xs ys) \<longrightarrow> (\<forall>x. (List.member ys x) \<longleftrightarrow> (List.member xs x))
+"
+  apply (induct xs)
+  using includee.elims(2) member_rec(2) apply fastforce
+
+lemma equalmember: "
+ (\<forall>x. equal xs ys) \<longleftrightarrow> (\<forall>x. (List.member ys x) \<longleftrightarrow> (List.member xs x))
 "
 
-  nitpick
+  apply (induct xs)
+  apply (metis clean.elims equal.simps in_set_member includee.simps(1) includee.simps(2) last_in_set member_rec(2))
+  apply (metis clean.elims equal.elims(1) in_set_member includee.simps(1) includee.simps(2) last_in_set member_rec(2))
+  oops
+
 end
 
