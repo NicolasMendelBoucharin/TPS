@@ -103,7 +103,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div id="a0bf5b51" class="cell" data-execution_count="1">
+<div id="38ebc7b1" class="cell" data-execution_count="1">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> numpy <span class="im">as</span> np</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.stats <span class="im">as</span> stats</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> scipy.linalg <span class="im">as</span> linalg</span>
@@ -114,7 +114,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="exercice-1" class="level2">
 <h2 class="anchored" data-anchor-id="exercice-1">Exercice 1:</h2>
-<div id="13ac7bb7" class="cell" data-execution_count="2">
+<div id="adc3c3a3" class="cell" data-execution_count="2">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span>  csv</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'/home/aldaron/Documents/Cours/probastat/TP/donnees2.csv'</span> , newline <span class="op">=</span> <span class="st">''</span>) <span class="im">as</span> f:</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>        lignes <span class="op">=</span> [ligne <span class="cf">for</span> ligne <span class="kw">in</span> csv.reader(f)]</span>
@@ -145,7 +145,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercice-2" class="level2">
 <h2 class="anchored" data-anchor-id="exercice-2">Exercice 2:</h2>
-<div id="05aca369" class="cell" data-execution_count="3">
+<div id="6daea11b" class="cell" data-execution_count="3">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="im">import</span>  csv</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'/home/aldaron/Documents/Cours/probastat/TP/donnees3.csv'</span> , newline <span class="op">=</span> <span class="st">''</span>) <span class="im">as</span> f:</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>        lignes <span class="op">=</span> [ligne <span class="cf">for</span> ligne <span class="kw">in</span> csv.reader(f)]</span>
@@ -164,7 +164,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercice-3" class="level2">
 <h2 class="anchored" data-anchor-id="exercice-3">Exercice 3:</h2>
-<div id="8415ec6c" class="cell" data-execution_count="4">
+<div id="a150dd59" class="cell" data-execution_count="4">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>fig, axs<span class="op">=</span>plt.subplots(<span class="dv">3</span>,<span class="dv">2</span>)</span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>X<span class="op">=</span>np.linspace(<span class="op">-</span>np.pi, np.pi, <span class="dv">1000</span>)</span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>Z<span class="op">=</span>[<span class="op">-</span>(np.pi)<span class="op">/</span><span class="dv">2</span>, (np.pi)<span class="op">/</span><span class="dv">2</span>]</span>
@@ -187,7 +187,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercice-4" class="level2">
 <h2 class="anchored" data-anchor-id="exercice-4">Exercice 4:</h2>
-<div id="17a21a38" class="cell" data-execution_count="5">
+<div id="0cbbcd09" class="cell" data-execution_count="5">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> binom(n):</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    C<span class="op">=</span>[]</span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="cf">for</span> k <span class="kw">in</span> <span class="bu">range</span>(n):</span>
@@ -212,7 +212,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <section id="exercice-5" class="level3">
 <h3 class="anchored" data-anchor-id="exercice-5">Exercice 5:</h3>
-<div id="e016349e" class="cell" data-execution_count="6">
+<div id="597b6dd3" class="cell" data-execution_count="6">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> mpl_toolkits.mplot3d <span class="im">import</span> Axes3D</span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span>  csv</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="cf">with</span> <span class="bu">open</span>(<span class="st">'/home/aldaron/Documents/Cours/probastat/TP/donnees4.csv'</span> , newline <span class="op">=</span> <span class="st">''</span>) <span class="im">as</span> f:</span>
@@ -237,7 +237,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercice-6" class="level3">
 <h3 class="anchored" data-anchor-id="exercice-6">Exercice 6:</h3>
-<div id="c07b7a7b" class="cell" data-execution_count="7">
+<div id="d652ebe8" class="cell" data-execution_count="7">
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>M<span class="op">=</span>stats.expon.rvs(scale <span class="op">=</span> <span class="dv">1</span>, size<span class="op">=</span>(<span class="dv">100</span>,<span class="dv">200</span>))</span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>Z<span class="op">=</span>[((np.<span class="bu">sum</span>(M[i,:])<span class="op">/</span><span class="dv">200</span>)<span class="op">-</span><span class="dv">1</span>)<span class="op">/</span>(<span class="dv">1</span><span class="op">/</span>np.sqrt(<span class="dv">200</span>)) <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(<span class="dv">100</span>)]</span>
@@ -248,7 +248,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell-output cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="tp2_files/figure-html/cell-8-output-1.png" width="579" height="411" class="figure-img"></p>
+<p><img src="tp2_files/figure-html/cell-8-output-1.png" width="571" height="411" class="figure-img"></p>
 </figure>
 </div>
 </div>
@@ -256,7 +256,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </section>
 <section id="exercice-7" class="level3">
 <h3 class="anchored" data-anchor-id="exercice-7">Exercice 7:</h3>
-<div id="f3178bbd" class="cell" data-execution_count="8">
+<div id="9e252cdb" class="cell" data-execution_count="8">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> va():</span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>stats.uniform.rvs(loc<span class="op">=</span><span class="dv">0</span>, scale <span class="op">=</span><span class="dv">1</span>)</span>
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>        <span class="bu">print</span>(x)</span>
@@ -271,7 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb9-12"><a href="#cb9-12" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb9-13"><a href="#cb9-13" aria-hidden="true" tabindex="-1"></a>va()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>0.786732142249814</code></pre>
+<pre><code>0.67488960409294</code></pre>
 </div>
 <div class="cell-output cell-output-display" data-execution_count="8">
 <pre><code>3</code></pre>
@@ -282,7 +282,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 class="anchored" data-anchor-id="exercice-8">Exercice 8:</h3>
 <section id="section" class="level4">
 <h4 class="anchored" data-anchor-id="section">1.</h4>
-<div id="04297fc8" class="cell" data-execution_count="9">
+<div id="7e79d305" class="cell" data-execution_count="9">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> bernou(n):</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>stats.uniform.rvs(loc<span class="op">=</span><span class="dv">0</span>, scale <span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span>n)</span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>[]</span>
@@ -307,14 +307,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb12-22"><a href="#cb12-22" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb12-23"><a href="#cb12-23" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(bernou1(<span class="dv">11</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[0, 0, 0, 0, 1, 1, 1, 0, 0, 1]
-[-1, 1, 1, 1, -1, 1, 1, 1, 1, 1, -1]</code></pre>
+<pre><code>[1, 0, 0, 1, 1, 1, 0, 0, 0, 0]
+[1, -1, -1, -1, -1, 1, 1, -1, -1, 1, -1]</code></pre>
 </div>
 </div>
 </section>
 <section id="section-1" class="level4">
 <h4 class="anchored" data-anchor-id="section-1">2.</h4>
-<div id="d336beda" class="cell" data-execution_count="10">
+<div id="efeaf8b5" class="cell" data-execution_count="10">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> uniform4(n):</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>        x<span class="op">=</span>stats.uniform.rvs(loc<span class="op">=</span><span class="dv">0</span>, scale <span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span>n)</span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>[]</span>
@@ -331,12 +331,33 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>        <span class="cf">return</span> y</span>
 <span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(uniform4(<span class="dv">10</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1, 3, 3, 2, 0, 3, 0, 0, 1, 2]</code></pre>
+<pre><code>[2, 0, 3, 1, 1, 3, 3, 3, 3, 2]</code></pre>
 </div>
 </div>
 </section>
 <section id="section-2" class="level4">
 <h4 class="anchored" data-anchor-id="section-2">3.</h4>
+<div id="72d87f32" class="cell" data-execution_count="11">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">def</span> expo(n, lam):</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>        y<span class="op">=</span>[]</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>        z<span class="op">=</span>[]</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>        u<span class="op">=</span>stats.uniform.rvs(loc<span class="op">=</span><span class="dv">0</span>, scale<span class="op">=</span><span class="dv">1</span>, size<span class="op">=</span>n)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>        <span class="cf">for</span> i <span class="kw">in</span> <span class="bu">range</span>(n):</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                y.append(<span class="op">-</span>np.log(<span class="dv">1</span><span class="op">-</span>u[i])<span class="op">/</span>lam)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>        z<span class="op">=</span>np.cumsum(y)<span class="op">/</span>np.arange(<span class="dv">1</span>, n<span class="op">+</span><span class="dv">1</span>, <span class="dv">1</span>)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>        plt.plot(np.arange(<span class="dv">1</span>, n<span class="op">+</span><span class="dv">1</span>, <span class="dv">1</span>), z)</span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="bu">print</span>(expo(<span class="dv">500</span>, <span class="dv">1</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>None</code></pre>
+</div>
+<div class="cell-output cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="tp2_files/figure-html/cell-12-output-2.png" width="571" height="411" class="figure-img"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 </section>
 </section>

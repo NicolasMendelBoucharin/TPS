@@ -1,0 +1,7 @@
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:38:30: ':' expected but ')' found.[0m
+[0m[[0m[31merror[0m] [0m[0m  def eval(p:Statement,inList)[0m
+[0m[[0m[31merror[0m] [0m[0m                             ^[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:39:1: identifier expected but '}' found.[0m
+[0m[[0m[31merror[0m] [0m[0m}[0m
+[0m[[0m[31merror[0m] [0m[0m^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
