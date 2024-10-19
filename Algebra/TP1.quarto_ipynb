@@ -1,0 +1,114 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: \"TP1\"\n",
+        "format: pdf\n",
+        "author: \"Nicolas Mendel-Boucharin\"\n",
+        "jupyter:\n",
+        "  kernel: python3\n",
+        "---\n",
+        "\n",
+        "\n",
+        "## Echauffements\n",
+        "\n",
+        "### 3. \n",
+        "\n",
+        "\n",
+        "```{sage}\n",
+        "Z15X.<X>=PolynomialRing(Integers(15))\n",
+        "\n",
+        "```\n",
+        "\n",
+        "\n",
+        "### 4.\n"
+      ],
+      "id": "5766ad47"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "P = 3*X -6\n",
+        "Q = 5*X^3 - 1\n",
+        "R = (5*X +10)^3\n",
+        "\n",
+        "PQ=P*Q\n",
+        "PR=P*R\n",
+        "QR=Q*R\n",
+        "print(\"PQ = \", PQ,\" est de degré :\", PQ.degree(),\"PR = \", PR, \" est de degré :\", PR.degree(),\"QR = \",  QR, \" est de degré : \", QR.degree())"
+      ],
+      "id": "df671e5a",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 5.\n"
+      ],
+      "id": "93a3d962"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "Z15X.characteristic()"
+      ],
+      "id": "29ff2d0e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 6.\n",
+        "\n",
+        "Commme vu dessous l'anneau n'est pas intègre.\n"
+      ],
+      "id": "13e71d64"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "Z15X.is_integral_domain()"
+      ],
+      "id": "60a6512e",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "### 7.\n"
+      ],
+      "id": "721e5f0a"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "Q.is_irreductible()"
+      ],
+      "id": "c36e583f",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

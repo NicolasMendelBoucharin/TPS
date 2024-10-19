@@ -1,0 +1,50 @@
+---
+title: "TP1"
+format: pdf
+author: "Nicolas Mendel-Boucharin"
+jupyter:
+  kernel: python3
+---
+
+## Echauffements
+
+### 3. 
+
+```{sage}
+Z15X.<X>=PolynomialRing(Integers(15))
+
+```
+
+### 4.
+
+```{python}
+P = 3*X -6
+Q = 5*X^3 - 1
+R = (5*X +10)^3
+
+PQ=P*Q
+PR=P*R
+QR=Q*R
+print("PQ = ", PQ," est de degré :", PQ.degree(),"PR = ", PR, " est de degré :", PR.degree(),"QR = ",  QR, " est de degré : ", QR.degree())
+```
+
+### 5.
+
+```{python}
+Z15X.characteristic()
+```
+
+### 6.
+
+Commme vu dessous l'anneau n'est pas intègre.
+
+```{python}
+Z15X.is_integral_domain()
+```
+
+### 7.
+
+
+```{python}
+Q.is_irreductible()
+```
