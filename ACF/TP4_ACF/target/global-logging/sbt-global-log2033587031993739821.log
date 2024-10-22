@@ -1,0 +1,17 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(run, Some(b3d5edd0-fdf8-4de2-8866-a6c92258b42e), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/target/scala-2.13/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:88:31: not found: value in[0m
+[0m[[0m[31merror[0m] [0m[0m          val prout = eval(s, in, out, mm)[0m
+[0m[[0m[31merror[0m] [0m[0m                              ^[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:88:35: not found: value out[0m
+[0m[[0m[31merror[0m] [0m[0m          val prout = eval(s, in, out, mm)[0m
+[0m[[0m[31merror[0m] [0m[0m                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:88:40: not found: value mm[0m
+[0m[[0m[31merror[0m] [0m[0m          val prout = eval(s, in, out, mm)[0m
+[0m[[0m[31merror[0m] [0m[0m                                       ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 0 s, completed 18 oct. 2024, 14:49:59[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m

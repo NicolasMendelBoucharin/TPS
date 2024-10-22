@@ -1,0 +1,14 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(run, Some(a2303d7c-6b6b-4ac3-a4b3-f5e9d3832d5e), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/target/scala-2.13/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:43:51: not found: type int[0m
+[0m[[0m[31merror[0m] [0m[0m  def eval(p: Statement, inList: List[Int]): List[int] {[0m
+[0m[[0m[31merror[0m] [0m[0m                                                  ^[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:43:7: only traits and abstract classes can have declared but undefined members[0m
+[0m[[0m[31merror[0m] [0m[0m  def eval(p: Statement, inList: List[Int]): List[int] {[0m
+[0m[[0m[31merror[0m] [0m[0m      ^[0m
+[0m[[0m[31merror[0m] [0m[0mtwo errors found[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 0 s, completed 15 oct. 2024, 13:17:42[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m

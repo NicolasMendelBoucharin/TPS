@@ -1,0 +1,88 @@
+[debug] > Exec(early(addDefaultCommands), None, None)
+[debug] > Exec(addDefaultCommands, None, None)
+[debug] > Exec(early(initialize), None, None)
+[debug] > Exec(initialize, None, None)
+[debug] > Exec(boot, None, None)
+[debug] > Exec(writeSbtVersion, None, None)
+[debug] > Exec(reload, None, None)
+[debug] > Exec(sbtStashOnFailure, None, None)
+[debug] > Exec(onFailure loadFailed, None, None)
+[debug] > Exec(loadp, None, None)
+[info] welcome to sbt 1.10.2 (Amazon.com Inc. Java 17.0.12)
+[debug] Load.defaultLoad until apply took 824.461356ms
+[debug]                 Load.loadUnit: plugins took 413.861649ms
+[debug]                 Load.loadUnit: defsScala took 1.481417ms
+[debug] [Loading] Scanning directory /home/aldaron/Documents/Cours/project/project
+[debug]                   Load.loadUnit: mkEval took 59.282532ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in /home/aldaron/Documents/Cours/project/project, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin)
+[debug] Plugins.deducer#function took 131.321898 ms
+[info] loading settings for project cours-build-build from metals.sbt ...
+[debug]                     Load.resolveProject(cours-build-build) took 256.222383ms
+[debug]                   Load.loadTransitive: finalizeProject(Project(id cours-build-build, base: /home/aldaron/Documents/Cours/project/project, plugins: List(<none>))) took 475.374879ms
+[debug] [Loading] Done in /home/aldaron/Documents/Cours/project/project, returning: (cours-build-build)
+[debug]                 Load.loadUnit: loadedProjectsRaw took 5698.418189ms
+[debug]                 Load.loadUnit: cleanEvalClasses took 37.627058ms
+[debug]               Load.loadUnit(file:/home/aldaron/Documents/Cours/project/project/, ...) took 6203.025643ms
+[debug]             Load.apply: load took 7531.490082ms
+[debug]             Load.apply: resolveProjects took 37.762791ms
+[debug]             Load.apply: finalTransforms took 684.744032ms
+[debug]             Load.apply: config.delegates took 144.354532ms
+[debug]             Load.apply: Def.make(settings)... took 5520.918888ms
+[debug]             Load.apply: structureIndex took 988.296998ms
+[debug]             Load.apply: mkStreams took 25.125853ms
+[info] loading project definition from /home/aldaron/Documents/Cours/project/project
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true
+[debug]           Load.loadUnit: plugins took 22258.888054ms
+[debug]           Load.loadUnit: defsScala took 0.010839ms
+[debug] [Loading] Scanning directory /home/aldaron/Documents/Cours/project
+[debug]             Load.loadUnit: mkEval took 0.605159ms
+[debug] [Loading] Found non-root projects 
+[debug] [Loading] Done in /home/aldaron/Documents/Cours/project, returning: ()
+[debug] deducing auto plugins based on known facts Set(Atom(sbt.plugins.CorePlugin)) and clauses Clauses(Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.ScriptedPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.SbtPlugin),Set(Atom(sbt.ScriptedPlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JUnitXmlReportPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.MiniDependencyTreePlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(metals.MetalsPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(org.scaladebugger.SbtJdiTools),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.IvyPlugin)))
+[debug] Clause(Atom(sbt.plugins.IvyPlugin),Set(Atom(sbt.plugins.JvmPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.SemanticdbPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.JUnitXmlReportPlugin)))
+[debug] Clause(Atom(sbt.plugins.CorePlugin),Set(Atom(sbt.plugins.Giter8TemplatePlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(sbt.plugins.MiniDependencyTreePlugin)))
+[debug] Clause(Atom(sbt.plugins.SemanticdbPlugin),Set(Atom(metals.MetalsPlugin)))
+[debug] Clause(Atom(sbt.plugins.JvmPlugin),Set(Atom(org.scaladebugger.SbtJdiTools))))
+[debug]   :: deduced result: Matched(sbt.plugins.CorePlugin,sbt.plugins.Giter8TemplatePlugin,sbt.plugins.IvyPlugin,sbt.plugins.JvmPlugin,org.scaladebugger.SbtJdiTools,sbt.plugins.MiniDependencyTreePlugin,sbt.plugins.JUnitXmlReportPlugin,sbt.plugins.SemanticdbPlugin,metals.MetalsPlugin)
+[debug] Plugins.deducer#function took 23.275716 ms
+[info] loading settings for project cours-build from metals.sbt ...
+[debug]               Load.resolveProject(cours-build) took 25.005427ms
+[debug]             Load.loadTransitive: finalizeProject(Project(id cours-build, base: /home/aldaron/Documents/Cours/project, plugins: List(<none>))) took 52.436127ms
+[debug] [Loading] Done in /home/aldaron/Documents/Cours/project, returning: (cours-build)
+[debug]           Load.loadUnit: loadedProjectsRaw took 160.518176ms
+[debug]           Load.loadUnit: cleanEvalClasses took 8.023727ms
+[debug]         Load.loadUnit(file:/home/aldaron/Documents/Cours/project/, ...) took 22429.22244ms
+[debug]       Load.apply: load took 22443.155502ms
+[debug]       Load.apply: resolveProjects took 0.331458ms
+[debug]       Load.apply: finalTransforms took 96.740595ms
+[debug]       Load.apply: config.delegates took 0.815041ms
+[debug]       Load.apply: Def.make(settings)... took 867.487306ms
+[debug]       Load.apply: structureIndex took 393.994418ms
+[debug]       Load.apply: mkStreams took 0.006591ms
+[info] loading project definition from /home/aldaron/Documents/Cours/project
+[debug] Running task... Cancel: Signal, check cycles: false, forcegc: true

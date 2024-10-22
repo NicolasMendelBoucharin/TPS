@@ -1,0 +1,43 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(run, Some(9e6df9a2-4a73-4f0d-97e6-def2d580bf3a), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 1 Scala source to /private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/target/scala-2.13/classes ...[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:46:64: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(0)[0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      case Seq(s1: Statement, s2: Statement)                => 0 [0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:47:64: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(0)[0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      case If(c: Expression, s1: Statement, s2: Statement)  => 0 [0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:48:64: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(0)[0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      case While(c: Expression, s: Statement)               => 0[0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:49:64: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(0)[0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      case Assignement(v: String, e: Expression)            => 0[0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:50:64: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(0)[0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      case Print(e: Expression)                             => 0[0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:51:64: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(0)[0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      case Read(s: String)                                  => 0[0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m/private/student/h/ch/nmendelbouch/Documents/ACF/TP4_ACF/src/main/scala/tp4/Main.scala:52:64: type mismatch;[0m
+[0m[[0m[31merror[0m] [0m[0m found   : Int(0)[0m
+[0m[[0m[31merror[0m] [0m[0m required: List[Int][0m
+[0m[[0m[31merror[0m] [0m[0m      case Skip                                             => 0[0m
+[0m[[0m[31merror[0m] [0m[0m                                                               ^[0m
+[0m[[0m[31merror[0m] [0m[0m7 errors found[0m
+[0m[[0m[31merror[0m] [0m[0m(Compile / [31mcompileIncremental[0m) Compilation failed[0m
+[0m[[0m[31merror[0m] [0m[0mTotal time: 0 s, completed 15 oct. 2024, 14:21:30[0m
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(shell, None, None)[0m
