@@ -1,4 +1,4 @@
-theory TP2_3
+theory ENSEMBLES
   imports Main
 begin
 

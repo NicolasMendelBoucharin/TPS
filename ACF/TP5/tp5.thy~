@@ -1,5 +1,5 @@
 theory tp5
-imports Main "~~/src/HOL/Library/Code_Target_Nat"
+imports Main "~~/src/HOL/Library/Code_Target_Nat" ENSEMBLES
 begin
 
 type_synonym address= "nat*nat*nat*nat"
@@ -34,16 +34,84 @@ value "filter (2,2,2,2) aChain2"
 (* quickcheck [tester=narrowing] *)
 (* quickcheck [tester=narrowing, size=7, timeout=120] *)
 
+
+(*Test*)
+
+definition "aChain3= [(Drop [(1,1,1,1), (3,3,3,3)]),(Accept [(1,1,1,1),(2,2,2,2), (3,3,3,3)])]"
+definition "aChain4= [(Accept [(1,1,1,1),(2,2,2,2)]),(Drop [(1,1,1,1)]), (Accept[(1,1,1,1)])]"
+
+value "filter (1,1,1,1) aChain4"
+value "filter (3,3,3,3) aChain3"
+
 (* The function/predicate to program and to prove! *)
+
+fun acceptation:: "chain \<Rightarrow> address list"
+  where
+"acceptation [] = []"|
+"acceptation ((Accept l)#c1) = (union (acceptation c1) (clean l))"|
+"acceptation ((Drop l)#c1) = l"
+
+
 fun equal:: "chain \<Rightarrow> chain \<Rightarrow> bool"
   where
-"equal c1 c2 = ? ? ?"
+"(equal c1 c2) = (ENSEMBLES.equal (acceptation c1) (acceptation c2))"
 
+
+
+lemma acceptationfilter:"
+(filter x c) \<longrightarrow> (List.member (acceptation c) x)
+"
+  apply (induct c; )
+  
+
+lemma equalfilterdeddirect1:"
+( equal c1 c2) \<longrightarrow> (\<forall>x. (filter x c1) \<longrightarrow>  (filter x c2))
+"
+
+  apply auto
+  by (metis acceptation.simps(3) acceptationfilter member_rec(2) tp5.filter.simps(3))
+ 
+
+lemma equalfilterdeddirect2:"
+( equal c1 c2) \<longrightarrow> (\<forall>x. (filter x c2) \<longrightarrow>  (filter x c1))
+"
+
+  apply auto
+  by (meson ENSEMBLES.equal.elims(3) equalfilterdeddirect1 tp5.equal.elims(3))
+
+
+
+lemma equalfiltertedindirect:"
+
+ (\<forall>x. (filter x c1) \<longleftrightarrow>  (filter x c2))\<longrightarrow>( equal c1 c2)
+"
+
+  apply auto
+  apply (metis (no_types, opaque_lifting) ENSEMBLES.equal.simps acceptation.simps(3) acceptationfilter equalmember tp5.filter.simps(2) tp5.filter.simps(3))
+  by (metis acceptation.simps(3) acceptationfilter includemember tp5.filter.simps(2) tp5.filter.simps(3))
+
+
+
+
+lemma equalfilterded: "
+ ( equal c1 c2) \<longleftrightarrow> (\<forall>x. (filter x c1) \<longleftrightarrow> (filter x c2))
+"
+
+  apply auto
+  apply (meson ENSEMBLES.equal.elims(3) equalfilterdeddirect1 tp5.equal.elims(3))
+  apply (meson ENSEMBLES.equal.elims(3) equalfilterdeddirect1 tp5.equal.elims(3))
+  apply (metis (no_types, opaque_lifting) ENSEMBLES.equal.simps acceptation.simps(3) acceptationfilter equalmember tp5.filter.simps(2) tp5.filter.simps(3))
+  by (metis (no_types, opaque_lifting) ENSEMBLES.equal.simps acceptation.simps(3) acceptationfilter equalmember tp5.filter.simps(2) tp5.filter.simps(3))
+
+  
+
+
+(*
 lemma " ? ? ?"
   nitpick  [timeout=120]
   quickcheck [tester=narrowing]
   oops
-
+*)
 (* Code exportation directive *)
 export_code equal in Scala
 end
