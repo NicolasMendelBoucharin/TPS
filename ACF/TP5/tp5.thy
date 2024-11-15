@@ -49,33 +49,40 @@ fun acceptation:: "chain \<Rightarrow> address list"
   where
 "acceptation [] = []"|
 "acceptation ((Accept l)#c1) = (union (acceptation c1) (clean l))"|
-"acceptation ((Drop l)#c1) = l"
+"acceptation ((Drop l)#c1) = (ENSEMBLES.deleteList (clean l) (acceptation c1))"
 
 
 fun equal:: "chain \<Rightarrow> chain \<Rightarrow> bool"
   where
 "(equal c1 c2) = (ENSEMBLES.equal (acceptation c1) (acceptation c2))"
 
-lemma acceptation_isset:"
-ENSEMBLES.isSet (acceptation c)
+lemma acceptation_isset_element:
 "
-lemma accepted_is_set:"isSet (accepted c)"
-  apply(induct c rule:acceptation.induct;simp)
- (* apply (simp add: UnionIsSet cleanIsSet)
-  by (simp add: delete_set_is_set)*)
+ \<forall>a c. isSet (acceptation c) \<Longrightarrow> isSet (acceptation (a # c))
+"
+
+  apply auto
+  done
+
+lemma acceptation_isset:"
+isSet (acceptation c)
+"
+  sorry
+  
+  
 
 lemma acceptationfilter:"
 (filter x c) \<longrightarrow> (List.member (acceptation c) x)
 "
+ 
   sorry
-  
+   
 
 lemma equalfilterdeddirect1:"
 ( equal c1 c2) \<longrightarrow> (\<forall>x. (filter x c1) \<longrightarrow>  (filter x c2))
 "
+  sorry
 
-  apply auto
-  by (metis acceptation.simps(3) acceptationfilter member_rec(2) tp5.filter.simps(3))
  
 
 lemma equalfilterdeddirect2:"
@@ -92,22 +99,21 @@ lemma equalfiltertedindirect:"
  (\<forall>x. (filter x c1) \<longleftrightarrow>  (filter x c2))\<longrightarrow>( equal c1 c2)
 "
 
-  apply auto
-  apply (metis (no_types, opaque_lifting) ENSEMBLES.equal.simps acceptation.simps(3) acceptationfilter equalmember tp5.filter.simps(2) tp5.filter.simps(3))
-  by (metis acceptation.simps(3) acceptationfilter includemember tp5.filter.simps(2) tp5.filter.simps(3))
-
-
-
+  apply (induct c1)
+   apply (induct c2)
+    apply simp
+  apply simp
+  sorry
 
 lemma equalfilterded: "
  ( equal c1 c2) \<longleftrightarrow> (\<forall>x. (filter x c1) \<longleftrightarrow> (filter x c2))
 "
+  using equalfilterdeddirect1 equalfilterdeddirect2 equalfiltertedindirect by blast
 
-  apply auto
-  apply (meson ENSEMBLES.equal.elims(3) equalfilterdeddirect1 tp5.equal.elims(3))
-  apply (meson ENSEMBLES.equal.elims(3) equalfilterdeddirect1 tp5.equal.elims(3))
-  apply (metis (no_types, opaque_lifting) ENSEMBLES.equal.simps acceptation.simps(3) acceptationfilter equalmember tp5.filter.simps(2) tp5.filter.simps(3))
-  by (metis (no_types, opaque_lifting) ENSEMBLES.equal.simps acceptation.simps(3) acceptationfilter equalmember tp5.filter.simps(2) tp5.filter.simps(3))
+
+(*j'ai rien qui marche mais mon pc galère un peu avec sledghammer je ne sais pas dans quel mesure cela a un impact *)
+
+  
 
   
 

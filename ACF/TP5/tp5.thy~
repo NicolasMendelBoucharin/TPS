@@ -49,7 +49,7 @@ fun acceptation:: "chain \<Rightarrow> address list"
   where
 "acceptation [] = []"|
 "acceptation ((Accept l)#c1) = (union (acceptation c1) (clean l))"|
-"acceptation ((Drop l)#c1) = l"
+"acceptation ((Drop l)#c1) = (ENSEMBLES.deleteList (clean l) (acceptation c1))"
 
 
 fun equal:: "chain \<Rightarrow> chain \<Rightarrow> bool"
@@ -58,18 +58,28 @@ fun equal:: "chain \<Rightarrow> chain \<Rightarrow> bool"
 
 
 
+lemma acceptation_isset:"
+ENSEMBLES.isSet (acceptation c)
+"
+  apply (induct c)
+  apply simp
+  sorry
+
+  
+
 lemma acceptationfilter:"
 (filter x c) \<longrightarrow> (List.member (acceptation c) x)
 "
-  apply (induct c; )
-  
+  apply (insert acceptation_isset)
+  apply (induct c)
+   apply simp
+  sorry
 
 lemma equalfilterdeddirect1:"
 ( equal c1 c2) \<longrightarrow> (\<forall>x. (filter x c1) \<longrightarrow>  (filter x c2))
 "
+  sorry
 
-  apply auto
-  by (metis acceptation.simps(3) acceptationfilter member_rec(2) tp5.filter.simps(3))
  
 
 lemma equalfilterdeddirect2:"
@@ -87,9 +97,7 @@ lemma equalfiltertedindirect:"
 "
 
   apply auto
-  apply (metis (no_types, opaque_lifting) ENSEMBLES.equal.simps acceptation.simps(3) acceptationfilter equalmember tp5.filter.simps(2) tp5.filter.simps(3))
-  by (metis acceptation.simps(3) acceptationfilter includemember tp5.filter.simps(2) tp5.filter.simps(3))
-
+  
 
 
 

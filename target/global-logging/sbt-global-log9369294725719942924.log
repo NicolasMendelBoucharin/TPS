@@ -1,0 +1,16 @@
+[debug] > Exec(early(addDefaultCommands), None, None)
+[debug] > Exec(addDefaultCommands, None, None)
+[debug] > Exec(early(initialize), None, None)
+[debug] > Exec(initialize, None, None)
+[debug] > Exec(boot, None, None)
+[debug] > Exec(writeSbtVersion, None, None)
+[debug] > Exec(reload, None, None)
+[debug] > Exec(sbtStashOnFailure, None, None)
+[debug] > Exec(onFailure loadFailed, None, None)
+[debug] > Exec(loadp, None, None)
+[info] welcome to sbt 1.10.2 (Amazon.com Inc. Java 17.0.12)
+[debug] Load.defaultLoad until apply took 1089.860544ms
+[debug]                 Load.loadUnit: plugins took 1113.550026ms
+[debug]                 Load.loadUnit: defsScala took 1.084509ms
+[debug] [Loading] Scanning directory /home/aldaron/Documents/Cours/project/project
+[debug]                   Load.loadUnit: mkEval took 120.606503ms

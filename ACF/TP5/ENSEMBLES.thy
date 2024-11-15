@@ -112,8 +112,7 @@ fun union :: "'a list  \<Rightarrow> 'a list \<Rightarrow> 'a list"
   where 
 "union [] L =  L"|
 "union L [] = L"|
-
-"union (x#xs) l = (if (List.member l x) then (union xs l) else x#(union xs l))"
+"union (x#xs) L = (if (List.member L x) then (union xs L) else x#(union xs L))"
 
 value " union [1::nat, 2, 3] [2::nat, 5, 4]"
 
@@ -121,15 +120,39 @@ value " union [1::nat, 2, 3] [2::nat, 5, 4]"
 
 (*Exercice 11:*)
 
+lemma memberunion1:"
 
+((List.member L x) \<or> (List.member K x)) \<longrightarrow> (List.member (union L K) x)
+"
+  apply (induct L)
+  apply simp
+  apply (simp add: member_rec(2))
+  by (smt (verit) intersection.simps(2) list.sel(3) member_rec(1) memberintersect union.elims)
+
+  
+
+ 
+  
+
+
+
+lemma memberunion2:"
+(List.member (union L K) x) \<longrightarrow> ((List.member L x) \<or> (List.member K x))
+"
+  apply (induct L)
+  apply (induct K)
+  apply simp
+  apply simp
+  by (smt (verit, ccfv_SIG) list.sel(3) member_rec(1) union.elims)
 
 lemma memberunion:"
-(List.member (union L K) x) = ((List.member L x) \<or> (List.member K x))
+(List.member (union L K) x) =  ((List.member L x) \<or> (List.member K x))
 "
-
-  apply (induct L)
-  apply (simp add: member_rec(2) memberclean)
-  by (metis append_Cons member_rec(1) memberclean union.simps)
+  apply auto
+  using memberunion2 apply fastforce
+  apply (simp add: memberunion1)
+  by (simp add: memberunion1)
+ 
 
   
 
@@ -139,9 +162,10 @@ lemma memberunion:"
 lemma unionset "
  (isSet l1) \<longrightarrow> (isSet l2) \<longrightarrow> (isSet (union l1 l2)) 
 "
-  
-  
-
+  apply (induct l1)
+     apply (induct l2)
+  apply auto
+  sorry
 
 (*Exercice 13:*)
 
@@ -161,48 +185,76 @@ value "equal [1::nat, 2 , 3] [2::nat, 1, 3, 4] "
 
 (*Exercice 14:*)
 
-lemma equalmemberhelp1: "
+lemma includeeMember: "
 
- ((equal xs ys) \<longrightarrow> (\<forall>x. (List.member ys x) \<longrightarrow> (List.member xs x)))
+ ((includee ys xs) \<longrightarrow> (\<forall>x. (List.member ys x) \<longrightarrow> (List.member xs x)))
 "
-  apply (induct xs)
-  using includee.elims(2) apply fastforce
+  apply (induct ys)
+  apply (simp add: member_rec(2))
+  by (metis (mono_tags, lifting) includee.elims(2) includee.simps(3) list.simps(3) member_rec(1))
 
-  
-  
-
-lemma equalmemberhelp2: "
-
-(\<forall>x.  (List.member ys x) \<longleftrightarrow> (List.member xs x) ) \<longrightarrow> (equal xs ys)
-"
-  apply auto  
-
-lemma includemember:"
+lemma MemberIncludee :"
 
 (\<forall>x. (List.member L x)\<longrightarrow>(List.member K x)) \<longrightarrow> (includee L K)
 "
-
+  apply auto
   apply (induct L)
   using includee.simps(1) apply blast
-  by (smt (verit, del_insts) includee.elims(3) list.inject member_rec(1) member_rec(2))
+  by (smt (verit, ccfv_threshold) includee.elims(3) includee.simps(3) member_rec(1) member_rec(2))
 
-lemma includememberbis:"
-(includee L K) \<longrightarrow> (\<forall>x. (List.member L x)\<longrightarrow>(List.member K x))
+
+lemma MemberEqual: "
+
+(\<forall>x.  (List.member ys x) \<longleftrightarrow> (List.member xs x) ) \<longrightarrow> (equal xs ys)
 "
-  apply (induct L)
-  apply (simp add: member_rec(2))
-  by (metis includee.elims(2) includee.simps(3) member_rec(1) neq_Nil_conv)
+  apply (induct ys)
+  apply (simp add: MemberIncludee)
+  by (simp add: MemberIncludee)
+ 
+
+
+
 
 lemma equalmember: "
  ( equal xs ys) \<longleftrightarrow> (\<forall>x. (List.member ys x) \<longleftrightarrow> (List.member xs x))
 "
   apply auto
-  apply (meson equal.elims(3) equalmemberhelp1)
-  apply (simp add: equalmemberhelp1)
-  using equalmemberhelp2 apply auto[1]
-  by (meson equal.elims(2) equalmemberhelp2)
-
+  using includeeMember apply blast
+  using includeeMember apply blast
+  apply (simp add: MemberIncludee)
+  by (simp add: MemberIncludee)
  
+(*Delete list for tp 5 *)
+
+fun deleteList::"'a list \<Rightarrow> 'a list \<Rightarrow> 'a list"
+  where
+"deleteList [] L =L"|
+"deleteList (x#xs) ys = (delete x (deleteList xs ys) )"
+
+lemma setdeletenonmember:"
+(isSet L) \<longrightarrow> (~(List.member L a) \<longrightarrow> ~(List.member (delete x L) a))
+"
+
+sorry
+ 
+
+lemma setdeleteelement :"
+(isSet L) \<longrightarrow>( isSet(delete x L))
+"
+
+  apply auto
+  apply (induct L)
+   apply simp
+  by (metis delete.simps(2) isSet.simps(2) setdeletenonmember)
+
+lemma deleteListset: "
+(isSet L) \<longrightarrow> (isSet (deleteList l L))
+"
+  apply (induct l)
+   apply simp
+  apply simp
+  by (simp add: setdeleteelement)
+
 
 end
 

@@ -1,0 +1,5 @@
+[0m[[0m[0mdebug[0m] [0m[0m> Exec(run, Some(78d2ce7d-6f83-4889-8097-634f6e840297), Some(CommandSource(console0)))[0m
+[0m[[0m[0mdebug[0m] [0m[0mEvaluating tasks: Compile / run[0m
+[0m[[0m[0mdebug[0m] [0m[0mRunning task... Cancel: Signal, check cycles: false, forcegc: true[0m
+[0m[[0m[0minfo[0m] [0m[0mcompiling 2 Scala sources to /home/aldaron/Documents/Cours/ACF/TP5/TP5_ACF/target/scala-2.13/classes ...[0m
+[0m[[0m[0minfo[0m] [0m[0mshutting down sbt server[0m
