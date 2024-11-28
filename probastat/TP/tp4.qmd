@@ -1,0 +1,99 @@
+---
+title: TP4
+author: Nicolas Mendel-Boucharin
+format: html
+---
+
+```{python}
+import numpy as np
+import scipy
+import scipy.stats as stats
+import scipy.linalg as linalg
+import matplotlib.pyplot as plt
+import matplotlib
+import random
+import math
+```
+
+## Exercice 1 : 
+
+```{python}
+def chideuxadequation(p, X, alpha):
+    f_obs = [0 for i in p]
+    f_exp = len(X)*np.array(p)
+    for x in X:
+        f_obs[x] += 1
+    D,p_valeur=scipy.stats.chisquare(f_obs, f_exp)
+    nu=stats.chi2.ppf(1-alpha, len(p)-1)
+    return (D<nu)
+
+def chideuxadequationbis(p, X, alpha):
+    f_obs = [0 for i in p]
+    f_exp = len(X)*np.array(p)
+    for x in X:
+        f_obs[x] += 1
+    D,p_valeur=scipy.stats.chisquare(f_obs, f_exp)
+    nu=stats.chi2.ppf(1-alpha, len(p)-2)
+    return (D<nu)
+```
+
+## Exercice 2 :
+
+Avec la fonction d'avant on cherche à voir si on est proche d'une loi uniforme
+
+```{python}
+X=[random.randint(0,9) for i in range(200)]
+p=[1/10 for i in range (10)]
+print(len(p), len(X))
+chideuxadequation(p, X, 0.01)
+```
+
+## Exercice 3
+
+```{python}
+moyemp = (15 + 80 + 3*42 + 4*37 + 5*30 + 6*10 + 7*9 + 8*5 +9*3 +10*2 + 11*1) / 200
+
+print(moyemp)
+
+p=[stats.poisson.pmf(k, moyemp) for k in range(9)]
+p.append(1-sum(p))
+print(p)
+
+L=[i for i in range(10)]
+L1=[6, 15, 40, 42, 37, 30, 10, 9, 5, 6]
+X=[]
+
+
+for i in range(len(L)):
+    X += [i]*L1[i]
+print(X)
+
+
+chideuxadequationbis(p, X, 0.05)
+```
+
+## Exercice 4 :
+
+```{python}
+def chideuxincidence(X,Y, alpha):
+    f_obs=np.zeros((len(X), len(X[0])))
+    
+    for x in X:
+        for y in Y:
+            f_obs[x,y] += 1
+        
+    D,p_valeur, dlib, expeted=scipy.stats.chi2_contingency(f_obs)
+    nu=stats.chi2.ppf(1-alpha, (len(X)-1)*(len(Y)-1))
+    print(f_obs, D, nu)
+    return (D<nu)
+```
+
+## Exercice 5 :
+
+```{python}
+f_obs=[[2331536, 663540], [715085, 135493]]
+D,p_valeur, dlib, expeted=scipy.stats.chi2_contingency(f_obs)
+nu=stats.chi2.ppf(1-0.001, 1)
+print(D<nu)
+
+```

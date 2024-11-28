@@ -1,0 +1,111 @@
+{
+  "cells": [
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "---\n",
+        "title: TP4\n",
+        "author: Nicolas Mendel-Boucharin\n",
+        "format: html\n",
+        "---"
+      ],
+      "id": "d801a2f8"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "import numpy as np\n",
+        "import scipy\n",
+        "import scipy.stats as stats\n",
+        "import scipy.linalg as linalg\n",
+        "import matplotlib.pyplot as plt\n",
+        "import matplotlib\n",
+        "import random\n",
+        "import math"
+      ],
+      "id": "ae0a5815",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Exercice 1 : \n"
+      ],
+      "id": "e6145ef4"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "def chideuxadequation(p, X, alpha):\n",
+        "    f_obs = [0 for i in p]\n",
+        "    f_exp = len(X)*np.array(p)\n",
+        "    for x in X:\n",
+        "        f_obs[x] += 1\n",
+        "    D,p_valeur=scipy.stats.chisquare(f_obs, f_exp)\n",
+        "    nu=stats.chi2.ppf(1-alpha, len(p)-1)\n",
+        "    return (D<nu)"
+      ],
+      "id": "122b2c3d",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Exercice 2 :\n",
+        "\n",
+        "Avec la fonction d'avant on cherche à voir si on est proche d'une loi uniforme\n"
+      ],
+      "id": "d09b9654"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "X=[random.randint(0,9) for i in range(200)]\n",
+        "p=[1/10 for i in range (10)]\n",
+        "print(len(p), len(X))\n",
+        "chideuxadequation(p, X, 0.01)"
+      ],
+      "id": "c6f23769",
+      "execution_count": null,
+      "outputs": []
+    },
+    {
+      "cell_type": "markdown",
+      "metadata": {},
+      "source": [
+        "## Exercice 3\n"
+      ],
+      "id": "653e8110"
+    },
+    {
+      "cell_type": "code",
+      "metadata": {},
+      "source": [
+        "moyemp = (15 + 80 + 3*42 + 4*37 + 5*30 + 6*10 + 7*9 + 8*5 +9*3 +10*2 + 11*1) / 200\n",
+        "print(moyemp)\n",
+        "p=[stats.poisson.pmf(k, moyemp) for k in range(9)]\n",
+        "p.append(1-sum(p))\n"
+      ],
+      "id": "7a08be00",
+      "execution_count": null,
+      "outputs": []
+    }
+  ],
+  "metadata": {
+    "kernelspec": {
+      "display_name": "Python 3",
+      "language": "python",
+      "name": "python3"
+    }
+  },
+  "nbformat": 4,
+  "nbformat_minor": 5
+}

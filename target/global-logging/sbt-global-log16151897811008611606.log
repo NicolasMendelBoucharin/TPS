@@ -1,0 +1,7 @@
+[debug] > Exec(__stopWatch network-1, None, None)
+[debug] jsonRpcNotify: JsonRpcNotificationMessage(2.0, shutdown, [true,null])
+[debug] > Exec(shell, None, None)
+[info] shutting down sbt server
+[info] sbt server started at local:///home/aldaron/.sbt/1.0/server/ed597b03deb8a4f5bb93/sock
+[debug] Writing bsp connection file
+[info] started sbt server

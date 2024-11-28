@@ -1,5 +1,5 @@
 theory tp67
-imports Main  "~~/src/HOL/Library/Code_Target_Int" 
+imports Main  "~~/src/HOL/Library/Code_Target_Int" table 
 begin
 
 (* Types des expressions, conditions et programmes (statement) *)
@@ -186,12 +186,12 @@ definition "ok14= (Seq (Read ''x'') (Seq (Read ''y'') (If (Eq (Sum (Variable ''x
 
 (* Le TP commence ici! *)
 (* TODO: BAD, san0, lemme de correction *)
+
 fun BAD:: "symTable * inchan * outchan \<Rightarrow> bool"
   where
 "(BAD (_, _, [])) = False"|
 "(BAD (st, ic, ((X i)#oc))) =((i=0) \<or> (BAD (st, ic, oc)))"|
 "(BAD (st, ic, ((P _)#oc))) =(BAD (st, ic, oc))"
-
 
 value "BAD (evalS p1 ([],[],[]))"
 value "BAD (evalS p2 ([],[],[]))"
@@ -200,14 +200,10 @@ value "BAD (evalS p4 ([],[-1],[]))"
 
 fun san1:: "statement \<Rightarrow> bool"
   where
-"san1 (Seq p1 p2) = ((san1 p1) \<and> (san1 p2))"|
-"san1 (Aff _ _) = True"| 
-"san1 (Read _) = True"| 
-"san1 (Print _) = True"| 
-"san1 (Exec _) = False "| 
-"san1 (If _ p1 p2) = ((san1 p1) \<and> (san1 p2))" | (*à refaire mieux*) 
-"san1 Skip = True"
-
+"san1 (Seq s1 s2) = ((san1 s1) \<and> (san1 s2))"|
+"san1 (If _ s1 s2) = ((san1 s1) \<and> (san1 s2))" |
+"san1 (Exec _) = False " | 
+"san1  _ = True"
 
 fun isConst:: "expression \<Rightarrow> bool"
   where
@@ -218,23 +214,109 @@ fun isConst:: "expression \<Rightarrow> bool"
 
 fun san2:: "statement \<Rightarrow> bool"
   where
-"san2 (Seq _ _) = ((san2 p1) \<and> (san2 p2))"|
-"san2 (Aff _ _) = True"| 
-"san2 (Read _) = True"| 
-"san2 (Print _) = True"| 
+"san2 (Seq s1 s2) = ((san2 s1) \<and> (san2 s2))"|
+"san2 (If _ s1 s2) = ((san2 s1) \<and> (san2 s2))" |
 "san2 (Exec (Constant i)) = (~(i = 0))"| 
-"san2 (Exec _) =True"| 
-"san2 (If _ _ _) = True" |
-"san2 Skip = False"
+"san2 (Exec _) =False"| 
+"san2 _ = True"
 
+datatype absInt= Integer int | Any
+datatype absBool = Vrai | Faux | Possible
+
+type_synonym abssymTable= "(string * absInt) list"
+
+fun sumabsInt:: "absInt\<Rightarrow>absInt\<Rightarrow>absInt"
+  where
+"sumabsInt (Integer a) (Integer b) = (Integer (a+b))"|
+"sumabsInt _ _ = Any" 
+
+fun subabsInt:: "absInt\<Rightarrow>absInt\<Rightarrow>absInt"
+  where
+"subabsInt (Integer a) (Integer b) = (Integer (a-b))"|
+"subabsInt _ _ = Any"  
+
+
+
+fun absevalE:: "expression \<Rightarrow> abssymTable \<Rightarrow> absInt"
+where
+"absevalE (Constant s) e = Integer s" |
+"absevalE (Variable v) e =  (case (assoc v e) of None \<Rightarrow>Integer (-1) | Some(y) \<Rightarrow> y)"|
+"absevalE (Sum e1 e2) e= (sumabsInt (absevalE e1 e) (absevalE e2 e))" |
+"absevalE (Sub e1 e2) e= (subabsInt (absevalE e1 e) (absevalE e2 e))"
+
+
+fun Set_to_Any:: "abssymTable\<Rightarrow>abssymTable"
+  where 
+"Set_to_Any[] =[]"|
+"Set_to_Any ((s,e)#t) = (if e = (Integer (-1)) then (s,e)#(Set_to_Any t) else (s, Any)#(Set_to_Any t))"
+
+fun delete:: "string \<Rightarrow> abssymTable \<Rightarrow> abssymTable"
+  where
+"delete s [] = []"|
+"delete s ((x,e)#t) = (if (s=x) then (delete s t) else (x,e)#(delete s t))"
+
+fun extractabsInt:: "abssymTable \<Rightarrow> string \<Rightarrow> absInt"
+  where 
+"extractabsInt [] _ = (Integer (-1))"|
+"extractabsInt ((x,e)#t) s = (if (x = s) then e else (extractabsInt t s))"
+
+
+fun fusion:: "abssymTable \<Rightarrow> abssymTable \<Rightarrow> abssymTable"
+  where
+"fusion [] t = Set_to_Any t"|
+"fusion ((s,e)#t1) t2 = 
+(if (assoc s t2 = None) 
+  then 
+  (if (e = Integer (-1))
+    then ((s, Integer (-1))#(fusion t1 t2)) 
+  else ((s, Any)#(fusion t1 t2) 
+  ))
+else( 
+   let e1 = (extractabsInt t2 s) in (
+    if (e=e1)
+      then ((s,e)#fusion t1 (delete s t2))
+    else ((s, Any)#(fusion t1 (delete s t2))
+))))"
+
+fun absevalC:: "condition \<Rightarrow> abssymTable \<Rightarrow> absBool"
+where
+"absevalC (Eq e1 e2) t = 
+(
+if ( (absevalE e1 t) = Any) \<or> ((absevalE e2 t) = Any) 
+  then Possible
+else (
+  if ((absevalE e1 t) = (absevalE e2 t))
+    then Vrai
+  else Faux
+)
+)
+"
+
+fun absevalS:: "statement \<Rightarrow> abssymTable \<Rightarrow> (abssymTable*bool)"
+  where
+"absevalS (Read s) t = ((s, Any)#t, True))"
+"absevalS (Exec e) t = \<not>(
+
+
+*)
 (* Si san accepte un programme alors son évaluation, quelles que soient les entrées utilisateur (inchan)
    ne provoquera pas d'exec(0) *)
 
-lemma correction: ""
+lemma correction1: "(san1(p))\<longrightarrow> ( \<not>(BAD (evalS p ([], ic, []))))"
   nitpick[timeout=120]
-  quickcheck[tester=narrowing,size=5,timeout=120]
-  sorry
+  oops
 
+
+  
+  
+  
+
+lemma correction2: "(san2(p))\<longrightarrow> ( \<not>(BAD (evalS p ([], ic, []))))"
+  nitpick[timeout=120]
+  
+
+
+(* pas censé avoir un contre exemple*)
 
 (* ----- Restriction de l'export Scala (Isabelle 2023) -------*)
 (* ! ! !  NE PAS MODIFIER ! ! ! *)

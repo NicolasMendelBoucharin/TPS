@@ -1,5 +1,5 @@
 theory tp67
-imports Main  "~~/src/HOL/Library/Code_Target_Int" 
+imports Main  "~~/src/HOL/Library/Code_Target_Int" table 
 begin
 
 (* Types des expressions, conditions et programmes (statement) *)
@@ -217,44 +217,145 @@ fun san2:: "statement \<Rightarrow> bool"
 "san2 (Seq s1 s2) = ((san2 s1) \<and> (san2 s2))"|
 "san2 (If _ s1 s2) = ((san2 s1) \<and> (san2 s2))" |
 "san2 (Exec (Constant i)) = (~(i = 0))"| 
-"san2 (Exec _) =True"| 
+"san2 (Exec _) =False"| 
 "san2 _ = True"
 
-fun evalEabs:: 
+datatype absInt= Integer int | Any
+datatype absBool = Vrai | Faux | Possible
 
-datatype absInt= Neg|Zero|Pos|Undef|Any
-fun concretize:: "absInt \<Rightarrow> int set"
+type_synonym abssymTable= "(string * absInt) list"
+
+fun sumabsInt:: "absInt\<Rightarrow>absInt\<Rightarrow>absInt"
+  where
+"sumabsInt (Integer a) (Integer b) = (Integer (a+b))"|
+"sumabsInt _ _ = Any" 
+
+fun subabsInt:: "absInt\<Rightarrow>absInt\<Rightarrow>absInt"
+  where
+"subabsInt (Integer a) (Integer b) = (Integer (a-b))"|
+"subabsInt _ _ = Any"  
+
+
+
+fun absevalE:: "expression \<Rightarrow> abssymTable \<Rightarrow> absInt"
 where
-"concretize Zero = {0}" |
-"concretize Pos  = {x. x>0}" |
-"concretize Neg  = {x. x<0}" |
-"concretize Any  = {x. True}" |
-"concretize Undef = {}"
+"absevalE (Constant s) e = Integer s" |
+"absevalE (Variable v) e =  (case (assoc v e) of None \<Rightarrow>Integer (-1) | Some(y) \<Rightarrow> y)"|
+"absevalE (Sum e1 e2) e= (sumabsInt (absevalE e1 e) (absevalE e2 e))" |
+"absevalE (Sub e1 e2) e= (subabsInt (absevalE e1 e) (absevalE e2 e))"
+
+
+fun Set_to_Any:: "abssymTable\<Rightarrow>abssymTable"
+  where 
+"Set_to_Any[] =[]"|
+"Set_to_Any ((s,e)#t) = (if e = (Integer (-1)) then (s,e)#(Set_to_Any t) else (s, Any)#(Set_to_Any t))"
+
+fun delete:: "string \<Rightarrow> abssymTable \<Rightarrow> abssymTable"
+  where
+"delete s [] = []"|
+"delete s ((x,e)#t) = (if (s=x) then (delete s t) else (x,e)#(delete s t))"
+
+fun extractabsInt:: "abssymTable \<Rightarrow> string \<Rightarrow> absInt"
+  where 
+"extractabsInt [] _ = (Integer (-1))"|
+"extractabsInt ((x,e)#t) s = (if (x = s) then e else (extractabsInt t s))"
+
+
+fun fusion:: "abssymTable \<Rightarrow> abssymTable \<Rightarrow> abssymTable"
+  where
+"fusion [] t = Set_to_Any t"|
+"fusion ((s,e)#t1) t2 = 
+(if (assoc s t2 = None) 
+  then 
+  (if (e = Integer (-1))
+    then ((s, Integer (-1))#(fusion t1 t2)) 
+  else ((s, Any)#(fusion t1 t2) 
+  ))
+else( 
+   let e1 = (extractabsInt t2 s) in (
+    if (e=e1)
+      then ((s,e)#fusion t1 (delete s t2))
+    else ((s, Any)#(fusion t1 (delete s t2))
+))))"
+
+fun absevalC:: "condition \<Rightarrow> abssymTable \<Rightarrow> absBool"
+  where
+"absevalC (Eq e1 e2) t = 
+(
+if ( (absevalE e1 t) = Any) \<or> ((absevalE e2 t) = Any) 
+  then Possible
+else (
+  if ( (absevalE e1 t) = (absevalE e2 t))
+    then Vrai
+  else Faux
+)
+)
+"
+
+
+fun absevalS:: "statement \<Rightarrow> abssymTable \<Rightarrow> (abssymTable*bool)"
+  where
+"absevalS (Read s) t = ((s, Any)#t, True)"|
+"absevalS (Exec e) t =(t, \<not>(((absevalE e t) = Integer 0) \<or> ((absevalE e t = Any))))"|
+"absevalS (Aff s e) t = ((s, absevalE e t)#t, True)"|
+"absevalS (Seq s1 s2) t = (let (t1, b1) = (absevalS s1 t) in (if b1 then (absevalS s2 t1) else ([], False)))"|
+"absevalS (If c s1 s2) t = (
+if (absevalC c t = Vrai) then (absevalS s1 t)
+else (
+  if (absevalC c t = Possible) 
+    then ( (let (t1, b1) = (absevalS s1 t) in 
+        let (t2, b2) = (absevalS s2 t) in
+  (fusion t1 t2 , b1\<and>b2) ))
+     
+    
+  else (absevalS s2 t)
+)
+) "|
+"absevalS _ t = (t, True)" 
+
+fun san3:: "statement \<Rightarrow> bool"
+  where
+"san3 s = (let (t, b) = absevalS s [] in b)"
+
+
+(* Si san accepte un programme alors son évaluation, quelles que soient les entrées utilisateur (inchan)
+   ne provoquera pas d'exec(0) *)
 
 
 
 (*
-fun san3:: "statement \<Rightarrow> bool"
-  where
-"san3 (Seq s1 s2) = ((san3 s1) \<and> (san3 s2))"|
-"san3 (If _ s1 s2) = ((san3 s1) \<and> (san3 s2))" |
-"san3 (Exec (Constant i)) = (~(i = 0))"| 
-"san3 (Exec (exp)) = (evalE exp) "| 
-"san3 _ = True"
+lemma correction1: "(san1(p))\<longrightarrow> ( \<not>(BAD (evalS p ([], ic, []))))"
+  nitpick[timeout=120]
+  sorry
+
+
+  
+  
+  
+
+lemma correction2: "(san2(p))\<longrightarrow> ( \<not>(BAD (evalS p ([], ic, []))))"
+  nitpick[timeout=120]
+  sorry
+
+lemma correction3: "(san3(p))\<longrightarrow> ( \<not>(BAD (evalS p ([], ic, []))))"
+  nitpick[timeout=120]
+  sorry
+
+
+
+lemma completude1: "( \<not>(BAD (evalS p ([], ic, [])))) \<longrightarrow> san1(p)"
+   nitpick[timeout=120]
+   oops
+
+lemma completude2: "( \<not>(BAD (evalS p ([], ic, [])))) \<longrightarrow> san2(p)"
+   nitpick[timeout=120]
+   oops
+
+lemma completude3: "( \<not>(BAD (evalS p ([], ic, [])))) \<longrightarrow> san3(p)"
+   nitpick[timeout=120]
+   oops
 
 *)
-(* Si san accepte un programme alors son évaluation, quelles que soient les entrées utilisateur (inchan)
-   ne provoquera pas d'exec(0) *)
-
-lemma correction: "(san1(p))\<longrightarrow> ( \<not>(BAD (evalS p ([], ic, []))))"
-  apply auto
-  apply (case_tac p)
-
-
-
-
-(* pas censé avoir un contre exemple*)
-
 (* ----- Restriction de l'export Scala (Isabelle 2023) -------*)
 (* ! ! !  NE PAS MODIFIER ! ! ! *)
 (* Suppression de l'export des abstract datatypes (Isabelle 2023) *)
@@ -383,7 +484,7 @@ import AutomaticConversion._
 
 (* Directive pour l'exportation de l'analyseur *)
 
-export_code san in Scala (case_insensitive)
+export_code san3 in Scala (case_insensitive)
 
 (* file "~/workspace/TP67/src/tp67/san.scala"   (* à adapter en fonction du chemin de votre projet TP67 *)
 *)
