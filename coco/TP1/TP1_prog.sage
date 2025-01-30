@@ -50,10 +50,26 @@ def Distance(r):
 #entrée : la matrice de contrôle H d'un code hamming,la matrice génératrice G du même code, un mot de longueur n=2^r-1
 #sortie : mot corrigé
 
-def décodage_hamming(H, G, y):
-	S=H*y.transpose()
-	i=integer(S,2)
+
+def décodage_hamming(H, r):
+	S=H*r.transpose()
 	if S==0:
-		M=G.solve_left(y)
-		return(M)
+		c=r	
 	else:
+		i=integer(S,2)-1
+		e=vector(GF(2),[0]*len(r))
+		e[i]=1
+		c=r-e
+	return(c)
+
+#Nouvelle fonction pour la distance minimale en partant d'une matrice génératrice quelconque
+#entrée : matrice génératrice G d'un code quelconque
+#sortie : distance minimale du code quelconque
+
+def distance_generatrice(G):
+	S=G.row_space()
+	minimum=len(G[0])
+	for word in S:
+		if Poids(word)<minimum and Poids(word)!=0:
+			minimum=Poids(word)
+	return(minimum)
