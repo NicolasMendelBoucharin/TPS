@@ -140,3 +140,7 @@ ESTAB                 0                      0                                  
 ESTAB                 0                      0                                        148.60.12.167:47936                                                                         172.64.149.23:http                                          
 ESTAB                 0                      0                                        148.60.12.167:38880                                                82.221.107.34.bc.googleusercontent.com:http 
 
+## Question 10 : 
+
+ireshark. Here it is
+already installed, however, we will first need to ensure we have the permission to run it
