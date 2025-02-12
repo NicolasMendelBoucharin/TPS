@@ -142,5 +142,3 @@ ESTAB                 0                      0                                  
 
 ## Question 10 : 
 
-ireshark. Here it is
-already installed, however, we will first need to ensure we have the permission to run it
