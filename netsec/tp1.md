@@ -1,7 +1,4 @@
----
-title: "TP1"
-output: pdf_document
----
+# TP1
 
 ## Question 1 : 
 
@@ -140,5 +137,35 @@ ESTAB                 0                      0                                  
 ESTAB                 0                      0                                        148.60.12.167:47936                                                                         172.64.149.23:http                                          
 ESTAB                 0                      0                                        148.60.12.167:38880                                                82.221.107.34.bc.googleusercontent.com:http 
 
+
+**Pour les questions suivantes, nous avons changé de machine.**
+
 ## Question 10 : 
+
+### 1.
+
+Le Layer 2 est le suivant : (en gras la source, puis la destination)
+
+Ethernet II, Src: **PcsCompu_cb:57:25 (08:00:27:cb:57:25)**, Dst: **Fortinet_53:44:e3 (d4:76:a0:53:44:e3)**
+
+Ce qui correspond aux adresses qu'on trouve avec les commandes ip a, ip r, ip n.
+(Comme on a changé de machine entre la fois où on a répondu aux question 2, 3, 4, les adresses ont légérement changé)
+
+
+### 2.
+Le Layer 3 est le suivant : (en gras la source, puis la destination)
+
+Internet Protocol Version 4, Src: **148.60.12.163**, Dst: **148.60.11.246**
+
+### 3.
+
+La ligne d'entête partagée contient, en gras, des bits de type : (cf TD1)
+
+0000   d4 76 a0 53 44 e3 08 00 27 cb 57 25 **08 00** 45 00  
+
+
+## Question 11 :
+
+Après avoir supprimé le router de nos voisins et fait un ping à google.fr la première requête arp est :
+
 
