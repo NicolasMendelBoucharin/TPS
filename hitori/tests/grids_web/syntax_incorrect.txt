@@ -1,0 +1,5 @@
+# syntactically incorrect grid, with many sources of incorrectness
+1 4 3 1 2
+1 2 0 4 4
+1 5 3 1
+1 5 4 3 3 1

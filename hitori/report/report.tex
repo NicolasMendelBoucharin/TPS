@@ -1,0 +1,114 @@
+\documentclass{article}
+
+% Language setting
+% Replace `english' with e.g. `spanish' to change the document language
+\usepackage[french]{babel}
+
+% Set page size and margins
+% Replace `letterpaper' with `a4paper' for UK/EU standard size
+\usepackage[letterpaper,top=2cm,bottom=2cm,left=3cm,right=3cm,marginparwidth=1.75cm]{geometry}
+
+% Useful packages
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage[colorlinks=true, allcolors=blue]{hyperref}
+
+\title{Rapport}
+\author{Nicolas Mendel-Boucharin}
+\date{5 décembre 2024}
+\begin{document}
+\maketitle
+\tableofcontents
+
+\newpage
+\section{Progrès}
+Ce qui marche (ou en tout cas je crois), ce qui manque et bugs:\\
+
+
+\begin{itemize}
+    \item \underline{MakeFile :} À priori tout marche, sauf le cas du "make test" où je n'ai rien implémenté.\\
+    \item \underline{Parseur d'arguments et d'options :} Je n'ai pas géré les options verboses, unique et mon mode solver ne print que dans le terminal. Par contre mon mode generate peut imprimer dans un fichier normalement mais je n'ai pas eu le temps de tester.\\
+    \item \underline{Fonctions pour gérer les grilles et les couleurs :} À priori tout est ok\\
+    \item \underline{Parseur de grille :} Il marche pour les fichiers donnés mais ne gère les commentaires que dans le cas où ils sont en première ligne ; je me suis honnêtement beaucoup fait aidé pour cette étape qui a été la plus dure du projet pour moi.\\
+    \item \underline{Contrôles de validité de mes grilles :} Tout marche\\
+    \item \underline{Heuristiques :} Pareil\\
+    \item\underline{Méthode de choix :} Ça marche mais c'est vraiment naïf comme méthode choix (je prends juste la première case grise quand je parcours la grille avec des for)\\
+    \item\underline{Backtracking :} Normalement tout marche j'ai par contre fait le choix d'afficher un message d'erreur quand la grille est coloriée par les heuristiques mais n'est pas valide (i.e. qu'elle n'est juste pas solvable). Ce choix m'a posé problème quand j'ai tenté de faire une fonction generate\_grid qui permettait d'avoir une grille solvable.\\
+    Comme dit plus haut, je n'ai pas géré l'option du fichier de sortie, tout sort dans stdout (je n'arrivais pas à faire mieux sans changer la signature de mes fonctions et je n'ai pas le temps de plus m'y pencher...).\\
+    \item\underline{Générations de grilles :} J'ai fait de quoi générer une grille aléatoire mais pas nécessairement solvable. \\
+    J'ai cependant essayé à un moment de faire un code naïf pour générer une grille solvable en itérant jusqu'à ce que mon solver me donne une grille valide. Mais j'avais non seulement un problème de message d'erreur qui s'affichait indéfiniment à chaque grille non valide (j'ai parlé de ce choix plus haut) mais des que la grille était grande mon pc ne suivait pas... J'ai donc choisi, afin d'avoir un code qui marche, de laisser le code de base qui génère une grille peut être solvable.\\
+    \item\underline{Bug si syntaxe incorrect :} Rien ne s'affiche quand j'essaie de solver un fichier incorrect au sens du parser, je n'ai pas réussi à trouver d'où ça vient...\\
+    \item\underline{Rapport :} J'ai essayé de faire ce qu'il faut dans mon makefile pour utiliser pdflatex pour compiler le rapport mais impossible de trouver comment faire même avec des "\&\&" ou des ";" pour d'abord aller dans le bon dossier et après faire la compilation. J'ai quand même modifié mon CLEAN pour qu'il supprime les fichiers inutiles après compilation.\\
+    
+\end{itemize}
+
+\newpage
+\section{Consistance}
+
+J'ai déjà fait le choix de créer un nouveau fichier DFS.c et DFS.h pour définir toutes les sous-fonctions et structures à utiliser.\\
+Les premières conditions à implémenter pour la consistance étaient les plus simples à implémenter.\\
+J'ai fait à chaque fois une fonction pour les ligne une fonction pour les colonnes.\\
+Pour la fonction testwhiteline j'ai fait une boucle sur les ligne puis sur les colonnes et j'ai refait une boucle sur les colonnes pour vérifier si un nombre qui est blanc réapparait plus tard dans la ligne en blanc aussi et ça renvoie un booléen. Pareil pour testwhiterow mutatis mutandis.\\
+\underline{Attention :} J'ai fait le choix (pas forcément joli) ne rendre true quand y'a un problème pour ma fonction is\_consistent.\\
+Pour la fonction consecutive\_line je fait deux boucles for et je regarde si deux cases côtes à côtes sont noires.\\
+
+Pour la fonction is\_a\_path j'ai du faire un DFS :\\
+Mon but était de dire qu'il y avait un chemin si le nombre de cases non noires était égal au nombre de points d'une composante connexe d'une case non noires.\\
+J'ai donc crée une fonction numbernonblack qui renvoie le nombre de cases non noires et une autre pour le DFS.\\
+Pour la fonction DFS j'ai du créer une nouvelle structure avec une grille de char et de couleur (la même que celle de grid\_t) et un statut (parcouru ou pas parcouru).\\
+Dès lors j'ai défini ma fonction DFS récursivement (en recopiant le pseudocode de wikipedia) de sorte qu'elle ait en entrée ma nouvelle structure et un point de départ. Elle est codé de sorte qu'elle aille sur tout ses voisins (non noir et en faisant attentions au cas des bords) et qu'elle change son statut de parcours et s'applique à lui récursivement.\\
+Cela fait j'ai pu code ma fonction is\_a\_path qui crée une nouvelle structure à partir d'une grille normale, lui applique le DFS, la parcoure et compte les "parcourus" et compare avec le nombre de cases non noires pour renvoyer un booléeun.\\
+J'ai donc du créer des fonctions (les mêmes que celle pour le parseur à peu de choses près) pour copier la grille dans ma nouvelle structure et pouvoir lui appliquer le DFS.\\
+J'ai également du créer des fonctions pour chercher les indices du premier caractère non colorié en noir (j'aurais avec du recul du le faire avec un pointeur mais mon code marche je n'y touche plus).\\
+
+\newpage
+\section{Heuristiques}
+
+Pour chaque heuristique j'ai d'abord initialisé un booléen à false et si je modifiais la grille je l'actualisait à true. \\
+
+Cela m'a permis de créer une fonction applysheuristics qui applique toutes les heuristiques tant qu'au moins une a eu un effet à l'étape d'avant. J'ai pour cela initialisé aussi un booléen à true et je lui ai affecté l'union logique de tous les résultats d'heuristiques à chaque étape (ce qui permet en plus de les appeler et donc d'appliquer les heuristiques à la grille)
+
+J'ai d'abord implémenté les heuristiques proposé dans l'énoncé qui ne demandaient que de faire des boucles dans des boucles. Il fallait cependant bien faire attention à exclure les cas où on regardait la même cellule quand on parcourait une deuxième fois pour regarder les couleurs, et à bien faire des sous cas (comme dans le DFS) pour ne pas dépasser les bords de la grille dans le parcours quand on regarde les cases adjacentes.\\
+
+La seule que j'ai rajouté c'est une autre qui regarde si quand je colorie une case en noire j'ai toujours un chemin et qui, si ce n'est pas le cas, la colorie en blanc. J'ai trouvé cette heuristique sur la page wikipédia du jeu.
+
+\newpage
+\section{Génération} 
+
+Comme dit plus haut je n'ai pas eu le temps de faire plus que générer une grille aléatoire qui est de compléxité $O(n^2)$\\
+
+Je n'ai pas fait le cas unique mais j'ai profité d'avoir cette option pour le remplacer par un générateur qui fait des grilles solvables.\\
+
+\underline{Attention !} on ne peut l'utiliser que pour des tailles faibles sinon ça demande trop de calcul et il semble que mon "do while" ait un problème mais je n'ai plus le temps de le corriger 
+
+\newpage
+\section{Qualité et performance de code}
+
+\begin{itemize}
+    \item J'ai essayé de commenter pour décrire ce que faisait chaque fonction.\\
+    \item J'ai essayé d'écrire les problèmes de mes fonctions quand je les voyais en commentaire.\\
+    \item J'ai par contre utilisé tout du long des g->grid\_color[i][j] plutôt que les fonctions que j'ai défini. J'ai zappé l'existence de ces fonctions et je les trouvais moins pratique à utiliser quand je m'en suis souvenu...\\
+    \item J'ai parfois introduit des sous cas dont je me suis au final jamais servi pour des pointeurs d'entiers que j'affecte à -1 quand je ne peux pas trouver d'indices mais en réalité je n'ai jamais eu besoin de me servir de ces cas là...
+\end{itemize}
+
+\newpage
+\section{Outils et ressources}
+
+\begin{itemize}
+    \item J'ai vraiment fait un copié collé de la docu pour le parseur d'options et je n'ai honnêtement pas tout compris...\\
+    \item J'ai utilisé chatgpt pour m'aider à comprendre avec des exemples le fonctionnement des malloc et autres pour mes fonctions d'allocation et de libération de mémoire et pour le parseur de grille.\\
+    \item Je me suis fait beaucoup aidé pour le parseur de grille qui m'a beaucoup bloqué dans mon avancement\\
+    \item J'ai surtout utilisé wikipédia pour les heuristiques et le DFS\\
+    \item J'ai beaucoup utilisé Valgrind pour trouver quand mon code renvoyait des segfaults\\
+    \item A de rares occasions j'ai utilisé GDB pour mieux comprendre mes erreurs.
+\end{itemize}
+\newpage
+\section{Autre}
+
+Je m'y suis pris très tard, et j'ai beaucoup codé d'un coup. J'ai donc essayé de faire des git commit réguliers pour quand même faire état de ma progression au fur et à mesure du projet. \\
+
+Même si j'ai tout fait en une semaine, j'ai passé une semaine à ne faire que ça.
+
+
+
+\end{document}
