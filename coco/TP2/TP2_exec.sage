@@ -43,9 +43,10 @@ print("Question 1.e)\n")
 print(f"mes facteurs unitaires de X^{n}-1 dans F_{q} : {ma_factorisation(n,q)} \n")
 S = ma_factorisation(n,q)
 #Vérification
-if print(S == {u[0] for u in factor(x^n-1)}):
+if (S == {u[0] for u in factor(x^n-1)}):
         print("Validation du TP2\n")
-
+else:
+        print("Erreur\n")
 
 ## Exercice 2:
 print("Exercice 2\n")
@@ -64,9 +65,31 @@ print(f"... et sage le factorise comme ça : {factor(x^n-1)}\n")
 
 
 ## Exercice 3:
-print("Exercice 3\n")
-R.<x> = PolynomialRing(GF(2))
-L=ma_factorisation(1023,2)
-g=lcm(L)
-print(g)
 
+print("Exercice 3\n")
+
+R.<x> = PolynomialRing(GF(2))
+#calcul de alpha
+F=GF(2**10)
+Fgen=F.gen()
+alpha=Fgen**Integer((2**10-1)/1023)
+print(f"alpha = {alpha}\n")
+
+#calcul du polynôme générateur
+L=[]
+for s in range(1, 101):
+    L.append(polmin(racineprimitive(2,1023), s, 2, 1023))
+L=set(L)
+g=lcm(L)
+print(f"le polynôme générateur est : {g}\n")
+
+#calcul de la matrice génératrice
+deg=g.degree()
+L=list(g)+[0 for i in range(1022-g.degree())]
+C = []
+for i in range(len(L)):
+    C.append([0] * i + L[:len(L) - i])
+
+print("Pour afficher la matrice génératrice, décommenter la ligne suivante\n")
+
+#print(C)
