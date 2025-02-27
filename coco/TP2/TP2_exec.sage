@@ -87,8 +87,9 @@ print(f"le polynôme générateur est : {g}\n")
 deg=g.degree()
 L=list(g)+[0 for i in range(1022-g.degree())]
 C = []
-for i in range(len(L)):
+for i in range(1023-g.degree()+1):
     C.append([0] * i + L[:len(L) - i])
+
 
 print("Pour afficher la matrice génératrice, décommenter la ligne suivante\n")
 
