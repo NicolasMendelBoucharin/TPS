@@ -1,6 +1,4 @@
-# TP 3 - Nicolas Mendel-Boucharin - Marilou Le Bricon
 
-## Partie I 
 
 ### Question 1.1.
 
@@ -66,5 +64,17 @@ Si c'est avec le même conn ça ne marche pas. Il faut que les bons numéros seq
 
 
 ### Question 2.4.
+
+Avec UDP si j'utilise mon programme du TP2 qui envoie 50 messages, on voit clairement que plusieurs ne sont pas reçu. (Il faudrait en envoyer plus pour vraiment observer les 15% de pertes). 
+
+Avec TCP on observe un délai que l'on avait pas avant. 
+
+### Question 2.5.
+
+Avec TCP on voit qu'on a vraiment beaucoup plus de délai.
+Avec UDP non seulement des pacquets qui sautent mais tout arrive dans le désordre
+
+### Question 2.6.
+
 
 

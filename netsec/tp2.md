@@ -21,14 +21,20 @@ La même chose qu'à la question 3
 
 On rajoute au fichier seveur les lignes suivantes : 
 
-> if data !=b"": \
->        reponse = b"j'ai recu un truc"  
->        sock.sendto(reponse, addr)  
+```python
+if data !=b"": \
+       reponse = b"j'ai recu un truc"  
+       sock.sendto(reponse, addr)  
+```
 
 On rajoute au fichier client les lignes suivantes :
 
-> data, _ =sock.recvfrom(1024)
+```python
+data, _ =sock.recvfrom(1024)
 print(data)
+```
+
+
 
 ## Question 6.
 
@@ -73,37 +79,38 @@ Pour ne plus seulement être en localhost qui permets des paquets beaucoup plus 
 
 le code en python du client :
 
-> import socket   
+```python
+import socket   
 
-> UDP_IP = "127.0.0.1"  
-> UDP_PORT= 10000  
-> IP_RECVERR=11  
-> MESSAGE = b"Hello, World !"  
-> print("UDP target IP: %s"% UDP_IP)  
-> print("UDP target PORT: %s"% UDP_PORT)  
-> print("message: %s" %MESSAGE)  
+UDP_IP = "127.0.0.1"  
+UDP_PORT= 10000  
+IP_RECVERR=11  
+MESSAGE = b"Hello, World !"  
+print("UDP target IP: %s"% UDP_IP)  
+print("UDP target PORT: %s"% UDP_PORT)  
+print("message: %s" %MESSAGE)  
 
-> sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  
-> sock.setsockopt(socket.IPPROTO_IP, IP_RECVERR, 1)  
-> sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))  
-> data, _ =sock.recvfrom(1024)  
-> print(data)  
-
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  
+sock.setsockopt(socket.IPPROTO_IP, IP_RECVERR, 1)  
+sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))  
+data, _ =sock.recvfrom(1024)  
+print(data)  
+```
 
 
 le code en python du serveur : 
+```python
+import socket   
 
-> import socket   
-
-> UDP_IP = "127.0.0.1"  
-> UDP_PORT= 10000  
-> sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  
-> sock.bind((UDP_IP, UDP_PORT))  
-> reponse = "j'ai recu un truc"  
-> while True:  
->     data, addr = sock.recvfrom(1024)  
->     print("received message: %s" %data)  
->     if data !=b"":  
->         reponse = b"j'ai recu un truc"  
->         sock.sendto(reponse, addr)  
-
+UDP_IP = "127.0.0.1"  
+UDP_PORT= 10000  
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  
+sock.bind((UDP_IP, UDP_PORT))  
+reponse = "j'ai recu un truc"  
+while True:  
+    data, addr = sock.recvfrom(1024)  
+    print("received message: %s" %data)  
+    if data !=b"":  
+        reponse = b"j'ai recu un truc"  
+        sock.sendto(reponse, addr)  
+```

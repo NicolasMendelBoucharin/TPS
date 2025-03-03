@@ -10,7 +10,10 @@ print("message: %s" %MESSAGE)
 
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 sock.setsockopt(socket.IPPROTO_IP, IP_RECVERR, 1)
-sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
+for i in range(50):
+    message=f"coucou de la ligne {i}\n"
+    sock.sendto(message.encode(), (UDP_IP, UDP_PORT))
+#sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
 data, _ =sock.recvfrom(1024)
 print(data)
 
