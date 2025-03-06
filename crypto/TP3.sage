@@ -61,12 +61,14 @@ def foisX(P):
     if plist[7]==1:
         for i in range(len(plist)-1):
             plist[len(plist)-(i+1)]=plist[len(plist)-(i+2)]
-        plist[0] = 1
+        plist[0] = 1 
         plist[1] += 1
         plist[3] += 1
         plist[4] += 1
         return(R(plist))
    
+   
+        
 
 def multiplicationpol(P, Q):
     qlist=Q.list()
@@ -87,7 +89,7 @@ def multiplicationhexa(hex1, hex2):
 
 ### f)
 
-print("Avec l'algorithme du TD on trouve :", multiplicationhexa(0x57, 0x83), "\n")
+print("Avec l'algorithme du TD on trouve :", multiplicationhexa(0x14, 0x82), "\n")
 
 ### g)
 
@@ -117,8 +119,9 @@ for i in range(1, 255):
 
 print("La liste inverse est: ", exp2pol, "\n")
 
+
 ### k )
 
 
-    
+
 

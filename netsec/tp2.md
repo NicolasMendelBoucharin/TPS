@@ -1,4 +1,4 @@
-#TP2 - Nicolas Mendel-Boucharin - Marilou Le Bricon
+# TP2 - Nicolas Mendel-Boucharin - Marilou Le Bricon
 
 ## Question 1. 
 
@@ -75,42 +75,92 @@ Pour ne plus seulement être en localhost qui permets des paquets beaucoup plus 
 > 1: lo: <LOOPBACK,UP,LOWER_UP> **mtu 65536** qdisc noqueue state UNKNOWN group default qlen 1000 
 
 
-### annexe : 
+## annexe : 
 
-le code en python du client :
+- le code en python du client UDP :
 
 ```python
-import socket   
+import socket 
 
-UDP_IP = "127.0.0.1"  
-UDP_PORT= 10000  
-IP_RECVERR=11  
-MESSAGE = b"Hello, World !"  
-print("UDP target IP: %s"% UDP_IP)  
-print("UDP target PORT: %s"% UDP_PORT)  
-print("message: %s" %MESSAGE)  
+UDP_IP = "127.0.0.1"
+UDP_PORT= 10000
+IP_RECVERR=11
+MESSAGE = b"Hello, World !"
+print("UDP target IP: %s"% UDP_IP)
+print("UDP target PORT: %s"% UDP_PORT)
+print("message: %s" %MESSAGE)
 
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  
-sock.setsockopt(socket.IPPROTO_IP, IP_RECVERR, 1)  
-sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))  
-data, _ =sock.recvfrom(1024)  
-print(data)  
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.setsockopt(socket.IPPROTO_IP, IP_RECVERR, 1)
+for i in range(50):
+    message=f"coucou de la ligne {i}\n"
+    sock.sendto(message.encode(), (UDP_IP, UDP_PORT))
+#sock.sendto(MESSAGE, (UDP_IP, UDP_PORT))
+data, _ =sock.recvfrom(1024)
+print(data)
+
 ```
 
 
-le code en python du serveur : 
-```python
-import socket   
+- le code en python du serveur UDP : 
 
-UDP_IP = "127.0.0.1"  
-UDP_PORT= 10000  
-sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  
-sock.bind((UDP_IP, UDP_PORT))  
-reponse = "j'ai recu un truc"  
-while True:  
-    data, addr = sock.recvfrom(1024)  
-    print("received message: %s" %data)  
-    if data !=b"":  
-        reponse = b"j'ai recu un truc"  
-        sock.sendto(reponse, addr)  
+```python
+iimport socket 
+
+UDP_IP = "127.0.0.1"
+UDP_PORT= 10000
+sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+sock.bind((UDP_IP, UDP_PORT))
+reponse = "j'ai recu un truc"
+while True:
+    data, addr = sock.recvfrom(1024)
+    print("received message: %s" %data)
+    if data !=b"":
+        reponse = b"j'ai recu un truc"
+        sock.sendto(reponse, addr)
+
+```
+
+- le code en python du client TCP : 
+
+```python
+import socket 
+TCP_IP = "127.0.0.1"
+TCP_PORT = 10000
+BUFFER_SIZE=1000000
+MESSAGE="Hello, World!\n"
+s=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.connect((TCP_IP, TCP_PORT))
+for i in range(50):
+    message=f"coucou de la ligne {i}\n"
+    s.send(message.encode())
+    data=s.recv(BUFFER_SIZE)
+print("received data:", data.decode())
+
+s.close()
+
+```
+
+- le code en python du serveur TCP : 
+
+```python
+
+import socket 
+TCP_IP="127.0.0.1"
+TCP_PORT= 10000
+BUFFER_SIZE=40
+
+s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+s.bind((TCP_IP, TCP_PORT))
+s.listen(1)
+
+conn, addr = s.accept()
+print("Connection address:", addr)
+while True:
+    data = conn.recv(BUFFER_SIZE)
+    if not data: break
+    print("received data:", data.decode())
+    conn.send(data)
+conn.close()
+
 ```

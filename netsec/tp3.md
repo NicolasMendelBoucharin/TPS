@@ -50,7 +50,7 @@ On a mainteant un message de syn du serveur au début auquel le client repond av
 
 On a encore du changer le TCP_PORT à 10000. 
 
-On a maintenat un message de fin de connexion qui doit aussi être ack par les machines :
+On a maintenant un message de fin de connexion qui doit aussi être ack par les machines :
 
 > 8	0.000187587	127.0.0.1	127.0.0.1	TCP	66	48604 → 10000 [FIN, ACK] Seq=15 Ack=15 Win=65536 Len=0 TSval=1933898386 TSecr=1933898386  
 > 9	0.000199862	127.0.0.1	127.0.0.1	TCP	66	10000 → 48604 [FIN, ACK] Seq=15 Ack=16 Win=65536 Len=0 TSval=1933898386 TSecr=1933898386  
@@ -76,5 +76,8 @@ Avec UDP non seulement des pacquets qui sautent mais tout arrive dans le désord
 
 ### Question 2.6.
 
+C'est TCP qui gère lui même la fragmentation. Alors que UDP fait appel à IPv4 pour fragmenter.
 
+### Question 2.7.
 
+Quand on rajoute des pertes avec UDP on ne reçoit rien sur le serveur parce que comme il manque des paquets UDP n'arrive pas à rassembler les paquets découpés par IPv4. Par contre quand on le fait avec TCP les paquets sont bien tous reçus malgré les pertes (Quand il manque un paquet le serveur le redemande.) 
