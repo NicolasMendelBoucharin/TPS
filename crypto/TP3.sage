@@ -89,7 +89,7 @@ def multiplicationhexa(hex1, hex2):
 
 ### f)
 
-print("Avec l'algorithme du TD on trouve :", multiplicationhexa(0x14, 0x82), "\n")
+print("Avec l'algorithme du TD on trouve :", multiplicationhexa(0x57, 0x83), "\n")
 
 ### g)
 
@@ -124,4 +124,43 @@ print("La liste inverse est: ", exp2pol, "\n")
 
 
 
+## Exercice 2 :
 
+print("Exercice 2 : \n")
+
+#Je vais avoir besoin d'une fonctoin qui transforme les hexa en liste de bits:
+
+def hextolist(h):
+    l=list(bin(h))
+    l=l[2:]
+    return l
+
+
+### a)
+
+print("a) \n")
+
+F=GF(2)
+R.<X> = PolynomialRing(F)
+
+def SubBytes(h):
+    A=matrix([[1, 0, 0, 0, 1, 1, 1, 1],
+       [1, 1, 0, 0, 0, 1, 1, 1],
+       [1, 1, 1, 0, 0, 0, 1, 1],
+       [1, 1, 1, 1, 0, 0, 0, 1],
+       [1, 1, 1, 1, 1, 0, 0, 0],
+       [0, 1, 1, 1, 1, 1, 0, 0],
+       [0, 0, 1, 1, 1, 1, 1, 0],
+       [0, 0, 0, 1, 1, 1, 1, 1]])
+    b=vector([1, 1, 0, 0, 0, 1, 1, 0])
+    
+    return poltoint(R(A*vector(hextolist(h))+b))
+
+print("On a bien que SubBytes(0x11)=", SubBytes(0x11), "\n")
+
+### b)
+
+print("b) \n")
+
+def invSubBytes(i):
+    return None
