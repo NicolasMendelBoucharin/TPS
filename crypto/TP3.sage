@@ -120,41 +120,60 @@ for i in range(1, 255):
 print("La liste inverse est: ", exp2pol, "\n")
 
 
-### k )
+### k)
 
+def nouveauproduit(hex1, hex2):    
+    if hex1 == 0 or hex2 == 0:
+        return 0
+    else :
+        exp1 = pol2exp[hex1]
+        exp2 = pol2exp[hex2]
+    
+        expProduit = (exp1 + exp2) % 255
+        produit = exp2pol[expProduit]
+    
+        return produit
+
+print("Avec le nouvel algorithme, on trouve :", nouveauproduit(0x57, 0x83), "\n")
 
 
 ## Exercice 2 :
 
 print("Exercice 2 : \n")
 
-#Je vais avoir besoin d'une fonctoin qui transforme les hexa en liste de bits:
+#Je vais avoir besoin d'une fonction qui transforme les hexa en liste de bits:
+
+
 
 def hextolist(h):
-    l=list(bin(h))
-    l=l[2:]
-    return l
-
-
+    if h == 0 :
+        return R(0)
+    else:
+        pol=F256(hextopol(h)).inverse()
+        l=pol.list()
+        while len(l)<8:
+            l.append(0)
+        return l
 ### a)
 
 print("a) \n")
 
-F=GF(2)
-R.<X> = PolynomialRing(F)
-
-def SubBytes(h):
-    A=matrix([[1, 0, 0, 0, 1, 1, 1, 1],
-       [1, 1, 0, 0, 0, 1, 1, 1],
-       [1, 1, 1, 0, 0, 0, 1, 1],
-       [1, 1, 1, 1, 0, 0, 0, 1],
-       [1, 1, 1, 1, 1, 0, 0, 0],
-       [0, 1, 1, 1, 1, 1, 0, 0],
-       [0, 0, 1, 1, 1, 1, 1, 0],
-       [0, 0, 0, 1, 1, 1, 1, 1]])
-    b=vector([1, 1, 0, 0, 0, 1, 1, 0])
+A = matrix(GF(2), [[1, 0, 0, 0, 1, 1, 1, 1],
+                   [1, 1, 0, 0, 0, 1, 1, 1],
+                   [1, 1, 1, 0, 0, 0, 1, 1],
+                   [1, 1, 1, 1, 0, 0, 0, 1],
+                   [1, 1, 1, 1, 1, 0, 0, 0],
+                   [0, 1, 1, 1, 1, 1, 0, 0],
+                   [0, 0, 1, 1, 1, 1, 1, 0],
+                   [0, 0, 0, 1, 1, 1, 1, 1]])
+b = vector(GF(2), [1, 1, 0, 0, 0, 1, 1, 0])
     
-    return poltoint(R(A*vector(hextolist(h))+b))
+def SubBytes(h):
+    if h==0:
+        return 0
+    if F256(A*vector(hextolist(h))+b)==0:
+        return 0
+    return poltohex(F256(A*vector(hextolist(h))+b))
 
 print("On a bien que SubBytes(0x11)=", SubBytes(0x11), "\n")
 
@@ -162,5 +181,57 @@ print("On a bien que SubBytes(0x11)=", SubBytes(0x11), "\n")
 
 print("b) \n")
 
-def invSubBytes(i):
-    return None
+Ainv=A.inverse()
+def invSubBytes(h):
+    if h==0:
+        return 0
+    h=vector(GF(2), F256(hextopol(h)).list())
+    h=h-b
+    h=Ainv*h
+    if F256(h)==0:
+        return 0
+    return poltohex(F256(h).inverse())
+
+print("On a bien que invSubBytes(0x82)=", invSubBytes(0x82), "\n")
+
+### c)
+
+print("c) \n")
+
+S={0:0}
+for i in range(1,256):
+    S[i]=SubBytes(i)
+    
+iS={0:0}
+for i in range(1,256):
+    iS[i]=invSubBytes(i)   
+    
+print("Les dicos S et iS sont : ", S, iS, "\n") 
+
+## Exercice 3 :
+
+print("Exercice 3 : \n")
+
+### a)
+
+print("a) \n")
+
+F256Y.<Y> = PolynomialRing(F256,'Y')
+
+c3 = F256(hextopol(0x03))
+c0= F256(hextopol(0x02))
+
+c = F28Y(c3*(Y^3) + (Y^2) + Y + c0)
+
+cinv3 = F256(hextopol(0x0B))
+cinv2 = F256(hextopol(0x0D))
+cinv1= F256(hextopol(0x09))
+cinv0= F256(hextopol(0x0E))
+
+cinv = F256Y(cinv3*(Y^3) + cinv2*(Y^2) + cinv1*Y + cinv0)
+
+print((c*cinv)%(Y+1)^4==1)
+
+### b)
+
+

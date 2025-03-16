@@ -91,7 +91,20 @@ Ici on voit sur le wireshark du pc voisin que j'ai pingé qu'il a répondu à go
 
 ## Question 5.
 
+```python
+conf.L3socket = L3RawSocket
+req=IP(src='8.8.8.8', dst='127.0.0.1')/UDP(dport=10000)/raw(b"miaou")
+send(req)
+resp = sr1(req)
+resp.show()
 
+```
+
+En modifiant légérement le code (c.f. troubleshooting), on reçoit bien "miaou" sur notre serveur udp
+
+## Question 6. 
+
+ 
 
 ## Annexes : 
 
