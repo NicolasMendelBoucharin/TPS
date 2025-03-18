@@ -148,6 +148,27 @@ Comme TCP envoie un ack avant qu'on puisse envoyer notre fichier raw on ne peut 
 
 ## Question 10.
 
+```python
+def testdeco(ip, por):
+    req=IP(dst=ip)/TCP(sport= 5000, dport=por, flags="S")
+    resp = sr1(req, verbose=0, timeout=0.1)
+    if resp==None:
+        return False
+    #else:
+       # print(resp['TCP'].flags)
+    if 'S' in resp['TCP'].flags and 'A' in resp['TCP'].flags:
+	return True
+
+def testport(ip):
+    L=[]
+    for i in range(10000):
+        if testdeco(ip, i):
+            L.append(i)
+    return L
+
+```
+
+En ayant testé seulement sur 100 ports sur google on a bien une réponse sur le port 53 qui est le seul ouvert.
 
 ## Annexes :
 

@@ -69,29 +69,36 @@ def euclidedecodagebch(P, Q, t):
 #entrée : sigma le polynôme générateur
 #sortie : liste des Y_i
 
-def trouverlesy(sigma, omega):
-    Y_=[]
-    L=sigma.roots(multiplicities=false)
-    for i in range(len(L)):
-        Y_[i]=(1/L[i])*omega(1/L[i])
+
+def trouverlesy(alpha, omega, indices):   
+    X_=[alpha**i for i in indices]
+    Y_=[0 for i in range(len(X_))]
+    for i in range(len(X_)):
+        Y_[i]=(X_[i]**(-1))*omega(X_[i]**(-1))
         partiedroite=1
-        for l in L :
-            if l!=L[i]:
-                partiedroite=partiedroite*(1-l/L[i])
-        Y_[i]=Y_[i]/partiedroite
+        for Xj in X_ :
+            if Xj!=X_[i]:
+                partiedroite=partiedroite*(1-(X_[i])**(-1)*Xj)
+        Y_[i]=Y_[i]*partiedroite**(-1)
     return Y_
 
             
-#décodage
-#entrée : sigma, omega, y, 
+#décodage d'un mot de code
+#entrée : alpha, d la distance préscrite, n la taille du code, y le mot codé
+#sortie : le mot décodé 
 
 def decodage(n, d, alpha, y):
-    g=polgen(alpha, d)
+    
     R=y.parent()
     x=R.gen()
+    
+    g=polgen(alpha, d)
+    
     F=alpha.parent()
     Fz.<z>=PolynomialRing(F)
+    
     t=floor((d-1)/2)
+    
     P=z**(2*t)
     S=[]
     for i in range(2*t):
@@ -100,13 +107,20 @@ def decodage(n, d, alpha, y):
     for i in range(2*t):
         s+=S[i]*z**i
     sigma, omega = euclidedecodagebch(P, s, t)
-    Y_=trouverlesy(sigma, omega)
+    
+    racines=sigma.roots(multiplicities=false)
+    indices=[(raci**(-1)).log(alpha) for raci in racines]
+   
+    Y_=trouverlesy(alpha, omega, indices)
+    
     erreur=0
-    indices=[]
-    for l in sigma.roots(multiplicities=false):
-        indices.append((l**(-1)).log(alpha))
+   
     for i in range(len(indices)):
         erreur=erreur+Y_[i]*x**indices[i]
+    
+    motdecode=(y-erreur)/g
+    
+    return (motdecode)
     
     
 
