@@ -1,4 +1,5 @@
 attach('TP3_prog.sage')
+
 ## Exercice 1:
 
 print("Exercice 1: \n")
@@ -15,11 +16,7 @@ print(f"alpha 15 = {alpha**15}")
 
 print("2) \n")
 
-L=[]
-for i in range (1, 5):
-    L.append(polmin(alpha, i, 2, 15))
-L=set(L)
-g=lcm(L)
+g=polgen(alpha, 5)
 print(f"le polynôme générateur est : {g}\n")
 
 ### 3)
@@ -48,5 +45,23 @@ print(f"Les 4 premiers S_i sont : {S}\n")
 
 print("4.b) \n")
 
-F16z.<z>=PolynomialRing(GF(2**4))
- 
+F16z.<z>=PolynomialRing(F16)
+
+P=z**4
+t = 2
+s=0
+for i in range(4):
+    s+=S[i]*z**i
+
+
+sigma, omega = euclidedecodagebch(P, s, t)
+
+print(f"sigma = {sigma}\n")
+print(f"omega = {omega}\n")
+print(f"Le polynôme localisteur est : {sigma}\n")
+print(f"Ses racines sont donc : {sigma.roots(multiplicities=false)}\n")
+
+#### c)
+
+print("4.c) \n")
+
