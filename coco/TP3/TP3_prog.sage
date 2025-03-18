@@ -33,3 +33,4 @@ def polmin(alpha, s, q, n):
     for i in classe:
         M=M*(x-alpha**i)
     return M
+

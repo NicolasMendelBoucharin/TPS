@@ -104,9 +104,52 @@ En modifiant légérement le code (c.f. troubleshooting), on reçoit bien "miaou
 
 ## Question 6. 
 
- 
+En changeant l'ip et le port source en ip et port distant on a bien des messages qui bouclent
 
-## Annexes : 
+```python
+
+conf.L3socket = L3RawSocket
+req=IP(src='127.0.0.1', dst='127.0.0.1')/UDP(sport= 10000, dport=10000)/raw(b"miaou")
+send(req)
+resp = sr1(req)
+resp.show()
+
+```
+ 
+## Question 7.
+
+En faisant ce code là : 
+
+```python
+conf.L3socket = L3RawSocket
+req=IP(src='127.0.0.1', dst='127.0.0.1')/TCP(sport= 5000, dport=10000, flags="S")
+resp = sr1(req)
+resp.show()
+
+```
+On voit bien sur wireshark que on envoie un premier packet syn le serveur nous réponds un syn et un ack mais nous lui répondons un reset. Rien ne s'affiche sur notre serveur du TP2. 
+
+## Question 8. 
+
+En regardant la docu on corrige notre code et on reçoit bien miaou avec le serveur du tp2
+
+```python 
+conf.L3socket=L3RawSocket 
+s=socket.socket() 
+s.connect(("127.0.0.1", 10000))
+ss=StreamSocket(s,Raw) 
+ss.sr1(Raw("Miaou"))
+
+```
+
+## Question 9.
+
+Comme TCP envoie un ack avant qu'on puisse envoyer notre fichier raw on ne peut pas spoofer. 
+
+## Question 10.
+
+
+## Annexes :
 
 
 - Code du traceroute : 

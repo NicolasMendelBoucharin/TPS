@@ -49,3 +49,4 @@ print(f"Les 4 premiers S_i sont : {S}\n")
 print("4.b) \n")
 
 F16z.<z>=PolynomialRing(GF(2**4))
+ 
