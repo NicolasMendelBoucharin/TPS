@@ -44,6 +44,36 @@ G = H.right_kernel().basis_matrix()
 print("La matrice est horrible à lire mais il suffit de décomenter la ligne après ce message pour la voir\n")
 print(f"La matrice génératrice est: \n {G} \n")
 
+# Définir le corps F_{2^4}
+F.<a> = GF(2^4, modulus=x^4 + x + 1)
+
+# Paramètres du code
+n = 15  # Longueur
+k = 3   # Dimension
+d = 13  # Distance minimale
+
+# Localisateurs et multiplicateurs
+localisateurs = [a^i for i in range(15)]
+multiplicateurs = [a^i for i in range(15)]
+
+# Construction de la matrice de contrôle H
+# Pour un code RS généralisé [n,k,d] avec d = n-k+1, 
+# la matrice H a (n-k) lignes et n colonnes
+
+# Initialiser la matrice H
+H = matrix(F, n-k, n)
+
+# Remplir la matrice H
+for i in range(n-k):
+    for j in range(n):
+        # Dans un code RS généralisé, H[i,j] = multiplicateurs[j] * localisateurs[j]^(i+1)
+        H[i,j] = multiplicateurs[j] * localisateurs[j]^(i+1)
+
+print("Matrice de contrôle H du code de Reed-Solomon généralisé [15, 3, 13]:")
+print(H)
+G=H.right_kernel().basis_matrix()
+print("matrice génératrice:")
+print(G)
 ### 4)
  
 print("4) \n")
