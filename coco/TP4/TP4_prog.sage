@@ -16,7 +16,8 @@ def Poids(c):#poids d'un mot défini sous forme de vecteur ligne
 def exhaustivesearch(Fq, n, k, alpha, r):
     t=floor((n-k)/2)
     Fqx.<X>=PolynomialRing(Fq)
-    for u in Fq**k:
+    V=VectorSpace(Fq, k)
+    for u in v:
         f=0
         for i in range(k):
             f+=u[i]*X^i
@@ -30,4 +31,19 @@ def exhaustivesearch(Fq, n, k, alpha, r):
     return("pas de solution")
 
 #algorithme de recheche exhaustive par interpolation
+#entrée : Fq, n, k, alpha, r
+#sortie : f
+
+def exhaustiveinterpolation(Fq, n, k, alpha, r):
+    t=floor((n-k)/2)
+    return None
+
+#algorithme de welch berlekamp
+#entrée Fq, n, k, alpha, r
+#sortie : f
+
+def welchberlekamp(Fq, n, k, alpha, r):
+    t=floor((n-k)/2)
+    return None 
+
 
