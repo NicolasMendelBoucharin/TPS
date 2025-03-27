@@ -10,10 +10,11 @@ print("Exercice 1: \n")
 
 print("1) \n")
 
-F2x.<x>=PolynomialRing(GF(2))
-P=x^4+x+1
+F2x.<X>=PolynomialRing(GF(2))
+P=X^4+X+1
 F16.<alpha>=GF(2**4, 'alpha', modulus = P)
 print(f"alpha^15 = {alpha^15} et alpha est bien une racine primitive 15e de l'unité \n" )
+
 
 ### 2)
 
@@ -23,16 +24,19 @@ n=15
 k=3
 d=13
 
-V=[[]for i in range (n-k)]
+
+loc=[alpha^i for i in range(n)]
+mult=loc
+V=[]
 for i in range(n-k):
-        V[i]=[alpha^(i*j) for j in range(n)]
-V=matrix(V)
-D=diagonal_matrix(n, set([alpha^i for i in range(n)]))
-H=V*D
-print(V)
-print(D)
+    V.append([l**i for l in loc])   
+V = matrix(V)
+D = diagonal_matrix(mult)
+H = V*D
+
 print("La matrice est horrible à lire mais il suffit de décomenter la ligne après ce message pour la voir\n")
 print(f"la matrice de contrôle est {H} \n")
+
 
 
 ### 3)
@@ -40,53 +44,27 @@ print(f"la matrice de contrôle est {H} \n")
 print("3) \n")
 
 G = H.right_kernel().basis_matrix()
-
+G=G.echelon_form()
+print(G)
 print("La matrice est horrible à lire mais il suffit de décomenter la ligne après ce message pour la voir\n")
 print(f"La matrice génératrice est: \n {G} \n")
 
-# Définir le corps F_{2^4}
-F.<a> = GF(2^4, modulus=x^4 + x + 1)
 
-# Paramètres du code
-n = 15  # Longueur
-k = 3   # Dimension
-d = 13  # Distance minimale
-
-# Localisateurs et multiplicateurs
-localisateurs = [a^i for i in range(15)]
-multiplicateurs = [a^i for i in range(15)]
-
-# Construction de la matrice de contrôle H
-# Pour un code RS généralisé [n,k,d] avec d = n-k+1, 
-# la matrice H a (n-k) lignes et n colonnes
-
-# Initialiser la matrice H
-H = matrix(F, n-k, n)
-
-# Remplir la matrice H
-for i in range(n-k):
-    for j in range(n):
-        # Dans un code RS généralisé, H[i,j] = multiplicateurs[j] * localisateurs[j]^(i+1)
-        H[i,j] = multiplicateurs[j] * localisateurs[j]^(i+1)
-
-print("Matrice de contrôle H du code de Reed-Solomon généralisé [15, 3, 13]:")
-print(H)
-G=H.right_kernel().basis_matrix()
-print("matrice génératrice:")
-print(G)
 ### 4)
  
 print("4) \n")
 
-
 M=[]
 for f in F2x.polynomials(max_degree=2):
     if f!=0:
+        L=[f(alpha^(i)) for i in range(15)]
+        if L not in M:
+            M.append(L)
         
-        M.append([f(alpha^(i)) for i in range(15)])
 M=matrix(M) 
-Gprime=M.right_kernel().basis_matrix()
+Gprime=M
 Gprime=Gprime.echelon_form()
+Gprime=Gprime[0:3,:]
 
 print("La matrice est horrible à lire mais il suffit de décomenter la ligne après ce message pour la voir\n")   
 print(f"La matrice génératrice est: \n {Gprime} \n")
@@ -95,28 +73,12 @@ print(f"La matrice génératrice est: \n {Gprime} \n")
 
 print("5) \n")
 
-print("La matrice génératrice est la même que celle de la question 3, donc le code est systématique \n")
+print("La matrice génératrice est la même que celle de la question 3, donc le code est systématique (j'ai des lignes de 0 que je n'arrive pas à enlever)\n")
+
 ## Exercice 2:
 
 print("Exercice 2: \n")
-
-
-### 1)
-
-print("1) \n")
-
-
-### 2)
-
-print("2) \n")
-
-### 3)
-
-print("3) \n")
-
-### 4)
-
-print("4) \n")
+print("Voir TD pour le 1) et le fichier _prog pour les autres questions")
 
 ## Exercice 3:
 
@@ -129,17 +91,53 @@ print("1) \n")
 ### 2)
 
 print("2) \n")
-
-P=x^10 + x^6 + x^5 + x^3 + x^2 + x + 1
-F1024.<alpha>=GF(2**10, 'alpha', modulus = P)
+"""
 n=1023
-k=512
-d=512  
+k=412
+t=floor((n-k)/2)
+F2x.<X>=PolynomialRing(GF(2))
+P=X**10 + X**6 + X**5 + X**3 + X**2 + X + 1
+F1024.<alpha>=GF(2**10, 'alpha', modulus = P)
+f=F2x.random_element(degree=k-1)
+r=[f(alpha^i) for i in range(n)]
+print(f"Le polynôme f est: {f} \n")
+for _ in range(t):
+    i=randint(0,n-1)
+    r[i]+= F2.random_element()
 
-M=[]
-for f in F2x.polynomials(max_degree=511):
-    if f!=0:
-        M.append([f(alpha^(i)) for i in range(1023)])
-M=matrix(M)
-Gprime=M.right_kernel().basis_matrix()
-Gprime=Gprime.echelon_form()
+fretrouve=welch_berlekamp(F1024, n, k, alpha, r)
+print(f"Le polynôme retrouvé est: {fretrouve} \n")
+"""
+
+### validation TP4 :
+
+
+F.<a>=GF(2^10)
+
+#Anneau de polynômes
+
+R.<X>=PolynomialRing(F)
+
+#longueur du code
+
+n=2^10-1
+
+#dimension du code
+
+k=512
+
+
+
+#Espace vectoriel F^n
+
+V=F^n
+
+#vecteur r construit ci-dessous
+
+expo = [394, 355, 302, 815, 372, 882, 224, 753, 55, 918, 384, 564, 1022, 567, 51, 719, 663, 715, 736, 774, 490, 103, 855, 287, 649, 535, 308, 455, 297, 294, 876, 64, 12, 866, 928, 295, 676, 26, 299, 672, 24, 84, 856, 273, 387, 615, 450, 1020, 74, 944, 951, 179, 646, 500, 291, 564, 224, 863, 197, 723, 176, 355, 749, 713, 982, 50, 402, 939, 137, 385, 665, 681, 530, 507, 989, 681, 58, 60, 965, 798, 1001, 543, 105, 669, 591, 240, 672, 269, 705, 849, 194, 259, 894, 34, 982, 559, 823, 53, 1007, 934, 269, 612, 215, 69, 664, 897, 146, 128, 856, 876, 809, 840, 804, 491, 442, 345, 323, 373, 253, 5, 95, 169, 255, 933, 660, 472, 289, 1007, 638, 474, 834, 860, 761, 749, 394, 943, 823, 998, 568, 612, 441, 717, 680, 670, 608, 807, 923, 102, 544, 485, 255, 557, 482, 132, 985, 72, 349, 946, 654, 288, 25, 719, 357, 699, 640, 59, 430, 293, 1, 190, 884, 285, 706, 533, 713, 317, 1002, 637, 962, 43, 231, 944, 597, 366, 173, 163, 789, 96, 379, 773, 995, 380, 791, 697, 450, 469, 344, 325, 944, 902, 96, 47, 519, 287, 322, 363, 654, 98, 225, 941, 611, 550, 584, 927, 866, 938, 826, 925, 815, 256, 296, 228, 355, 569, 194, 295, 829, 380, 905, 374, 583, 370, 311, 961, 324, 151, 134, 825, 767, 359, 464, 180, 339, 757, 724, 796, 681, 894, 661, 572, 80, 687, 676, 582, 141, 3, 941, 676, 473, 253, 365, 885, 621, 132, 121, 481, 536, 256, 364, 702, 832, 369, 91, 183, 480, 215, 911, 525, 418, 725, 896, 869, 765, 339, 539, 1000, 805, 71, 854, 651, 846, 798, 443, 869, 224, 473, 809, 813, 225, 255, 776, 480, 147, 77, 372, 959, 847, 385, 268, 808, 654, 43, 826, 878, 585, 700, 401, 323, 784, 1011, 555, 721, 392, 150, 322, 154, 550, 917, 810, 965, 138, 690, 862, 631, 237, 498, 65, 449, 710, 613, 301, 391, 409, 910, 763, 695, 213, 282, 646, 20, 155, 9, 341, 914, 705, 862, 904, 323, 648, 127, 360, 109, 777, 3, 530, 261, 443, 540, 917, 814, 720, 713, 356, 150, 37, 104, 161, 139, 194, 202, 456, 859, 997, 685, 474, 452, 1006, 412, 571, 507, 858, 534, 721, 742, 419, 987, 717, 504, 810, 441, 1008, 478, 651, 847, 55, 489, 927, 920, 262, 178, 496, 90, 171, 914, 508, 370, 548, 290, 1004, 593, 347, 68, 875, 225, 446, 939, 295, 829, 843, 191, 614, 17, 926, 324, 1001, 257, 807, 72, 956, 93, 169, 395, 333, 320, 251, 429, 308, 333, 425, 1014, 683, 953, 88, 620, 170, 933, 152, 566, 684, 654, 950, 991, 889, 351, 851, 470, 773, 541, 319, 489, 737, 270, 174, 882, 369, 311, 938, 404, 811, 1012, 21, 806, 452, 264, 353, 47, 875, 903, 27, 20, 491, 136, 387, 713, 540, 585, 872, 572, 605, 195, 772, 545, 64, 960, 305, 664, 881, 132, 347, 361, 384, 610, 108, 128, 368, 832, 458, 671, 814, 942, 401, 368, 121, 663, 880, 299, 456, 776, 8, 107, 36, 109, 892, 833, 115, 570, 668, 751, 387, 231, 71, 521, 863, 457, 449, 902, 711, 850, 147, 83, 820, 965, 825, 366, 674, 484, 815, 803, 999, 101, 808, 535, 569, 350, 336, 621, 849, 856, 416, 389, 254, 512, 453, 741, 527, 738, 74, 141, 778, 724, 307, 856, 997, 316, 801, 384, 837, 56, 887, 452, 96, 597, 391, 731, 623, 489, 296, 124, 533, 736, 224, 745, 353, 136, 40, 263, 110, 608, 603, 235, 1015, 115, 726, 561, 701, 235, 894, 522, 748, 459, 987, 4, 16, 104, 492, 479, 372, 777, 12, 846, 54, 434, 948, 40, 39, 148, 392, 189, 208, 580, 358, 320, 1012, 175, 741, 647, 144, 852, 256, 637, 872, 860, 175, 264, 785, 67, 138, 327, 165, 997, 607, 62, 128, 416, 996, 132, 139, 527, 388, 277, 414, 937, 895, 426, 15, 791, 371, 852, 165, 498, 984, 1021, 334, 167, 524, 590, 14, 661, 833, 749, 886, 808, 482, 204, 812, 297, 403, 967, 220, 28, 275, 258, 182, 845, 253, 702, 30, 12, 385, 931, 856, 452, 410, 219, 500, 964, 114, 271, 135, 352, 868, 1013, 880, 181, 609, 119, 836, 163, 1022, 316, 425, 940, 7, 911, 917, 753, 636, 518, 749, 761, 159, 105, 905, 584, 636, 820, 353, 49, 481, 883, 5, 966, 465, 61, 726, 676, 540, 866, 395, 952, 485, 1004, 780, 573, 143, 291, 187, 101, 859, 655, 666, 358, 910, 976, 284, 761, 404, 234, 673, 954, 994, 1003, 382, 994, 815, 3, 388, 492, 758, 1019, 179, 594, 70, 616, 407, 857, 381, 661, 657, 493, 56, 254, 464, 698, 670, 226, 97, 555, 585, 394, 253, 29, 179, 7, 347, 783, 542, 204, 613, 142, 617, 319, 1, 2, 963, 918, 839, 302, 196, 580, 765, 75, 227, 960, 974, 802, 824, 392, 74, 65, 524, 982, 849, 428, 704, 932, 497, 869, 545, 977, 615, 77, 754, 129, 2, 45, 148, 679, 302, 538, 733, 718, 197, 834, 48, 39, 243, 493, 770, 648, 140, 165, 117, 1021, 241, 856, 66, 322, 247, 372, 322, 945, 79, 455, 49, 601, 460, 421, 128, 661, 716, 127, 244, 827, 685, 447, 584, 37, 214, 1005, 754, 293, 887, 226, 856, 53, 707, 322, 324, 442, 931, 102, 327, 865, 233, 966, 331, 407, 885, 41, 41, 53, 698, 244, 205, 217, 709, 372, 592, 875, 12, 207, 130, 381, 804, 907, 364, 178, 235, 903, 790, 698, 173, 865, 418, 106, 883, 915, 253, 1017, 842, 225, 395, 852, 784, 383, 66, 812, 495, 229, 755, 970, 468, 408, 241, 861, 229, 541, 560, 554, 206, 80, 623, 4, 941, 404, 888, 300, 794, 819, 768, 351, 332, 449, 141, 719, 987, 613, 553, 197, 817, 41, 934, 1010, 950, 640, 260, 19, 573, 118, 726, 134, 333, 704, 481, 69, 526, 391, 148, 825, 233, 477, 548, 222, 242, 705, 784, 81, 412, 913, 784, 390, 824]
+r=V([a^i for i in expo])
+
+
+f=welch_berlekamp(F, n, k, a, r)
+print(f"Le polynôme retrouvé est: {f} \n")
+
