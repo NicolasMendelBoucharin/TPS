@@ -1,4 +1,4 @@
-
+"""
 # Q11 :
 
 import dns
@@ -6,7 +6,7 @@ import dns.message
 import socket
 DNS_RESOLVER = ("9.9.9.9", 53)
 sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM) # XXX Complete Here
-req = dns.message.make_query(input(), "A")
+req = dns.message.make_query(input("enter domain here"), "A")
 print("............................................")
 print(req.to_text())
 print("............................................")
@@ -26,20 +26,30 @@ print("............................................")
 import dns
 import dns.message
 import socket
+
 DNS_LOCALRSL = ("127.0.0.1", 53)
+DNS_RESOLVER = ("9.9.9.9", 53)
+
 print("............................................")
+
 s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
 s.bind(DNS_LOCALRSL)
-print("dig example.org @127.0.0.1")
+
+print(" run dig example.org @127.0.0.1")
+
 data, addr = s.recvfrom(1024)
 req = dns.message.from_wire(data)
 print (req)
+
 print("............................................")
+
 resp = dns.message.make_response(req)
 resp.set_rcode(dns.rcode.SERVFAIL)
 print(resp)
 s.sendto(resp.to_wire(), addr)
 s.close()
+
 print("............................................")
 
-"""
+# A finir
+
