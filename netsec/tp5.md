@@ -85,10 +85,8 @@ univ-rennes.fr.		3600	IN	NS	resone.univ-rennes1.fr.
 istic.univ-rennes.fr.	3600	IN	A	129.20.126.139
 ;; Received 93 bytes from 193.51.24.1#53(soleil.uvsq.fr) in 8 ms
 ```
-nodnssec choisi pour nous le serveur m.root-servers.net.
+On remarque que nodnssec choisi pour nous le serveur m.root-servers.net.
 
-La commande **dig +trace +nodnssec** nous permet de tracer le chemin de la résolution DNS depuis le serveur racine jusqu'à l'enregistrement précis du domaine. Cela permet de suivre hiérarchiquement le chemin exact empreinté par le DNS.
-Le paramètre **+nodnssec** désactive la validation DNSSEC, pour simplifier la trace et se concentrer sur la résolution (sans s'occuper des éventuels problèmes de sécurité liés à DNSSEC).
 
 
 ### Q4 :
@@ -201,13 +199,8 @@ ns3.google.com.		162079	IN	A	216.239.36.10
 
 ```
 
-- L'adresse IP associée à **google.fr** est la même à chaque fois : **142.250.201.163**.
-- Les serveurs pour le domaine **google.fr** sont également les mêmes : **ns1.google.com**, **ns2.google.com**, **ns3.google.com**, et **ns4.google.com**.
-- Le temps de réponse (Query time) varie légèrement entre 8 ms et 12 ms, mais il reste globalement stable -> le DNS pour **google.fr** est rapide et constante.
+Le numéro affiché avant l'adresse IP (par exemple : 173, 170, 167) dans ANSWER SECTION de la réponse DNS représente le "time to live". Il baisse donc naturellement entre chaque moment où on tape la commande 
 
-Le numéro affiché avant l'adresse IP (par exemple : 173, 170, 167) dans ANSWER SECTION de la réponse DNS représente le TTL (Time To Live) de l'enregistrement DNS. Le TTL est le temps en secondes pendant lequel une réponse DNS peut être conservée en cache avant qu'une nouvelle requête soit effectuée.
-
-Nous remarquons que le TTL de l'enregistrement DNS diminue légèrement à chaque nouvelle requête pour **google.fr**.
 
 
 ### Q5 :
@@ -245,7 +238,7 @@ g.ext.nic.fr.		172116	IN	A	194.0.36.1
 ;; MSG SIZE  rcvd: 242
 ```
 
-Cette commande nous permet de récupérer l'enregistrement SOA pour le domaine **univ-rennes.fr.** L'enregistrement SOA contient des informations sur la zone DNS (serveur de noms autoritaire pour le domaine, contact administratif, etc.).
+Cette commande nous permet de récupérer l'enregistrement Start of Authority pour le domaine **univ-rennes.fr.** L'enregistrement SOA contient des informations sur la zone DNS (Non du serveur primiaire, email de l'administrateur, numéro de série du domaine, etc.).
 
 
 dig NS univ-rennes.fr nous renvoie :
@@ -280,9 +273,8 @@ soleil.uvsq.fr.		85638	IN	A	193.51.24.1
 ;; MSG SIZE  rcvd: 235
 
 ```
-
-Cette commande nous permet de récupérer les serveurs de noms associés au domaine univ-rennes.fr.
-Quatre serveurs de noms, qui sont responsables de la gestion du domaine **univ-rennes.fr**, sont listés : **soleil.uvsq.fr.**, **ns2.uhb.fr.**, **resone.univ-rennes1.fr.** et **ns1.uhb.fr.**
+Cette commande nous permet de récuperer les noms des serveurs associé à istic.univ-rennes.fr (ici univ-rennes.fr,soleil.uvsq.fr., ns2.uhb.fr., resone.univ-rennes1.fr. et ns1.uhb.fr.)
+ 
 
 
 
@@ -326,9 +318,7 @@ ns4.google.com.		161820	IN	A	216.239.38.10
 
 ```
 
-**dig MX gmail.com** nous permet de récupérer les enregistrements MX pour gmail.com, qui indiquent les serveurs utilisés pour recevoir des emails pour ce domaine.
-Cinq serveurs de messagerie sont listés, dans la section ANSWER : **10 alt1.gmail-smtp-in.l.google.com.**, **5 gmail-smtp-in.l.google.com.**, **30 alt3.gmail-smtp-in.l.google.com.**, **20 alt2.gmail-smtp-in.l.google.com.** et **40 alt4.gmail-smtp-in.l.google.com.**
-
+Cette commande nous indiques les serveurs responsables des echanges de mails (ici : alt1.gmail-smtp-in.l.google.com, gmail-smtp-in.l.google.com, alt3.gmail-smtp-in.l.google.com, *alt2.gmail-smtp-in.l.google.com et alt4.gmail-smtp-in.l.google.com)
 
 dig +short istic.univ-rennes.fr nous renvoie :
 ```
@@ -372,10 +362,7 @@ soleil.uvsq.fr.		85509	IN	A	193.51.24.1
 
 ```
 
-La commande **dig A** nous permet de récupérer l'enregistrement de type A pour **istic.univ-rennes.fr**, qui correspond à l'adresse IPv4 du domaine.
-L'adresse IP associée au domaine **istic.univ-rennes.fr** est **129.20.126.139.**
-La réponse inclut également les serveurs de noms (NS) associés à ce domaine : **resone.univ-rennes1.fr.** et **soleil.uvsq.fr.**
-Les adresses IP des serveurs de noms nous sont également fournies dans la section additionnelle : **resone.univ-rennes1.fr** a l'adresse IP **129.20.254.1.** et **soleil.uvsq.fr** a l'adresse IP **193.51.24.1.**
+La commande nous dit que l'adresse IPV4 de istic.univ-rennes.fr est 129.20.126.139
 
 
 Et dans l'autre sens
@@ -446,6 +433,7 @@ a.root-servers.net.	592196	IN	AAAA	2001:503:ba3e::2:30
 ;; MSG SIZE  rcvd: 883
 
 ```
+
 Et on observe que l'ip qui gère le site est nfrontaldrupal9.univ-rennes.fr
 
 
@@ -530,43 +518,35 @@ mozfr.org.		300	IN	SOA	ns1.mozfr.org. admins.mozfr.org. 2024122201 300 300 60480
 
 ```
 
-**@adress** dans une commande dig est utilisée pour spécifier le serveur DNS auquel la requête doit être envoyée. 
-Ca permet de diriger la requête vers un serveur DNS spécifique au lieu de celui par défaut configuré sur la machine de l'utilisateur.
+@adress spécifie le serveur DNS de la réquête
 
-Dans la dernière commande, **@ns1.mozfr.org** nous indique que la requête AXFR (zone transfer) pour le domaine **mozfr.org** doit être envoyée au serveur DNS spécifié **ns1.mozfr.org.**
-
-Un attaquant pourrait exploiter les résultats d'un transfert de zone (AXFR) pour obtenir une vue détaillée de la configuration DNS d'un domaine. 
-Il pourrait utiliser les informations de transfert de zone pour connaître l'architecture DNS du domaine et choisir le serveur DNS avec lequel il souhaite interagir, que ce soit pour un transfert de zone ou pour d'autres types d'attaques.
+Ici on voit que l'utiliser dans une commande nous donne beaucoup plus d'informations sur l'architecture DNS du réseau. Je pense que ça doit se géréraliser et permettre de pouvoir attaquer plus spécifiquement des serveurs qu'on aurait pas trouvé sans.
 
 
 ### Q8 :
 
-**for x in $(seq 1 254) :** Crée une boucle qui itère de 1 à 254.
-**y=148.60.1.$x :** À chaque itération, définit la variable y comme l'adresse IP correspondante dans la plage de 148.60.1.1 à 148.60.1.254.
-**echo $y: $(dig +short -x $y) :** Effectue une recherche inversée DNS (utilise la commande dig -x) sur l'adresse IP y, et affiche le nom de domaine associé à cette adresse IP, suivi de l'adresse IP elle-même.
+Le script permet de faire un mapping de l'architecture DNS 
 
 Un attaquant pourrait récupérer des informations sur les hôtes et les services présents dans le réseau.
 
-Par rapport à AXFR, il offre l'avantage d'être plus discret, plus large (en couvrant une plage d'adresses IP), et moins facilement filtré ou bloqué par les serveurs DNS cibles.
+Là on est sûr de couvrir toutes les ip possibles.
 
 
 
 ### Q9 :
 
-**dig AXFR . @f.root-servers.net | grep -Ev 'NSEC|DS|RRSIG'** est un serveur racine central qui nous donne tout ce qu'il sait sur les entrées qu'il connaît (toutes les informations mondiales, donc une très grande partie d'internet) :
+La commande renvoie presque la totalité d'internet
 
 
+### Q10 :
 
-**| grep -Ev 'NSEC|DS|RRSIG'** permet de filtrer certains types d'enregistrements DNS (rendra la sortie plus lisible).
+Les enregistrement RRSIG contienent une signature cryptographique
 
-Cette commande effectue un transfert de zone de la racine du DNS (.) depuis le serveur DNS racine **f.root-servers.net.** Cela nous donne l'intégralité de la zone DNS racine, y compris les serveurs de noms des domaines de premier niveau.
+Les enregistrement DS contiennet le hachage d'un enregristrement avec une clé de signature publique
 
-Les données qu'on obtient en sortie peuvent être utilisées pour comprendre la hiérarchie DNS globale, vérifier la configuration des serveurs de noms ou effectuer une analyse de sécurité.
+Les enregistrements NSEC spécifient un déni implicite d'enregistrement DNS
 
-
-### 10 :
-
-Les enregistrements **NSEC**, **RRSIG**, et **DS** sont là pour garantir la sécurité et l'intégrité du système DNS lorsqu'il est utilisé avec **DNSSEC**. Ils nous protègent contre les attaques comme le cache poisoning, l'usurpation d'identité et la modification malveillante des données DNS, ça nous assure ainsi que les informations DNS proviennent de sources authentiques et qu'elles n'ont pas été altérées pendant le transit.
+En regardant la liste de la question 9 j'ai l'impression que beaucoup de serveur n'ont rien de tout ça et que très peu ont une signature cryptographique
 
 
 ## Partie II :
@@ -631,7 +611,7 @@ Le record est de type A
 
 ### Q12 :
 
-Le serveur nous retourne :
+Le script nous retourne :
 
 ```
 ............................................
@@ -664,10 +644,129 @@ example.org. IN A
 
 ```
 
+C'est le script d'un serveur DNS
+
 ### Q13 :
 
-A finir
+```python
+
+import dns
+import dns.message
+import socket
+
+DNS_LOCALRSL = ("127.0.0.1", 53)
+DNS_RESOLVER = ("9.9.9.9", 53)
+
+print("............................................")
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.bind(DNS_LOCALRSL)
+print("Please execute the following command:\ndig example.org @127.0.0.1")
+data, addr = s.recvfrom(1024)
+req = dns.message.from_wire(data)
+print (req)
+
+print("............................................")
+
+s2 = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s2.sendto(data, DNS_RESOLVER)
+data2, addr2 = s2.recvfrom(1024)
+resp = dns.message.from_wire(data2)
+print(resp)
+
+print("............................................")
+
+s.sendto(data2, addr)
+s.close()
+s2.close()
+
+print("............................................")
+
+```
+
+Les messages passent par une autre adresse et sont donc moins traçable
+
+### Q14 :
 
 
+On observe (Je ne suis pas à l'istic je fais tout sur ma machine perso) :
+
+```
+136	1.968661777	127.0.0.1	127.0.0.53	DNS	89 Standard query 0x2506 A qlf-doh.inria.fr OPT
+137	1.968675453	127.0.0.1	127.0.0.53	DNS	89	Standard query 0x1b02 AAAA qlf-doh.inria.fr OPT
+138	1.968797602	192.168.1.3	192.168.1.254	DNS	89	Standard query 0x1f1a A qlf-doh.inria.fr OPT
+139	1.968852114	192.168.1.3	192.168.1.254	DNS	89	Standard query 0xdc2a AAAA qlf-doh.inria.fr OPT
+140	2.001211428	192.168.1.254	192.168.1.3	DNS	105	Standard query response 0x1f1a A qlf-doh.inria.fr A 128.93.162.64 OPT
+141	2.001213852	192.168.1.254	192.168.1.3	DNS	140	Standard query response 0xdc2a AAAA qlf-doh.inria.fr SOA dns.inria.fr OPT
+142	2.001515700	127.0.0.53	127.0.0.1	DNS	105	Standard query response 0x2506 A qlf-doh.inria.fr A 128.93.162.64 OPT
+143	2.001601741	127.0.0.53	127.0.0.1	DNS	140	Standard query response 0x1b02 AAAA qlf-doh.inria.fr SOA dns.inria.fr OPT
+
+```
+
+### Q15 :
+
+On voit que le programme fait bien passer les messages par http :
+
+```
+384	7.591562979	192.168.1.3	128.93.162.64	TLSv1.2	585	Client Hello (SNI=qlf-doh.inria.fr)
+387	7.605251029	128.93.162.64	192.168.1.3	TLSv1.2	5604	Server Hello, Certificate, Server Key Exchange, Server Hello Done
+389	7.607555458	192.168.1.3	128.93.162.64	TLSv1.2	194	Client Key Exchange, Change Cipher Spec, Encrypted Handshake Message
+390	7.621095841	128.93.162.64	192.168.1.3	TLSv1.2	310	New Session Ticket, Change Cipher Spec, Encrypted Handshake Message
+391	7.621608423	192.168.1.3	128.93.162.64	TLSv1.2	326	Application Data
+392	7.623576570	192.168.1.3	128.93.162.64	TLSv1.2	120	Application Data
+395	7.635732953	128.93.162.64	192.168.1.3	TLSv1.2	379	Application Data, Application Data
+396	7.635733074	128.93.162.64	192.168.1.3	TLSv1.2	99	Encrypted Alert
+```
+
+Il y a aussi beaucoup de paquet DNS.
+
+### Q16 :
+
+```python
+
+import dns
+import dns.message
+import socket
+import urllib.request
+
+DNS_LOCALRSL = ("127.0.0.1", 53)
+DNS_RESOLVER = ("9.9.9.9", 53)
+DOH_RESOLVER = "https://qlf-doh.inria.fr/dns-query"
+
+print("............................................")
+
+s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
+s.bind(DNS_LOCALRSL)
+print("Please execute the following command:\ndig example.org @127.0.0.1")
+data, addr = s.recvfrom(1024)
+req = dns.message.from_wire(data)
+
+print (req)
+
+print("............................................")
+req2 = urllib.request.Request(
+DOH_RESOLVER, headers={"Accept": "application/dns-json"}, data=req.to_wire()
+)
+print(req2)
+
+
+print("............................................")
+
+resp = urllib.request.urlopen(req2)
+data2 = resp.read()
+print(dns.message.from_wire(data2))
+
+print("............................................")
+
+s.sendto(data2, addr)
+s.close()
+
+print("............................................")
+
+```
+
+### Q17 :
+
+Comme on peut le voir sur cette page : https://www.nlnetlabs.nl/projects/unbound/security-advisories/ il y a un certain nombre d'attaques possibles 
 
 
