@@ -1,4 +1,4 @@
-# TP6-7 - Marilou Le Bricon - Nicolas Mendel-Boucharin :
+# TP6-7 - Mounir Yamout - Nicolas Mendel-Boucharin :
 
 ## Partie I : 
 
@@ -32,7 +32,7 @@ Wireshark regarde les ports et en déduit le protocole : Si il voit "port:80" il
 
 ### Question 2. 
 
-La ressource principale demandé est le document de la page à la racine (la page principale). 
+La ressource principale demandé est le document de la page à la racine (la page principale). (2 paquets sur firefox et 4 sur wireshark)
 
 ### Question 3. 
 
@@ -106,6 +106,4 @@ On sait déjà que c'est sécurisé mais sur wireshark on voit que les paquets s
 Linux regarde tout seul dans /etc/services et fait lui même le lien entre http et son port alloué
 
 ### Question 2.2. 
-
-
 

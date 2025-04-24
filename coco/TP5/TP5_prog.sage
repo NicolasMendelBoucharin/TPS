@@ -22,26 +22,27 @@ def random_uplet(n,m):
             L.append(elem)
     return L
 
-# Constructeur de la matrice génératrice sous forme échelonnée réduite G
-# d'un code de Goppa(gamma, g) de support de Goppa L et de polynôme de Goppa g
+# Constructeur de la matrice génératrice sous forme échelonnée réduite G d'un code de Goppa
 # entrée : L (support de Goppa), g (polynôme de Goppa)
 # sortie : G (matrice génératrice sous forme échelonnée réduite)
 
-def goppa_generator_matrix(L, g, F):
+def goppa_gen(L, g, m):
     n=len(L)
     r=g.degree()
     V=[[a^i for a in L] for i in range(r)]
     V=matrix( V)
     D=diagonal_matrix([g(a)**(-1) for a in L])
-    Htilde=V*D
+    Hbarre=V*D
+    
     #on passe dans F2m
     M=[]
-    for c in Htilde.columns():
-        L=[]
+    for c in Hbarre.columns():
+        l=[]
         for b in c:
-            L + F2m.vector_space(map=False)(b)
+            L + F2m.vector_space(map=False)(b) #ne marche pas et je sais pas comment faire 
         M.append(L)
     H=Matrix(M).transpose()
     # Construction de la matrice génératrice G
     G = H.right_kernel().basis_matrix()
     return G.echelon_form()
+
