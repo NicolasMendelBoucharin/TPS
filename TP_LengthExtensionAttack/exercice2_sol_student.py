@@ -54,3 +54,8 @@ def reverse_finalize(hash: bytes):
     C = int(little_endian_parts[2],16)
     D = int(little_endian_parts[3],16)
     return A,B,C,D
+
+#si on a un bloc de plus il fait 5 fois la fonction de compression puis il fait la fonction de finalisation
+def get_hash():
+    return None
+
