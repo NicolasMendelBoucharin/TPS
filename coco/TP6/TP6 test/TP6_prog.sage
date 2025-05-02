@@ -31,7 +31,7 @@ def chiffrement(e, m, t, T):
 
 def euclidedecodagebch(S, g, t):
    
-    R0, R1 = g(x), S
+    R0, R1 = g(z), S
     V0, V1 = 0, 1
     while R1.degree()>=t:
         q=R0//R1
@@ -52,7 +52,7 @@ def dechiffrement(c, n, g, L, t):
         c.append(0)
     c=vector(GF(2), c)
     
-    S = sum([c[i]*inverse_mod((x-L[i]), g**2) for i in range(n)])
+    S = sum([c[i]*inverse_mod((z-L[i]), g**2) for i in range(n)])
     
     sigma, _ = euclidedecodagebch(S, g**2, t)
     print(sigma)

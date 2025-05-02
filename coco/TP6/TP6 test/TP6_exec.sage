@@ -3,10 +3,9 @@ t=50
 n=800
 F2=GF(2)
 F2m.<a> = GF(2^m)
-R.<x> = F2m[]
+R.<z> = F2m[]
 
-
-attach('cleprive.sage')
+attach('cleprivee.sage')
 attach('cryptogramme.sage')
 
 attach('clepublique.sage')
@@ -42,4 +41,4 @@ print("___________________________________________")
 
 
 print(Poids(d))
-print(c==S)
+print(c==S) 
