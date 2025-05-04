@@ -6,11 +6,72 @@
 
 
 ciphertext_t ASCON_128_encrypt (const uint64_t K[2], const uint64_t N[2], msg_t A, msg_t P){
-    /* TODO */
+    //initialisation
+    state_t S = set_initial_state(K, N, IV);
+    processing_associate_data(S, A);
+    //malloc machin truc
+    ciphertext_t chiffre;
+    chiffre.C.blocks = malloc(P.nb_blocks * sizeof(uint64_t));
+    chiffre.C.nb_blocks = P.nb_blocks;
+    //plaintext
+    for (int i = 0; i < chiffre.C.nb_blocks; i++){
+        chiffre.C.blocks[i] = S[0] ^ P.blocks[i];
+        S[0] = chiffre.C.blocks[i];
+        if (i != chiffre.C.nb_blocks - 1){   
+            permutation(S, b);
+        } 
+    }
+    //finalisation
+    S[1] ^= K[0];
+    S[2] ^= K[1];
+    permutation(S, a);
+    chiffre.T[0] = S[3] ^ K[0];
+    chiffre.T[1] = S[4] ^ K[1];
+    free(S);
+    return chiffre;
+    
+
 }
 
+
 msg_t ASCON_128_decrypt (const uint64_t K[2], const uint64_t N[2], msg_t A, ciphertext_t C){
-    /* TODO */
+    //initialisation
+    state_t S = set_initial_state(K, N, IV);
+    processing_associate_data(S, A);
+    //malloc machin truc
+    msg_t dechffre;
+    dechffre.blocks = malloc(C.C.nb_blocks * sizeof(uint64_t));
+    dechffre.nb_blocks = C.C.nb_blocks;
+    //plaintext
+    for (int i = 0; i < dechffre.nb_blocks; i++){
+        dechffre.blocks[i] = S[0] ^ C.C.blocks[i];
+        
+        if (i != dechffre.nb_blocks - 1){   
+            S[0] = C.C.blocks[i];
+            permutation(S, b);
+        }
+        else{
+            S[0] ^= dechffre.blocks[i];
+    }
+    }
+    //finalisation
+    S[1] ^= K[0];
+    S[2] ^= K[1];
+    permutation(S, a);
+    uint64_t* t = malloc(2 * sizeof(uint64_t));
+    t[0] = S[3] ^ K[0];
+    t[1] = S[4] ^ K[1];
+    free(S);
+    //test du tag
+    if (t[0] != C.T[0] || t[1] != C.T[1]){
+        dechffre.nb_blocks = 0;
+        return dechffre;
+    }
+    else{
+        free(t);
+        return dechffre;
+    }
+    
 }
 
 int main(){
