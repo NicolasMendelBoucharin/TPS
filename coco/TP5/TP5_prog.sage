@@ -41,13 +41,13 @@ def goppa_gen(L, g, m, ev):
             for k in range(m):
                 M[i*m +k][j]= Mij[k]
     H = matrix(GF(2), M)
-    return H.right_kernel().basis_matrix().echelon_form()
+    return H.right_kernel().basis_matrix().rref()
 
 # nouvelle fonction 
 
 def goppa_gen2(m, n, t, ev):
     L = random_uplet(n, m)
-    g = random_poly(m, n)
+    g = random_poly(m, t)
     r=g.degree()
     Hcirc=[]
     for i in range(t):
@@ -60,7 +60,7 @@ def goppa_gen2(m, n, t, ev):
             Mij = ev.coordinate_vector(Hcirc[i][j])
             for k in range(m):
                 M[i*m +k][j]= Mij[k]
-    H = matrix(GF(2), M).echelon_form()
+    H = matrix(GF(2), M).rref()
     return H, L, g
 
 

@@ -103,7 +103,7 @@ for i in range(t):
         Mij = ev.coordinate_vector(Hcirc[i][j])
         for k in range(m):
             M[i*m +k][j]= Mij[k]
-H = matrix(GF(2), M).echelon_form()
+H = matrix(GF(2), M).rref()
 
 print(H[:m*t,:m*t])
 if H.rank() == m*t:
@@ -117,11 +117,11 @@ clepublique= open("clepublique.sage", "w")
 
 print("4) \n")
 
-while H.rank() != m*t:
+while (H[:,:m*t] != identity_matrix(GF(2), m*t)):
     H, L, g =goppa_gen2(m, n, t, ev)
 
 T=H[:,m*t:]
 cleprive.write(f"g = {g}\n L= {L}")
 clepublique.write(f"T = matrix(GF(2),{[list(T_i) for T_i in T]})\n")
 
-
+print("ça marche là normalement")
