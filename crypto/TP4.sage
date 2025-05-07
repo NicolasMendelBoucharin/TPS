@@ -102,4 +102,19 @@ print("Exercice 2 \n")
 print("a) \n")
 
 def square_and_multiply(g,a,n):
-    return power_mod(g, a, n)
+    h=1
+    b=bin(a)[2:]
+    for i in range(len(b)):
+        h=power_mod(h, 2, n)
+        if b[i]=="1":
+            h=(h*g)%n
+    return h
+# Pour la suite on l'a pas fait en alba
+
+### Exercice 3.
+print("Exercice 3 \n")
+
+### a)
+
+print("a) \n")
+
