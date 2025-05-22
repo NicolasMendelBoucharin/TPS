@@ -263,6 +263,7 @@ def fractionscontinues(a,n):
         b=floor(a)
         L.append(b)
         a=1/(a-b)
+        
     return L
 
 ### c)
@@ -361,4 +362,4 @@ p=next_prime(2^30)
 h=randint(1, p-1)
 g=randint(1, p-1)
 print(f"On a choisi p={p}, h={h} et g={g} \n")
-
+print("j'ai un problème dans mon code mais je n'ai plus le temps de le corriger ")

@@ -56,6 +56,12 @@ def reverse_finalize(hash: bytes):
     return A,B,C,D
 
 #si on a un bloc de plus il fait 5 fois la fonction de compression puis il fait la fonction de finalisation
-def get_hash():
-    return None
+def get_hash(m : bytes):
+    json_send({"action":"hash","message":bytes_to_hexstring(m)})
+    reponse = json_recv()
+    return bytes.fromhex(reponse["hash"])
+
+#le haché H(m) est calculé avec le le fichier md5.py
+
+
 
