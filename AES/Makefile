@@ -1,15 +1,7 @@
 all:
-	@(cd ./src; make all; mv AES ..)
+	cd src && make all
 
-report :
-
-	@(cd src; make report)
 clean:
-	@(rm AES; cd src; make clean)
-	
-test:
-	@./AES
-help:
-	@echo "à remplir"
-.PHONY: all clean help
+	rm -f bin/* obj/*
 
+.PHONY: all clean dynamic

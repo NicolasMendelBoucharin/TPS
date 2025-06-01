@@ -1,15 +1,11 @@
-#ifndef AES_H
-#define AES_H
+#ifndef Parser_H
+#define Parser_H
 
 #include <stdio.h>
 #include <stdlib.h>
-#include <stdint.h>
 #include <unistd.h>
 #include <getopt.h>
 #include <stdbool.h>
 #include <err.h>
-#include "cypher.h"
-
-void print_text_hexa(uint8_t *input, int TextSize);
 
 #endif /* AES */

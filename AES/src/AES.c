@@ -4,97 +4,40 @@
 #include <stdbool.h>
 #include <getopt.h>
 #include <err.h>
+uint8_t defaultkey[16] = {0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x0f};
+uint8_t defaultplaintext[16]={0x32, 0x43, 0xf6, 0xa8, 0x88, 0x5a, 0x30, 0x8d, 0x31, 0x31, 0x98, 0xa2, 0xe0, 0x37, 0x07, 0x34};
 
-enum state { ECB, CBC, OFB, GCM };
+void print_text_hexa(uint8_t *input, int TextSize)
+{
+    printf("Bloc obtenu : \n");
+    for (int i = 0; i < TextSize; i++)
+    {
+        printf("0x%02x \n", input[i]);
+    }
+}
 
 struct Varopt {
-    bool verbose;
-    bool all;
-    bool unique;
-    int grid_size;
-    bool ecb;
+    bool test;
     FILE *Outputfile;
     char *Inputfile;
-    enum state mode;
+
 };
 
-struct Varopt opt = {false, false, false, 4, true, NULL, NULL, ECB};
+struct Varopt opt = {false, NULL, NULL};
 
-int main(int argc, char *argv[]) {
-    int option;
+int main(){
+//tests
+    uint8_t cipher[16];
+    uint8_t expended_key[44];
+    KeyExpansion(defaultkey, expended_key);
+    cipher_block(defaultplaintext, cipher, expended_key);
+    printf("chiffement \n");
+    print_text_hexa(cipher, 16);
 
-    while (1) {
-        static struct option long_options[] = {
-            {"help", no_argument, 0, 'h'},
-            {"verbose", no_argument, 0, 'v'},
-            {"output", required_argument, 0, 'o'},
-            {"all", no_argument, 0, 'a'},
-            {"ecb", optional_argument, 0, 'e'},
-            {"cbc", optional_argument, 0, 'c'},
-            {"ofb", optional_argument, 0, 'f'},
-            {"gcm", optional_argument, 0, 'g'},
-            {0, 0, 0, 0}};
-
-        int option_index = 0;
-        option = getopt_long(argc, argv, "hvo:aug::", long_options, &option_index);
-
-        if (option == -1)
-            break;
-
-        switch (option) {
-        case 'h':
-            printf("Help message: Usage instructions go here.\n");
-            exit(EXIT_SUCCESS);
-
-        case 'v':
-            opt.verbose = true;
-            printf("Verbose mode on\n");
-            break;
-
-        case 'o':
-            opt.Outputfile = fopen(optarg, "w");
-            if (opt.Outputfile == NULL) {
-                errx(EXIT_FAILURE, "Error opening output file\n");
-            }
-            break;
-
-        case 'a':
-            opt.all = true;
-            break;
-
-        case 'e':
-            opt.mode = ECB;
-            break;
-
-        case 'c':
-            opt.mode = CBC;
-            break;
-
-        case 'f':
-            opt.mode = OFB;
-            break;
-
-        case 'g':
-            opt.mode = GCM;
-            break;
-
-        case 'u':
-            opt.unique = true;
-            break;
-
-        case '?':
-        default:
-            errx(EXIT_FAILURE, "Invalid option\n");
-            break;
-        }
-    }
-
-    // Check the selected mode
-    if (opt.mode == ECB) {  // ECB mode
-        printf("mode ECB\n");
-    } else {  // Other modes
-        printf("mode générateur\n");
-    }
-
-    exit(EXIT_SUCCESS);
+    uint8_t decipher[16];
+    decipher_block(cipher, decipher, expended_key);
+    printf("dechiffrement \n");
+    print_text_hexa(decipher, 16);
+    return 0;
+   
 }

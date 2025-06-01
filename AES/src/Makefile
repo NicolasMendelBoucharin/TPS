@@ -1,32 +1,23 @@
-INCLUDEDIR=../include
+CFLAGS = -Wall -Wextra -g
+CPPFLAGS = -I ../include/
 
-CFLAGS=-std=c11 -Wall -Wextra -g
-LDFLAGS=-lm
-CPPFLAGS=-I$(INCLUDEDIR)
+OBJDIR = ../obj
+BINDIR = ../bin
 
+all: AES
 
+AES: AES.c cypher.o parser.o
+	$(CC) $(CFLAGS) $(OBJDIR)/*.o -o $(BINDIR)/$@  $< $(CPPFLAGS)
 
+parser.o: parser.c cypher.o
+	$(CC) -c $(CFLAGS) -o  $(OBJDIR)/$@  $< $(CPPFLAGS)
 
-report: 
-	pdflatex ../report/report.tex 
-	
-all: ./AES
-	
-AES: AES.o grid.o grid_io.o DFS.o heuristics.o generate.o
-	$(CC) $(CFLAGS) -o ./AES AES.o grid.o grid_io.o DFS.o heuristics.o generate.o
-
-AES.o: AES.c $(INCLUDEDIR)/AES.h
-	$(CC) $(CFLAGS) $(CPPFLAGS) -c $^
+cypher.o: cypher.c
+	$(CC) -c $(CFLAGS) -o  $(OBJDIR)/$@  $< $(CPPFLAGS)
 
 
-	
+
 clean:
-	@rm -f *.o ../include/*.gch ./AES ../report/*.aux ../report/*.log ../report/*.out ../report/*.toc
-	
-test:
-	
-help:
-	@echo "à remplir"
+	rm -f  $(OBJDIR)/*  $(BINDIR)/*
 
 .PHONY: all clean help
-
