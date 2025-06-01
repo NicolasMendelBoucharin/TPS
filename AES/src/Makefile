@@ -6,18 +6,18 @@ BINDIR = ../bin
 
 all: AES
 
-AES: AES.c cypher.o parser.o
+AES: AES.c cipher.o parser.o
 	$(CC) $(CFLAGS) $(OBJDIR)/*.o -o $(BINDIR)/$@  $< $(CPPFLAGS)
 
-parser.o: parser.c cypher.o
+parser.o: parser.c cipher.o
 	$(CC) -c $(CFLAGS) -o  $(OBJDIR)/$@  $< $(CPPFLAGS)
 
-cypher.o: cypher.c
+cipher.o: cipher.c
 	$(CC) -c $(CFLAGS) -o  $(OBJDIR)/$@  $< $(CPPFLAGS)
 
 
 
 clean:
-	rm -f  $(OBJDIR)/*  $(BINDIR)/*
+	rm -f  $(OBJDIR)/*  $(BINDIR)/* ciphered.txt deciphered.txt
 
 .PHONY: all clean help

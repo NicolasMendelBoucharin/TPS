@@ -1,13 +1,26 @@
 # AES
 
-## Ce que j'ai fait : 
+## Description : 
 
-Je m'y suis pris trop tard. J'ai juste essayé de faire en sorte qu'il puisse chiffrer, déchiffrer 100 fois alice.sage
+Programme permettant de déchifrer ou chiffrer en ECB avec une clé fixée
 
-## Difficulté rencontré : 
+### Utilisation : 
 
-Je n'ai pas fait de parser d'argument étant donné que je ne fais qu'un test.
+- une fois le fichier compilé le binaire est dans le dossier bin et peut être exécuté avec les commandes make et AES
+- on peut afficher une aide avec AES --help 
+- on peut faire un test avec AES --test
+ 
 
-## Comment utiliser : 
+## Difficultés rencontrés : 
 
-Simplement faire un make et lancer AES (pas de parseur)
+**GROS PROBLEME :** Je m'y suis pris vraiment tard avec les partiels/projet et le retour chez mes parents ce we ça a été compliqué et je pense que j'ai vraiment mal fait ma fonction KeyExpension et que mon chiffrement n'est pas bon. Néanmoins ce que je chiffre je peux toujours le déchiffrer et revenir au bloc initial.
+
+J'ai également un gros problème avec mon parser d'argument je n'arrive pas à lui faire lire les fichiers en paramètre
+
+On m'a honnetement beaucoup aidé pour le parsing de fichier pour avoir un padding qui fonctionne 
+
+25 secondes ça me parait long pour le test
+
+
+
+
