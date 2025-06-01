@@ -49,8 +49,8 @@ int main(int argc, char *argv[]){
 	int deciph=0;                         
 	int flag_o=0;                         
 	int test=0;                                                                                                              
-    FILE* output_file = fopen("ciphered.txt", "wb");  
-	FILE* input_file = NULL;   
+    FILE *output_file = fopen("ciphered.txt", "wb");  
+	FILE *input_file = NULL;   
 
 
     
@@ -124,14 +124,8 @@ int main(int argc, char *argv[]){
 		printf("Pas besoin de fichier de sortie pour le test\n");
 	}
 
-
-
-
-
-	
-	
       
-	if(test){                                  
+	if(test==1){                                  
 		clock_t start_time , end_time ;          
 		double cpu_time;
 		start_time=clock();
@@ -144,15 +138,15 @@ int main(int argc, char *argv[]){
 	
 
 	
-    if(ciph){                                          
+    if(ciph==1){                                          
 		parser_encrypt(input_file , output_file , defaultkey);  
     }
 
 
 
 
-	if(deciph){                    
-		parser_decrypt(input_file , output_file , defaultkey);  
+	if(deciph==1){                    
+		parser_decrypt(input_file, output_file , defaultkey);  
     }
 	
 
