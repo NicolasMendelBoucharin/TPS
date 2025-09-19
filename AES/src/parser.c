@@ -37,8 +37,8 @@ void parser_encrypt(FILE* input_file, FILE* output_file, uint8_t *key){
     }
     else{
         fread(input, 1, left, input_file);
-        for(int i = 0; i < pad; i++){
-            input[15-i] = (uint8_t) pad;
+        for(int l = 0; l < pad; l++){
+            input[15-l] = (uint8_t) pad;
         }
     }
 
@@ -62,7 +62,7 @@ void parser_decrypt(FILE* input_file, FILE* output_file, uint8_t *key){
     uint8_t w[176]; 
     KeyExpansion(key, w);
 
-    while(i + 16 < input_size){
+    while(i + 16 <= input_size){
         fread(input, 1, 16, input_file);
         decipher_block(input, output, w); 
         

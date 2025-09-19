@@ -138,7 +138,8 @@ int main(int argc, char *argv[]){
 	
 
 	
-    if(ciph==1){                                          
+    if(ciph==1){      
+        output_file = fopen("ciphered.txt", "wb");                                    
 		parser_encrypt(input_file , output_file , defaultkey);  
     }
 
