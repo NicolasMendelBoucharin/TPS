@@ -55,6 +55,8 @@ Bipoint::Bipoint(Point pointt1, Point pointt2){
     point2 = pointt2;
 };
 
+
+
 void Bipoint::affiche(){
     Bipoint::point1.affiche();
     Bipoint::point2.affiche();

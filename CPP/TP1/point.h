@@ -29,8 +29,9 @@ class Bipoint{
         Point point1;
         Point point2;
     public:
-        Bipoint(Point pointt1, Point pointt2);
+        Bipoint(Point pointt1 = Point(), Point pointt2 = Point());
         void affiche();
+        
 };
 
 
