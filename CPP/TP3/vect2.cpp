@@ -1,4 +1,6 @@
 #include "vect2.h"
+//J'ai commenté que le vect3 parce que c'est ça + d'autres trucs alors
+
 
 void Vect::init(double d){
     for(int i=0; i<lg; i++){
