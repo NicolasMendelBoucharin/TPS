@@ -7,9 +7,11 @@ class Matrice{
 
     private:
     int nbl;
-    int nbc
+    int nbc;
     double **val;
 
     public:
     Matrice(int nl, int nc);
+    void affiche();
+    void init(double d);
 };
