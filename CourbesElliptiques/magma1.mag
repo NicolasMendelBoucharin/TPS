@@ -1,0 +1,56 @@
+//Question 1.
+//a)
+i:=4;
+"Le typer magma de l'entier", i, "est", Type(i);
+//b)
+n:=10^29;
+p:=NextPrime(n);
+p;
+//c)
+a := 123456789;
+e :=12345678;
+exponentiation:=Modexp(a,e,p);
+exponentiation;
+//d)
+elementprimitif:=PrimitiveElement(GF(p));
+IsPrimitive(elementprimitif);
+Order(elementprimitif) eq (p-1);
+//e)
+FPt<t> := PolynomialRing(GF(p));
+P := t^4 + t + 1;
+while not IsIrreducible(P) do
+    P := P+1;
+end while;
+P;
+//f)
+FPquotient<x> := quo<FPt|P>;
+pol:= x+1;
+pol^(-1);
+//g)
+discrim :=function( a1, a2, a3, a4, a6)
+    b2:=a1^2 + 4*a2;
+    b4:= 2*a4 +a1*a3;
+    b6:= a3^2 + 4*a6;
+    b8 := a1^2*a6+4*a2*a6-a1*a3*a4+a2*a3^2-a4^2;
+    dis:=-b2^2*b8-8*b4^3-27*b6^2 + 9*b2*b4*b6;
+    return dis;
+end function;
+
+//Question 2.
+//a)
+vecteurdesa:=[0,1,0,0,1];
+E:=EllipticCurve(vecteurdesa);
+E;
+//b)
+mondiscriminant:=discrim(0,1,0,0,1);
+mondiscriminant;
+Discrimant(E);
+//c)
+jinv :=function( a1, a2, a3, a4, a6)
+    b2:=a1^2 + 4*a2;
+    b4:= 2*a4 +a1*a3;
+    dis := discrim( a1, a2, a3, a4, a6);
+    c4:=b2^2-24*b4;
+    j:=c4^3/dis;
+    return j;
+end function;
