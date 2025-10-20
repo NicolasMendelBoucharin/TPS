@@ -111,13 +111,7 @@ qq qq::operator-(const qq& frac){
     return somme;
 };
 
-/*
-Converti en double
-*/
-double qq::converttodouble(){
-    double res=numerator/denominator;
-    return res;
-};
+
 
 /*
 Operateur d'affectation
@@ -134,11 +128,11 @@ Opérateur de puissance
 qq qq::pow(const int n){;
     qq power;  
     if(n<0){
-        power = qq(pow(this->denominator,(-n)), pow(this->numerator,(-n));
+        power = qq( std::pow(this->denominator,(-n)), std::pow(this->numerator,(-n)));
         
     }
     else{
-        power = qq(pow(this->numerator, n), pow(this->denominator, n));
+        power = qq(std::pow(this->numerator, n), std::pow(this->denominator, n));
     };
     power.reduction();
     return power;

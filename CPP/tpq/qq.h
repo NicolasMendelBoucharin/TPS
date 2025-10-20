@@ -21,7 +21,7 @@ class qq{
     qq operator*(const qq& frac);
     qq operator/(const qq& frac);
     qq operator-(const qq& frac);
-    double converttodouble();
+    operator double() const{return (double) numerator/denominator;}
     qq& operator&=(const qq& frac);
     qq pow(int n);
 };
