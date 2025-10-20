@@ -14,4 +14,5 @@ class Matrice{
     Matrice(int nl, int nc);
     void affiche();
     void init(double d);
+    
 };

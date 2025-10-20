@@ -44,7 +44,7 @@ E;
 //b)
 mondiscriminant:=discrim(0,1,0,0,1);
 mondiscriminant;
-Discrimant(E);
+Discriminant(E);
 //c)
 jinv :=function( a1, a2, a3, a4, a6)
     b2:=a1^2 + 4*a2;
@@ -54,3 +54,79 @@ jinv :=function( a1, a2, a3, a4, a6)
     j:=c4^3/dis;
     return j;
 end function;
+
+j:=jinv(0,1,0,0,1);
+j;
+jInvariant(E);
+//d)
+//i)
+//isomorphe car même j-invariant
+vecteurdesaprime:=[0,0,0,3*j/(1728-j),2*j/(1728-j)];
+Eprime:=EllipticCurve(vecteurdesaprime);
+jInvariant(Eprime);
+//ii)
+IsIsomorphic(E,Eprime);
+
+//Question 3.
+//a)
+F23:=GF(23); 
+E:=EllipticCurve([F23!2,1]);
+//b)
+#E;
+//c)
+Points(E);
+//d)
+P :=[2,17];
+Q :=[9,9];
+IsPoint(E,P);
+IsPoint(E,Q);
+E!P + E!Q;
+//e)
+Order(E!P); //ordre 30
+//généré par P ?
+//f)
+
+
+// card:=0;
+// for a in F23 do
+//     for b in F23 do
+//         c:=4*a^3+27*b^2;
+//         if c ne 0 then
+//             E2:=EllipticCurve([F23!a,b]);
+//             if jInvariant(E2) eq jInvariant(E) then
+//                 if #E2 eq 30 then
+//                     card := card + 1;
+//                     E2;
+//                 end if;
+                    
+//             end if;
+//         end if;
+//     end for;
+// end for;
+// card;
+
+// ne marche pas 
+
+card:=0;
+for j in F23 do
+    E2:=EllipticCurveFromjInvariant(j);
+    if #E2 eq 30 then
+        E2;
+        card:= card + 1;
+    end if;
+end for;
+card;
+
+
+
+//Question 4.
+
+//flemme
+
+//Question 5.
+
+
+
+
+
+
