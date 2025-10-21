@@ -1,4 +1,4 @@
-#include "matrice3.h"
+#include "matrice4.h"
 using namespace std;
 /*
 entrée : un nombre de lignes et un nombre de colonnes
@@ -127,7 +127,9 @@ Matrice::~Matrice(){
     delete [] val;
 };
 
-/*Lecture du fichier et écriture dans une matrice*/
+/*
+Lecture du fichier et écriture dans une matrice
+*/
 void Matrice::read(std::ifstream& fichierentree){
     int nl;
     int nc;
@@ -153,6 +155,9 @@ void Matrice::read(std::ifstream& fichierentree){
     }
 }
 
+/*
+Ecriture dans le fichier la matrice
+*/
 void Matrice::write(std::ofstream& fichiersortie){
     fichiersortie<< (nbl) <<" "<< (nbc) <<endl;
     for(int i=0; i<nbl; i++){
@@ -162,3 +167,4 @@ void Matrice::write(std::ofstream& fichiersortie){
         fichiersortie<<endl;
     }
 }
+

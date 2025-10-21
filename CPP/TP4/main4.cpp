@@ -1,4 +1,4 @@
-#include "matrice3.h"
+#include "matrice4.h"
 using namespace std;
 int main(){
     int nl=4;
