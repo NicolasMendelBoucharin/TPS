@@ -1,5 +1,6 @@
-#include "matrice1.h"
+#include "matrice2.h"
 using namespace std;
+
 /*
 entrée : un nombre de lignes et un nombre de colonnes
 sortie : une matrice de la bonne taille (mais vide)
@@ -115,4 +116,14 @@ Matrice& Matrice::operator=(const Matrice& mat) {
         }
     }
     return *this;
+};
+
+/*
+Surcharge du destructeur
+*/
+Matrice::~Matrice(){
+    for(int i=0; i<nbl; i++){
+        delete [] val[i];
+    }
+    delete [] val;
 };

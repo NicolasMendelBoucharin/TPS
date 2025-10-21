@@ -15,7 +15,8 @@ class Matrice{
     Matrice();
     void affiche();
     void init(double d);
-    Matrice operator+(Matrice&);
+    Matrice operator+(const Matrice&);
     Matrice& operator=(const Matrice& mat);
     Matrice(const Matrice& mat);
+    ~Matrice();
 };

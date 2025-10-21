@@ -83,6 +83,9 @@ int getlg(const Vect& U){
     return  U.lg;
 };
 
+/*
+Surcharge de l'operateur +
+*/
 
 Vect Vect::operator+(const Vect& U){
     //assert(lg==U.lg);

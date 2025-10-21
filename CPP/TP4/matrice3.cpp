@@ -1,4 +1,4 @@
-#include "matrice1.h"
+#include "matrice3.h"
 using namespace std;
 /*
 entrée : un nombre de lignes et un nombre de colonnes
@@ -61,7 +61,7 @@ void Matrice::affiche(){
 /*
 Surcharge de l'addition pour les matrices.
 */
-Matrice Matrice::operator+(Matrice& mat){
+Matrice Matrice::operator+(const Matrice& mat){
     if(nbl != mat.nbl || nbc != mat.nbc){
         cerr<<"Pas la même taille de matrice"<<endl;
         exit(1);
@@ -115,4 +115,14 @@ Matrice& Matrice::operator=(const Matrice& mat) {
         }
     }
     return *this;
+};
+
+/*
+Surcharge du destructeur
+*/
+Matrice::~Matrice(){
+    for(int i=0; i<nbl; i++){
+        delete [] val[i];
+    }
+    delete [] val;
 };

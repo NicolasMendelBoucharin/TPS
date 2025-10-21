@@ -18,4 +18,5 @@ class Matrice{
     Matrice operator+(Matrice&);
     Matrice& operator=(const Matrice& mat);
     Matrice(const Matrice& mat);
+    ~Matrice();
 };
