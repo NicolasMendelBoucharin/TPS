@@ -1,0 +1,14 @@
+Dans un premier lieu j'ai essayé de passer en virtual toute les fonctions qui étaient communes aux deux sous classes
+
+J'ai du refaire les constructeur pour chaque classe (elles sont forcément spécifiques à un type particulier de classe)
+
+Il a fallu revoir comment on affichait les matrices symétriques qui n'ont pas un tableau de taille n*n en données.
+
+Pour pouvoir executer le fichier Q6.cpp il fallait aussi corriger mes fonctions affiche pour qu'elles mangent un string
+
+Il a aussi fallu définir malgré tout les fonctions virtual dans le fichier cpp (je leur fait rendre un truc trivial à chaque fois)
+
+Je n'ai pas eu la foi de réimplémenter les fonctions read et write pour les matrices symétriques et comme la consigne disait qu'on souhaitait avoir une classe parfaitement abstraite pour Matrice j'ai préféré les commenter.
+
+Au vu du Nota, j'ai préféré ne pas faire de template pour additionner des matrices pleines et des matrices symétriques. Il me semble que le plus simple pour cela serait de faire une méthode qui transforme les matrices symétriques en matrices pleines, mais l'énoncé ne me semblait pas aller en ce sens.
+

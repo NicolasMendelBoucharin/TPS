@@ -1,0 +1,756 @@
+<!DOCTYPE html><html><head>
+      <title>cours</title>
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      
+      <link rel="stylesheet" href="file:////home/aldaron/.vscode/extensions/shd101wyy.markdown-preview-enhanced-0.8.19/crossnote/dependencies/katex/katex.min.css">
+      
+      
+      
+      
+      
+      <style>
+      code[class*=language-],pre[class*=language-]{color:#333;background:0 0;font-family:Consolas,"Liberation Mono",Menlo,Courier,monospace;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.4;-moz-tab-size:8;-o-tab-size:8;tab-size:8;-webkit-hyphens:none;-moz-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{padding:.8em;overflow:auto;border-radius:3px;background:#f5f5f5}:not(pre)>code[class*=language-]{padding:.1em;border-radius:.3em;white-space:normal;background:#f5f5f5}.token.blockquote,.token.comment{color:#969896}.token.cdata{color:#183691}.token.doctype,.token.macro.property,.token.punctuation,.token.variable{color:#333}.token.builtin,.token.important,.token.keyword,.token.operator,.token.rule{color:#a71d5d}.token.attr-value,.token.regex,.token.string,.token.url{color:#183691}.token.atrule,.token.boolean,.token.code,.token.command,.token.constant,.token.entity,.token.number,.token.property,.token.symbol{color:#0086b3}.token.prolog,.token.selector,.token.tag{color:#63a35c}.token.attr-name,.token.class,.token.class-name,.token.function,.token.id,.token.namespace,.token.pseudo-class,.token.pseudo-element,.token.url-reference .token.variable{color:#795da3}.token.entity{cursor:help}.token.title,.token.title .token.punctuation{font-weight:700;color:#1d3e81}.token.list{color:#ed6a43}.token.inserted{background-color:#eaffea;color:#55a532}.token.deleted{background-color:#ffecec;color:#bd2c00}.token.bold{font-weight:700}.token.italic{font-style:italic}.language-json .token.property{color:#183691}.language-markup .token.tag .token.punctuation{color:#333}.language-css .token.function,code.language-css{color:#0086b3}.language-yaml .token.atrule{color:#63a35c}code.language-yaml{color:#183691}.language-ruby .token.function{color:#333}.language-markdown .token.url{color:#795da3}.language-makefile .token.symbol{color:#795da3}.language-makefile .token.variable{color:#183691}.language-makefile .token.builtin{color:#0086b3}.language-bash .token.keyword{color:#0086b3}pre[data-line]{position:relative;padding:1em 0 1em 3em}pre[data-line] .line-highlight-wrapper{position:absolute;top:0;left:0;background-color:transparent;display:block;width:100%}pre[data-line] .line-highlight{position:absolute;left:0;right:0;padding:inherit 0;margin-top:1em;background:hsla(24,20%,50%,.08);background:linear-gradient(to right,hsla(24,20%,50%,.1) 70%,hsla(24,20%,50%,0));pointer-events:none;line-height:inherit;white-space:pre}pre[data-line] .line-highlight:before,pre[data-line] .line-highlight[data-end]:after{content:attr(data-start);position:absolute;top:.4em;left:.6em;min-width:1em;padding:0 .5em;background-color:hsla(24,20%,50%,.4);color:#f4f1ef;font:bold 65%/1.5 sans-serif;text-align:center;vertical-align:.3em;border-radius:999px;text-shadow:none;box-shadow:0 1px #fff}pre[data-line] .line-highlight[data-end]:after{content:attr(data-end);top:auto;bottom:.4em}html body{font-family:'Helvetica Neue',Helvetica,'Segoe UI',Arial,freesans,sans-serif;font-size:16px;line-height:1.6;color:#333;background-color:#fff;overflow:initial;box-sizing:border-box;word-wrap:break-word}html body>:first-child{margin-top:0}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{line-height:1.2;margin-top:1em;margin-bottom:16px;color:#000}html body h1{font-size:2.25em;font-weight:300;padding-bottom:.3em}html body h2{font-size:1.75em;font-weight:400;padding-bottom:.3em}html body h3{font-size:1.5em;font-weight:500}html body h4{font-size:1.25em;font-weight:600}html body h5{font-size:1.1em;font-weight:600}html body h6{font-size:1em;font-weight:600}html body h1,html body h2,html body h3,html body h4,html body h5{font-weight:600}html body h5{font-size:1em}html body h6{color:#5c5c5c}html body strong{color:#000}html body del{color:#5c5c5c}html body a:not([href]){color:inherit;text-decoration:none}html body a{color:#08c;text-decoration:none}html body a:hover{color:#00a3f5;text-decoration:none}html body img{max-width:100%}html body>p{margin-top:0;margin-bottom:16px;word-wrap:break-word}html body>ol,html body>ul{margin-bottom:16px}html body ol,html body ul{padding-left:2em}html body ol.no-list,html body ul.no-list{padding:0;list-style-type:none}html body ol ol,html body ol ul,html body ul ol,html body ul ul{margin-top:0;margin-bottom:0}html body li{margin-bottom:0}html body li.task-list-item{list-style:none}html body li>p{margin-top:0;margin-bottom:0}html body .task-list-item-checkbox{margin:0 .2em .25em -1.8em;vertical-align:middle}html body .task-list-item-checkbox:hover{cursor:pointer}html body blockquote{margin:16px 0;font-size:inherit;padding:0 15px;color:#5c5c5c;background-color:#f0f0f0;border-left:4px solid #d6d6d6}html body blockquote>:first-child{margin-top:0}html body blockquote>:last-child{margin-bottom:0}html body hr{height:4px;margin:32px 0;background-color:#d6d6d6;border:0 none}html body table{margin:10px 0 15px 0;border-collapse:collapse;border-spacing:0;display:block;width:100%;overflow:auto;word-break:normal;word-break:keep-all}html body table th{font-weight:700;color:#000}html body table td,html body table th{border:1px solid #d6d6d6;padding:6px 13px}html body dl{padding:0}html body dl dt{padding:0;margin-top:16px;font-size:1em;font-style:italic;font-weight:700}html body dl dd{padding:0 16px;margin-bottom:16px}html body code{font-family:Menlo,Monaco,Consolas,'Courier New',monospace;font-size:.85em;color:#000;background-color:#f0f0f0;border-radius:3px;padding:.2em 0}html body code::after,html body code::before{letter-spacing:-.2em;content:'\00a0'}html body pre>code{padding:0;margin:0;word-break:normal;white-space:pre;background:0 0;border:0}html body .highlight{margin-bottom:16px}html body .highlight pre,html body pre{padding:1em;overflow:auto;line-height:1.45;border:#d6d6d6;border-radius:3px}html body .highlight pre{margin-bottom:0;word-break:normal}html body pre code,html body pre tt{display:inline;max-width:initial;padding:0;margin:0;overflow:initial;line-height:inherit;word-wrap:normal;background-color:transparent;border:0}html body pre code:after,html body pre code:before,html body pre tt:after,html body pre tt:before{content:normal}html body blockquote,html body dl,html body ol,html body p,html body pre,html body ul{margin-top:0;margin-bottom:16px}html body kbd{color:#000;border:1px solid #d6d6d6;border-bottom:2px solid #c7c7c7;padding:2px 4px;background-color:#f0f0f0;border-radius:3px}@media print{html body{background-color:#fff}html body h1,html body h2,html body h3,html body h4,html body h5,html body h6{color:#000;page-break-after:avoid}html body blockquote{color:#5c5c5c}html body pre{page-break-inside:avoid}html body table{display:table}html body img{display:block;max-width:100%;max-height:100%}html body code,html body pre{word-wrap:break-word;white-space:pre}}.markdown-preview{width:100%;height:100%;box-sizing:border-box}.markdown-preview ul{list-style:disc}.markdown-preview ul ul{list-style:circle}.markdown-preview ul ul ul{list-style:square}.markdown-preview ol{list-style:decimal}.markdown-preview ol ol,.markdown-preview ul ol{list-style-type:lower-roman}.markdown-preview ol ol ol,.markdown-preview ol ul ol,.markdown-preview ul ol ol,.markdown-preview ul ul ol{list-style-type:lower-alpha}.markdown-preview .newpage,.markdown-preview .pagebreak{page-break-before:always}.markdown-preview pre.line-numbers{position:relative;padding-left:3.8em;counter-reset:linenumber}.markdown-preview pre.line-numbers>code{position:relative}.markdown-preview pre.line-numbers .line-numbers-rows{position:absolute;pointer-events:none;top:1em;font-size:100%;left:0;width:3em;letter-spacing:-1px;border-right:1px solid #999;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.markdown-preview pre.line-numbers .line-numbers-rows>span{pointer-events:none;display:block;counter-increment:linenumber}.markdown-preview pre.line-numbers .line-numbers-rows>span:before{content:counter(linenumber);color:#999;display:block;padding-right:.8em;text-align:right}.markdown-preview .mathjax-exps .MathJax_Display{text-align:center!important}.markdown-preview:not([data-for=preview]) .code-chunk .code-chunk-btn-group{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .status{display:none}.markdown-preview:not([data-for=preview]) .code-chunk .output-div{margin-bottom:16px}.markdown-preview .md-toc{padding:0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link div,.markdown-preview .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}.markdown-preview .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}.scrollbar-style::-webkit-scrollbar{width:8px}.scrollbar-style::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}.scrollbar-style::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode]){position:relative;width:100%;height:100%;top:0;left:0;margin:0;padding:0;overflow:auto}html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{position:relative;top:0;min-height:100vh}@media screen and (min-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em calc(50% - 457px + 2em)}}@media screen and (max-width:914px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode]) .markdown-preview{font-size:14px!important;padding:1em}}@media print{html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{display:none}}html body[for=html-export]:not([data-presentation-mode]) #sidebar-toc-btn{position:fixed;bottom:8px;left:8px;font-size:28px;cursor:pointer;color:inherit;z-index:99;width:32px;text-align:center;opacity:.4}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] #sidebar-toc-btn{opacity:1}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc{position:fixed;top:0;left:0;width:300px;height:100%;padding:32px 0 48px 0;font-size:14px;box-shadow:0 0 4px rgba(150,150,150,.33);box-sizing:border-box;overflow:auto;background-color:inherit}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar{width:8px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-track{border-radius:10px;background-color:transparent}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc::-webkit-scrollbar-thumb{border-radius:5px;background-color:rgba(150,150,150,.66);border:4px solid rgba(150,150,150,.66);background-clip:content-box}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc a{text-decoration:none}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc{padding:0 16px}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link{display:inline;padding:.25rem 0}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link div,html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper .md-toc-link p{display:inline}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .md-sidebar-toc .md-toc .md-toc-link-wrapper.highlighted .md-toc-link{font-weight:800}html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{left:300px;width:calc(100% - 300px);padding:2em calc(50% - 457px - 300px / 2);margin:0;box-sizing:border-box}@media screen and (max-width:1274px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{padding:2em}}@media screen and (max-width:450px){html body[for=html-export]:not([data-presentation-mode])[html-show-sidebar-toc] .markdown-preview{width:100%}}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .markdown-preview{left:50%;transform:translateX(-50%)}html body[for=html-export]:not([data-presentation-mode]):not([html-show-sidebar-toc]) .md-sidebar-toc{display:none}
+/* Please visit the URL below for more information: */
+/*   https://shd101wyy.github.io/markdown-preview-enhanced/#/customize-css */
+
+      </style>
+      <!-- The content below will be included at the end of the <head> element. --><script type="text/javascript">
+  document.addEventListener("DOMContentLoaded", function () {
+    // your code here
+  });
+</script></head><body for="html-export">
+    
+    
+      <div class="crossnote markdown-preview  ">
+      
+<h1 id="évocation-de-la-stl">Évocation de la STL </h1>
+<p>Standard library of C++.<br>
+Pour la referencer :</p>
+<ul>
+<li><code>using namespace std; # Importe toute la librairie (bouuuuh)</code></li>
+<li><code>using std::sqrt;</code></li>
+<li><code>double a = std::sqrt(2);</code></li>
+</ul>
+<p>Warning: Conseil <code>std::abs</code> systématiquement.</p>
+<p>Pour faire appel à sqrt :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cmath&gt;</span></span>
+</code></pre><p>Fonctions d'écriture à l'écran et de lecture au clavier :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+</code></pre><h1 id="entrées-sorties-standard">Entrées-Sorties standard </h1>
+<p>Fonction <code>cin</code> et <code>cout</code> avec les opérateurs &lt;&lt; et &gt;&gt; dont les prototypes sont dans <code>&lt;iostream&gt;</code></p>
+<p>Exemple :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span> 
+<span class="token comment">// alternative : </span>
+<span class="token comment">// using std::cin; </span>
+<span class="token comment">// using std::cout;</span>
+<span class="token comment">// using std::endl;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> num_annee<span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token string">"Donner moi la moulaga"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    cin<span class="token operator">&gt;&gt;</span>num_annee<span class="token punctuation">;</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token string">"Tia donner "</span><span class="token operator">&lt;&lt;</span>num_annee<span class="token operator">&lt;&lt;</span><span class="token string">" de moulaga"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h1 id="définition-dune-classe">Définition d'une classe </h1>
+<h2 id="premier-exemple">Premier exemple </h2>
+<ul>
+<li>Dans le fichier MaClasse.hpp</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">MACLASS_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">MACLASS_H</span></span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">MaClass</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span><span class="token operator">:</span> 
+        <span class="token comment">// donnees membres (attributs)</span>
+            <span class="token keyword keyword-int">int</span> donnee1<span class="token punctuation">;</span>
+            <span class="token keyword keyword-double">double</span> donnee2<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+        <span class="token comment">// fonctions membres (méthodes) </span>
+        <span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// declaration constructeur</span>
+        <span class="token keyword keyword-int">int</span> <span class="token function">fonc1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-double">double</span> <span class="token function">fonc2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+</code></pre><ul>
+<li>Dans le fichier MaClasse.cpp</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MaClasse.hpp"</span></span>
+
+<span class="token class-name">MaClasse</span><span class="token double-colon punctuation">::</span><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> d<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    donnee1 <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    donnee2 <span class="token operator">=</span> d<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> <span class="token class-name">MaClasse</span><span class="token double-colon punctuation">::</span><span class="token function">fonc1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> donnee1<span class="token operator">++</span><span class="token punctuation">;</span><span class="token punctuation">}</span> <span class="token comment">//exemple</span>
+<span class="token keyword keyword-double">double</span> <span class="token class-name">MaClasse</span><span class="token double-colon punctuation">::</span><span class="token function">fonc2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> donnee2<span class="token punctuation">;</span><span class="token punctuation">}</span> <span class="token comment">// exemple</span>
+</code></pre><ul>
+<li>Dans toto.cpp :</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// ...</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    MaClasse <span class="token function">MonObjet</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span> <span class="token number">3.14</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> MonObjet<span class="token punctuation">.</span><span class="token function">fonc1</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Maclasse<span class="token operator">*</span> MO_p <span class="token operator">=</span> <span class="token operator">&amp;</span>MonObjet<span class="token punctuation">;</span>
+    <span class="token keyword keyword-double">double</span> d <span class="token operator">=</span> MO_p<span class="token operator">-&gt;</span><span class="token function">fonc2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>   
+</code></pre><h2 id="constructeur">Constructeur </h2>
+<h3 id="premier-pas">Premier pas </h3>
+<p>Si on ne définit pas de constructeur, il y en a un par défaut</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>si on en définit un du style</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>et on perd celui par défaut (sans arguments) mais on peut le redéfinir mais attention au cas</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>où le compilateur ne sait pas lequels appelé quand on tape</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>MaClasse T<span class="token punctuation">;</span>
+</code></pre><h3 id="constructeurs-par-défaut-par-copie-destructeur">Constructeurs par défaut, par copie, destructeur. </h3>
+<p>Le constructeur par défaut</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Le constructeur par copie, accessible par défaut. On peut le redéfinir avec le prototype</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> MaClasse<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Ex :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">ClTest</span><span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+
+<span class="token comment">// ...</span>
+
+ClTest C1<span class="token punctuation">,</span> C2<span class="token punctuation">;</span>
+C1 <span class="token operator">=</span> C2<span class="token punctuation">;</span> <span class="token comment">// Affectation</span>
+ClTest <span class="token function">C3</span><span class="token punctuation">(</span>C1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Copie</span>
+ClTest C4 <span class="token operator">=</span> C1<span class="token punctuation">;</span> <span class="token comment">// Copie</span>
+</code></pre><p>Le destructeur existe par défaut</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token operator">~</span><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// On peut le redéfinir </span>
+</code></pre><p>mais attention, si l'objet est un tableau il faut le redéfinir pour faire un delete propre.</p>
+<h4 id="usage-du-constructeur-par-copie">Usage du constructeur par copie </h4>
+<p>Lors de l'initialisation au moment de la définition d'un objet :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Complexe <span class="token function">z</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">2.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Deux façons équivalentes d'appeler le constructeur par copie :</span>
+Complexe <span class="token function">zz</span><span class="token punctuation">(</span>z<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// ou bien </span>
+Complexe zz <span class="token operator">=</span> z<span class="token punctuation">;</span>
+</code></pre><h4 id="liste-dinitialisation-dans-le-constructeur">Liste d'initialisation dans le constructeur </h4>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">Complexe</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token operator">:</span>
+        <span class="token keyword keyword-double">double</span> re<span class="token punctuation">,</span> im<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span>
+        <span class="token function">Complexe</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> r<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> i<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">re</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">im</span><span class="token punctuation">(</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><h2 id="données-membres-et-fonctions-membres-static">Données membres et fonctions membres <code>static</code> </h2>
+<h3 id="données-membres-static">Données membres <code>static</code> </h3>
+<p>Une <strong>donnée membre</strong> <code>static</code> dans une classe existe en un exemplaire unique partagé par l'ensemble des objets de la classe.</p>
+<p><strong>Exemple</strong> : Dans la classe <code>Complexe</code>, on peut définir :</p>
+<ul>
+<li>Dans la définition de la classe dans le fichier .h++/.hpp :</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-static">static</span> Complexe eye<span class="token punctuation">;</span>
+</code></pre><ul>
+<li>Dans le fichier .c++/.cpp :</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Complexe <span class="token class-name">Complexe</span><span class="token double-colon punctuation">::</span><span class="token function">eye</span><span class="token punctuation">(</span><span class="token number">0.</span><span class="token punctuation">,</span><span class="token number">1.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h3 id="fonctions-membres-static">Fonctions membres <code>static</code> </h3>
+<p>Possible pour toute fonction dont l'action est indépendantes de l'objet de la classe.</p>
+<p><strong>Exemple</strong> :</p>
+<ul>
+<li>Dans le fichier .h++/.hpp :</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-static">static</span> <span class="token keyword keyword-void">void</span> <span class="token function">afficheEye</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li>Dans le fichier .c++/.cpp :</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token class-name">Complexe</span><span class="token double-colon punctuation">::</span><span class="token function">afficheEye</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
+</code></pre><p><strong>Usage</strong> :</p>
+<p>Trois cas équivalents</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Complexe X<span class="token punctuation">,</span>Y<span class="token punctuation">;</span>
+X<span class="token punctuation">.</span><span class="token function">afficheEye</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Y<span class="token punctuation">.</span><span class="token function">afficheEye</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token class-name">Complexe</span><span class="token double-colon punctuation">::</span><span class="token function">afficheEye</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Possible uniquement parce que la fonction est static</span>
+</code></pre><h3 id="plusieurs-classes-dans-un-combiné-hppcpp">Plusieurs classes dans un combiné .hpp/.cpp </h3>
+<p>Le fichier <code>.hpp</code> :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">C1</span><span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">C2</span><span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>Le fichier <code>.cpp</code> :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token class-name">C1</span><span class="token double-colon punctuation">::</span><span class="token function">fct1</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
+<span class="token class-name">C1</span><span class="token double-colon punctuation">::</span><span class="token function">fct2</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
+<span class="token comment">// ...</span>
+
+<span class="token class-name">C2</span><span class="token double-colon punctuation">::</span><span class="token function">fct1</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
+<span class="token comment">// ...</span>
+</code></pre><h1 id="usage-préprocesseur">Usage préprocesseur </h1>
+<ul>
+<li>Référencer des fichiers qui contiennt des déclarations de fonctions ou des définition de classes.</li>
+<li>Référencer des headers de la STL (ex : <code>#include &lt;iostream&gt;</code>).</li>
+<li>Un header contient principalement :
+<ul>
+<li>déclaration de fonction</li>
+<li>déclaration de variables globales</li>
+<li>déclaration ou définition de classes</li>
+<li>définition de fonction "inline"</li>
+</ul>
+</li>
+<li>Ne pas utiliser "using" dans les headers.</li>
+</ul>
+<h2 id="usage-de-include">Usage de #include </h2>
+<p>Ordre conseillé :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"MesFichiers.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;headers_de_la_STL&gt;</span></span>
+
+<span class="token keyword keyword-using">using</span> std<span class="token double-colon punctuation">::</span>truc <span class="token comment">// Que dans un .cpp</span>
+</code></pre><h2 id="listes-dinitialisation-">Listes d'initialisation : </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">Complexe</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> pr<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> pi<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">partie_reelle</span><span class="token punctuation">(</span>pr<span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">partie_imaginaire</span><span class="token punctuation">(</span>pi<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">;</span>
+<span class="token comment">// ou </span>
+<span class="token function">Complexe</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> pr<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> pi<span class="token punctuation">)</span><span class="token punctuation">{</span>partie_reelle<span class="token operator">=</span>pr<span class="token punctuation">,</span> partie_imaginaire<span class="token operator">=</span>pi<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><h1 id="fonction-et-arguments-avec-valeur-par-défaut">Fonction et arguments avec valeur par défaut </h1>
+<h2 id="cas-1">Cas 1 </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">som</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+</code></pre><p>Usage :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> b <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> c <span class="token operator">=</span> <span class="token function">som</span><span class="token punctuation">(</span>b<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// c = 2</span>
+</code></pre><h2 id="cas-2">Cas 2 </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">som</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token operator">=</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+</code></pre><p>Usage :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> b <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> c <span class="token operator">=</span> <span class="token function">som</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// c = 3</span>
+<span class="token keyword keyword-int">int</span> d <span class="token operator">=</span> <span class="token function">som</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// d = 4</span>
+<span class="token keyword keyword-int">int</span> e<span class="token operator">=</span> <span class="token function">som</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// e = 1</span>
+</code></pre><h1 id="surchage-de-fonction-">Surchage de fonction : </h1>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a<span class="token operator">+</span>b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token keyword keyword-double">double</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a<span class="token operator">+</span>b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+</code></pre><p>Usage :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> a <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> c <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span>a<span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// c = 3</span>
+<span class="token keyword keyword-double">double</span> d <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">,</span> <span class="token number">2.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// d = 4</span>
+<span class="token keyword keyword-double">double</span> e <span class="token operator">=</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token number">1.5</span><span class="token punctuation">,</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Erreur : ambiguité</span>
+</code></pre><h1 id="transmission-par-valeur-par-pointeur-ou-par-référence">Transmission par valeur, par pointeur ou par référence </h1>
+<h2 id="transmission-par-valeurpointeur">Transmission par valeur/pointeur </h2>
+<p>Comme en C</p>
+<h2 id="référence-">Référence : </h2>
+<p>"Comme un pointeur mais on a pas besoin de déréférencer."</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> var <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> <span class="token function">r</span><span class="token punctuation">(</span>var<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// définition d'une référence sur "var" </span>
+<span class="token keyword keyword-int">int</span> x <span class="token operator">=</span> r<span class="token punctuation">;</span> <span class="token comment">// x devient 1;</span>
+r <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> <span class="token comment">// var = 2</span>
+r<span class="token operator">++</span><span class="token punctuation">;</span> <span class="token comment">// var = 3</span>
+<span class="token keyword keyword-int">int</span> <span class="token operator">*</span>p <span class="token operator">=</span> <span class="token operator">&amp;</span>r<span class="token punctuation">;</span> <span class="token comment">// p pointe vers var </span>
+</code></pre><h2 id="transmission-par-référence-">Transmission par référence : </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">add1</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a<span class="token operator">+</span>b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">add2</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> <span class="token operator">*</span>b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> <span class="token operator">*</span>a <span class="token operator">+</span> <span class="token operator">*</span>b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">add3</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">add4</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-int">int</span><span class="token operator">&amp;</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a <span class="token operator">+</span> b<span class="token punctuation">;</span><span class="token punctuation">}</span> <span class="token comment">// Pour être sûr que a et b ne soient pas modifiées pendant l'appel de la fonction</span>
+</code></pre><p>Usage :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">,</span> j <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> k <span class="token operator">=</span> <span class="token function">add1</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> l <span class="token operator">=</span> <span class="token function">add2</span><span class="token punctuation">(</span><span class="token operator">&amp;</span>i<span class="token punctuation">,</span><span class="token operator">&amp;</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-int">int</span> m <span class="token operator">=</span> <span class="token function">add3</span><span class="token punctuation">(</span>i<span class="token punctuation">,</span>j<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><h1 id="fonction-assert">Fonction assert </h1>
+<p>Prototype de la fonction :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token function">assert</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> expression<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Si "expression" vaut 0 (false), la fonction renvoie un message d'erreur et interrompt le programme.<br>
+La fonction est désactivée si l'étiquette <code>NDEBUG</code> définie par</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">NDEBUG</span></span>
+</code></pre><p>au moment de l'inclusion de <code>&lt;assert.h&gt;</code>.</p>
+<h1 id="allocation-dynamique-de-mémoire">Allocation dynamique de mémoire </h1>
+<p><code>new</code> pour allouer de la mémoire et <code>delete</code> pour libérer de la mémoire.</p>
+<h2 id="1er-usage">1er usage </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-double">double</span><span class="token operator">*</span> d <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">(</span><span class="token number">2.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Zone mémoire d'un double valant 2.5</span>
+<span class="token comment">// ...</span>
+<span class="token keyword keyword-delete">delete</span> d<span class="token punctuation">;</span>
+</code></pre><h2 id="2ème-usage">2ème usage </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-double">double</span><span class="token operator">*</span> d <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// Zone mémoire de 10 double</span>
+<span class="token comment">// ...</span>
+<span class="token keyword keyword-delete">delete</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> d<span class="token punctuation">;</span>
+</code></pre><p>Cas particulier :</p>
+<p>Ça va marcher et c'est ce qu'il faut faire car le compilateur va bien le gérer. Si on sépare le cas <code>N=0</code> attention aux problèmes.</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-float">float</span><span class="token operator">*</span> a<span class="token punctuation">;</span>
+a <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-float">float</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span> <span class="token comment">// new float[N] avec N = 0</span>
+<span class="token comment">// ...</span>
+<span class="token keyword keyword-delete">delete</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> a<span class="token punctuation">;</span>
+</code></pre><h1 id="pointeur-this">Pointeur <code>this</code> </h1>
+<p>Dans une classe, chaque fonctions membres non <code>static</code> a accès à un pointeur vers l'objet courant : <code>this</code>.</p>
+<p><strong>Exemple</strong> : l'écriture de l'opération affectation fini par :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+</code></pre><h1 id="mot-clef-friend-et-alternative">Mot clef <code>friend</code> et alternative </h1>
+<p>Tell your friends : "don't use friend"<br>
+Ça existe mais on doit pas l'utiliser, paie ta logique.</p>
+<h2 id="concept-de-class-amies">Concept de class amies </h2>
+<p>On a une class <code>C1</code> avec une donnée membre <code>i</code> de type <code>int</code>.<br>
+On veut accéder à <code>i</code> depuis un objet de <code>C1</code> depuis un objet de la class <code>C2</code> et depuis une fonction externe <code>nomFonction</code>.</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">nomFonction</span><span class="token punctuation">(</span>C1 objC1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-return">return</span> objC1<span class="token punctuation">.</span>i <span class="token operator">+</span> <span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Pour pouvoir faire cela on peut identifier cette fpnction comme 'amie' de la class <code>C1</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">C1</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token operator">:</span>
+        <span class="token keyword keyword-int">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span>
+        <span class="token comment">// ...</span>
+        <span class="token keyword keyword-friend">friend</span> <span class="token keyword keyword-int">int</span> <span class="token function">nomFonction</span><span class="token punctuation">(</span>C1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-friend">friend</span> <span class="token keyword keyword-void">void</span> <span class="token class-name">C2</span><span class="token double-colon punctuation">::</span><span class="token function">affiche</span><span class="token punctuation">(</span>C1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-friend">friend</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">C2</span><span class="token punctuation">;</span> <span class="token comment">// Toutes les méthodes de C2 sont friend</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>Pour utiliser <code>i</code> de <code>C1</code> dans une fonction de <code>C2</code> :</p>
+<ul>
+<li>Dans le .hpp :</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">C1</span><span class="token punctuation">;</span> <span class="token comment">// Déclare C1 sans le définir, ~ extern en C</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">C2</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token operator">:</span>
+        <span class="token keyword keyword-int">int</span> j<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span>
+        <span class="token keyword keyword-void">void</span> <span class="token function">affiche</span><span class="token punctuation">(</span>C1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><ul>
+<li>Dans le .cpp :</li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-void">void</span> <span class="token class-name">C2</span><span class="token double-colon punctuation">::</span><span class="token function">affiche</span><span class="token punctuation">(</span>C1 O1<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token string">"i from C1 object : "</span><span class="token operator">&lt;&lt;</span> O1<span class="token punctuation">.</span>i <span class="token operator">&lt;&lt;</span> endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Il faut bien séparer la déclaration et la définition de cette fonction (<code>affiche</code>) car sinon on a un problème à la compilation car <code>C2</code> à besoin de <code>C1</code> et <code>C1</code> a besoin de <code>C2</code>.</p>
+<p><strong>Conclusion</strong> :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">C1</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">C2</span><span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword keyword-void">void</span> <span class="token function">affiche</span><span class="token punctuation">(</span>C1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">C1</span><span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword keyword-friend">friend</span> <span class="token class-name">C2</span><span class="token double-colon punctuation">::</span><span class="token function">affiche</span><span class="token punctuation">(</span>C1<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><h2 id="fonction-daccès-dans-une-class">Fonction d'accès dans une class </h2>
+<p>Alternative à l'utilisation du mot clef <code>friend</code>.</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">C1</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token operator">:</span>
+        <span class="token keyword keyword-int">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span>
+        <span class="token comment">// ...</span>
+        <span class="token keyword keyword-int">int</span> <span class="token function">geti</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> i<span class="token punctuation">;</span><span class="token punctuation">}</span> <span class="token comment">// inline -&gt; le compilateur remplace chaque appel de la fonction par son code. Ça peut devenir très lourd. Si c'est pas une ligne, on le fait pas en gros. </span>
+        <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>Conseiller d'utiliser le mot clef <code>const</code> ici :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">C1</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token operator">:</span>
+        <span class="token keyword keyword-int">int</span> i<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span>
+        <span class="token comment">// ...</span>
+        <span class="token keyword keyword-int">int</span> <span class="token function">geti</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span> <span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> i<span class="token punctuation">;</span><span class="token punctuation">}</span> 
+        <span class="token keyword keyword-void">void</span> <span class="token function">affiche</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span><span class="token punctuation">;</span>
+        <span class="token comment">// ...</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><h1 id="surcharge-dopérateurs">Surcharge d'opérateurs </h1>
+<h2 id="comme-fonction-externe">Comme fonction externe </h2>
+<ul>
+<li>L'un au moins des opérandes est un objet.</li>
+<li>On ne peut pas créer un nouvel opérateur.</li>
+<li>Même nombre d'opérandes que l'opérateur d'origine.</li>
+<li><code>.</code>, <code>::</code>, <code>?:</code>, <code>sizeof</code>, `.*``ne peuvent pas être surchargés.</li>
+<li><code>=</code>, <code>()</code>, <code>[]</code>, <code>-&gt;</code> ne peuvent pas être surchargés comme fonction externe.</li>
+</ul>
+<p><strong>Protypes possible</strong></p>
+<ul>
+<li>Pour un opérateur unaire :</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>type operator op(type)
+</code></pre><ul>
+<li>Pour un opérateur binaire :</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>type1 operator op(type2,type3)
+</code></pre><p><strong>Exemples</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-bool">bool</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">&lt;</span> <span class="token punctuation">(</span>Type Obj1<span class="token punctuation">,</span> Type Obj2<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">//....</span>
+    <span class="token keyword keyword-return">return</span> booleen<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Type<span class="token operator">&amp;</span> <span class="token keyword keyword-operator">operator</span> <span class="token operator">+=</span> <span class="token punctuation">(</span>Type<span class="token operator">&amp;</span> Obj1<span class="token punctuation">,</span> Type Obj2<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword keyword-return">return</span> a Type<span class="token operator">&amp;</span> object<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Type <span class="token keyword keyword-operator">operator</span> <span class="token operator">+</span> <span class="token punctuation">(</span>Type Obj1<span class="token punctuation">,</span> Type Obj2<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword keyword-return">return</span> a Type object<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="surcharge-dopérateurs-dans-une-class">Surcharge d'opérateurs dans une class </h2>
+<p>Ça sera une fonction membre d'une class.</p>
+<p><strong>Prototypes</strong></p>
+<ul>
+<li>opérateur unaire :</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>type operator op()
+</code></pre><ul>
+<li>opérateur binaire :</li>
+</ul>
+<pre data-role="codeBlock" data-info="" class="language-text"><code>type operator op(type1, type2)
+</code></pre><p><strong>Correspondance écriture appel/définitions</strong></p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>Appel opérateur</th>
+<th>Fonction externe</th>
+<th>Fonction d'une classe</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Unaire</td>
+<td>op A</td>
+<td>operator op(A)</td>
+<td>A.operator op()</td>
+</tr>
+<tr>
+<td>Binaire</td>
+<td>A op B</td>
+<td>operator op(A,B)</td>
+<td>A.operator op(B)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Exemple sur la classe <code>Complexe</code></strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Complexe Complexe<span class="token double-colon punctuation">::</span><span class="token keyword keyword-operator">operator</span><span class="token operator">+</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Complexe<span class="token operator">&amp;</span> z<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    Complexe <span class="token function">zz</span><span class="token punctuation">(</span>re<span class="token operator">+</span>z<span class="token punctuation">.</span>re<span class="token punctuation">,</span> im <span class="token operator">+</span> z<span class="token punctuation">.</span>im<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> zz<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+Complexe<span class="token operator">&amp;</span> Complexe<span class="token double-colon punctuation">::</span><span class="token keyword keyword-operator">operator</span><span class="token operator">+=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> Complexe<span class="token operator">&amp;</span> z<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    re <span class="token operator">+=</span> z<span class="token punctuation">.</span>re<span class="token punctuation">;</span>
+    im <span class="token operator">+=</span> z<span class="token punctuation">.</span>im<span class="token punctuation">;</span>
+    <span class="token keyword keyword-return">return</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h1 id="mot-clef-explicit">Mot clef <code>explicit</code> </h1>
+<p><strong>Exemple</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// Constructeur</span>
+<span class="token keyword keyword-explicit">explicit</span> <span class="token function">Complexe</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> b<span class="token operator">=</span><span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token comment">// Dans une fonction appelante</span>
+Complexe <span class="token function">z</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">,</span><span class="token number">1.5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Complexe zz <span class="token operator">=</span> z <span class="token operator">+</span> <span class="token number">0.5</span><span class="token punctuation">;</span> <span class="token comment">// Marche pas avec explicit, il faudra bien définir l'opération </span>
+</code></pre><h1 id="allocation-dynamique-dans-une-classe">Allocation dynamique dans une classe </h1>
+<p><strong>Exemple</strong></p>
+<p>Soit la classe</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">MaClasse</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token operator">:</span>
+        <span class="token keyword keyword-int">int</span> lg<span class="token punctuation">;</span>
+        <span class="token keyword keyword-double">double</span><span class="token operator">*</span> p_val<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span>
+        <span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token operator">~</span><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>Dans le fichier <code>.cpp</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token class-name">MaClasse</span><span class="token double-colon punctuation">::</span><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> lo<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">lg</span><span class="token punctuation">(</span>lo<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    p_val <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">[</span>lg<span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">MaClasse</span><span class="token double-colon punctuation">::</span><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-delete">delete</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> p_val<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p><strong>Usage</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token punctuation">{</span> <span class="token comment">// Début bloc 1</span>
+MaClasse <span class="token function">o1</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Constructeur programmé dans le classe</span>
+<span class="token punctuation">{</span> <span class="token comment">// Début bloc 2</span>
+    MaClasse <span class="token function">o2</span><span class="token punctuation">(</span>o1<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// Constructeur par copie</span>
+    <span class="token comment">// A l'appel du destructeur sur o2, on désalloue le pointeur p_val qui est le même que dans o1</span>
+<span class="token punctuation">}</span> <span class="token comment">// Fin bloc 2</span>
+MaClasse o3 <span class="token operator">=</span> o1<span class="token punctuation">;</span> <span class="token comment">// Constructeur par copie</span>
+<span class="token punctuation">}</span> <span class="token comment">// Fin bloc 1 </span>
+<span class="token comment">// En sortie : message d'erreur -&gt; tentative de libération de mémoire non allouée </span>
+</code></pre><h2 id="récriture-du-constructeur-par-copie">Récriture du constructeur par copie </h2>
+<p>Récriture du constructeur par copie pour une copie en profondeur et non une copie superficielle.</p>
+<p>Dans la définition de la classe</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">MaClasse</span><span class="token punctuation">{</span>
+    <span class="token comment">// ...</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span> 
+        <span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> MaClasse<span class="token operator">&amp;</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Dans le <code>.cpp</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token class-name">MaClasse</span><span class="token double-colon punctuation">::</span><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> MaClasse<span class="token operator">&amp;</span> M<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    lg <span class="token operator">=</span> M<span class="token punctuation">.</span>lg<span class="token punctuation">;</span>
+    p_val <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">[</span>lg<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> lg<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        p_val<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> M<span class="token punctuation">.</span>p_val<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="récriture-de-lopérateur-daffection">Récriture de l'opérateur d'affection </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>MaClasse <span class="token function">o1</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+Maclasse <span class="token function">o2</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+o2 <span class="token operator">=</span> o1<span class="token punctuation">;</span>
+</code></pre><p>Redéfinition de l'opérateur <code>n</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>MaClasse<span class="token operator">&amp;</span> MaClasse<span class="token double-colon punctuation">::</span><span class="token keyword keyword-operator">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> MaClasse<span class="token operator">&amp;</span> M<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span>lg <span class="token operator">!=</span> M<span class="token punctuation">.</span>lg<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword keyword-delete">delete</span> <span class="token punctuation">[</span><span class="token punctuation">]</span> p_val<span class="token punctuation">;</span>
+        lg <span class="token operator">=</span> M<span class="token punctuation">.</span>lg<span class="token punctuation">;</span>
+        p_val <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">[</span>lg<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-for">for</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> lg<span class="token punctuation">;</span> i<span class="token operator">++</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        p_val<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> M<span class="token punctuation">.</span>p_val<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword keyword-return">return</span> <span class="token operator">*</span><span class="token keyword keyword-this">this</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h2 id="neutralisation-des-constructeurs-par-copie-par-move-et-de-laffectation">Neutralisation des constructeurs par copie, par move et de l'affectation </h2>
+<p>Dans la déclaration de la classe</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">MaClasse</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> MaClasse<span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword keyword-delete">delete</span><span class="token punctuation">;</span> 
+<span class="token function">MaClasse</span><span class="token punctuation">(</span>MaClasse<span class="token operator">&amp;&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword keyword-delete">delete</span><span class="token punctuation">;</span> <span class="token comment">// par move</span>
+MaClasse<span class="token operator">&amp;</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> MaClasse<span class="token operator">&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword keyword-delete">delete</span><span class="token punctuation">;</span>
+MaClasse<span class="token operator">&amp;</span> <span class="token keyword keyword-operator">operator</span><span class="token operator">=</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> MaClasse<span class="token operator">&amp;&amp;</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token keyword keyword-delete">delete</span><span class="token punctuation">;</span>
+</code></pre><h1 id="fonctions-génériques">Fonctions génériques </h1>
+<h2 id="exemple">Exemple </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-int">int</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a<span class="token operator">+</span>b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token keyword keyword-float">float</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-float">float</span> a<span class="token punctuation">,</span><span class="token keyword keyword-float">float</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a<span class="token operator">+</span>b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+</code></pre><h2 id="alternatives">Alternatives </h2>
+<ul>
+<li><strong>Possibilité 1</strong></li>
+</ul>
+<p>Dans un header <code>.hpp</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-class">class</span> <span class="token class-name">K</span><span class="token operator">&gt;</span> K <span class="token function">add</span><span class="token punctuation">(</span>K a<span class="token punctuation">,</span> K b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a<span class="token operator">+</span>b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+</code></pre><p>Ici c'est pas compiler mais géré par le prerocesseur donc il remplace les appels de la fonction partout où c'est utilisé dans le code et il connaît alors le type des variables en paramètres.</p>
+<ul>
+<li><strong>Possibilité 2</strong></li>
+</ul>
+<p>Dans un header</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-class">class</span> <span class="token class-name">K</span><span class="token operator">&gt;</span> K <span class="token function">add</span><span class="token punctuation">(</span>K a<span class="token punctuation">,</span> K b<span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Dans un fichier <code>.cpp</code> :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-class">class</span> <span class="token class-name">K</span><span class="token operator">&gt;</span> K <span class="token function">add</span><span class="token punctuation">(</span>K<span class="token punctuation">,</span>a K b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a<span class="token operator">+</span>b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+
+<span class="token comment">// Instanciation</span>
+<span class="token keyword keyword-template">template</span> <span class="token keyword keyword-int">int</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span><span class="token punctuation">,</span><span class="token keyword keyword-int">int</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span> <span class="token keyword keyword-float">float</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-float">float</span><span class="token punctuation">,</span><span class="token keyword keyword-float">float</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword keyword-template">template</span> <span class="token keyword keyword-double">double</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span><span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><p>Ici, on est obligé d'instantier car le compilateur ne s'est pas avec quels types on va appeler la fonction donc il faut lui dire.</p>
+<h2 id="autre-exemple">Autre exemple </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-class">class</span> <span class="token class-name">K</span><span class="token punctuation">,</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">L</span><span class="token operator">&gt;</span> K <span class="token function">add</span><span class="token punctuation">(</span>K a<span class="token punctuation">,</span> L b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a<span class="token operator">+</span>b<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token comment">// ...</span>
+<span class="token keyword keyword-int">int</span> <span class="token function">add</span><span class="token punctuation">(</span><span class="token keyword keyword-int">int</span> a<span class="token punctuation">,</span> <span class="token keyword keyword-int">int</span> b<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> a<span class="token operator">+</span>b<span class="token punctuation">;</span><span class="token punctuation">}</span> <span class="token comment">// Spécialisation, elle est prioritaire sur la fonction générique d'avant </span>
+</code></pre><p>Attention, si <strong>K</strong> est <code>int</code> et <strong>L</strong> <code>float</code> alors le résultat sera un <code>int</code> donc on perd de l'information (conversion dégradente).</p>
+<h1 id="classes-génériques">Classes génériques </h1>
+<h2 id="définition">Définition </h2>
+<p>Fichier <code>.hpp</code> :</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-class">class</span> <span class="token class-name">K</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">MaClassTemp</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token operator">:</span> 
+        <span class="token comment">// donnes membres</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span>
+        type <span class="token function">fonctionT</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> K<span class="token operator">&amp;</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token comment">// ...</span>
+<span class="token punctuation">}</span>
+</code></pre><p>Définition de <strong>fonctionT</strong> dans le <code>.cpp</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-class">class</span> <span class="token class-name">K</span><span class="token operator">&gt;</span> type <span class="token class-name">MaClasseTemp</span><span class="token operator">&lt;</span>K<span class="token operator">&gt;</span><span class="token double-colon punctuation">::</span><span class="token function">fonctionT</span><span class="token punctuation">(</span><span class="token keyword keyword-const">const</span> K<span class="token operator">&amp;</span> data<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
+</code></pre><p>Ici il faudrait de l'instanciation (car une partie dans le <code>.cpp</code> si tout est dans le fichier <code>.hpp</code> c'est pas la peine) aussi mais c'est pas dans les notes du prof donc il faut se débrouiller seul pour trouver la syntaxe.</p>
+<h2 id="exemple-1">Exemple </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-template">template</span> <span class="token operator">&lt;</span><span class="token keyword keyword-class">class</span> <span class="token class-name">T</span><span class="token operator">&gt;</span> <span class="token keyword keyword-class">class</span> <span class="token class-name">essai</span><span class="token punctuation">{</span>
+    T i<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p><strong>Usage :</strong></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token comment">// ...</span>
+essai<span class="token operator">&lt;</span><span class="token keyword keyword-int">int</span><span class="token operator">&gt;</span> ci<span class="token punctuation">;</span>
+essai<span class="token operator">&lt;</span><span class="token keyword keyword-float">float</span><span class="token operator">&gt;</span> cf<span class="token punctuation">;</span>
+</code></pre><h1 id="classe-de-base-et-classes-dérivées">Classe de base et classes dérivées </h1>
+<p>On définit une classe (de base) <code>MaClasseBase</code>.<br>
+On veut définir une classe <code>MaClasseDer</code> qui dérive de <code>MaClasseBase</code>.</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">MaClasseDer</span><span class="token operator">:</span> <span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">MaClasseBase</span></span><span class="token punctuation">{</span> <span class="token comment">// public peut être remplacé par protected, private, ...</span>
+    <span class="token keyword keyword-private">private</span> <span class="token operator">:</span>
+        <span class="token comment">// données membres propres à cette classe</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span>
+        <span class="token comment">// fonctions membres propres à cette classe</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>Un objet du type <code>MaClassDer</code> est aussi un objet du type <code>MaClasseBase</code>.</p>
+<h2 id="héritage">Héritage </h2>
+<p>Un objet de la classe <code>MaClasseDer</code> hérite des données membres et fonctions membres de MaClasseBase identifiées <strong>public</strong> ou <strong>protected</strong>.</p>
+<p>(parce que MaClasseDer est déf à partir de MaClasseBase avec le mot clef <strong>public</strong>)</p>
+<p>(Les données membres <strong>private</strong> ne sont pas héritées, il faut mettre <strong>protected</strong> si on veut la protection apporté par <strong>private</strong> mais transmisent par héritage.)[Dit à l'oral par le prof mais pas noté]</p>
+<h2 id="constructeur-1">Constructeur </h2>
+<h3 id="possibilité-1">Possibilité 1 </h3>
+<p>Dans le header <code>.hpp</code></p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">MaClasseDer</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">MaClasseBase</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
+</code></pre><h3 id="possibilité-2">Possibilité 2 </h3>
+<ul>
+<li>Dans le header <code>.hpp</code></li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token function">MaClasseDer</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">MaClasseBase</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</code></pre><ul>
+<li>Dans le <code>.cpp</code></li>
+</ul>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token class-name">MaClasseDer</span><span class="token double-colon punctuation">::</span><span class="token function">MaClasseDer</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">MaClasseBase</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span>
+</code></pre><h1 id="entrées-sorties-dans-un-fichier">Entrées-Sorties dans un fichier </h1>
+<h2 id="exemple-2">Exemple </h2>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;fstream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-int">int</span> donnees1<span class="token punctuation">,</span>donnees2<span class="token punctuation">;</span>
+    string <span class="token function">ficdon</span><span class="token punctuation">(</span><span class="token string">"monfichier.don"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> <span class="token function">ficres</span><span class="token punctuation">(</span><span class="token string">"monfichier.res"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Ouverture d'un flot d'entree</span>
+    ifstream <span class="token function">fdon</span><span class="token punctuation">(</span>ficdon<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment">// ifstream pour in file stream </span>
+    
+    <span class="token keyword keyword-if">if</span><span class="token punctuation">(</span><span class="token operator">!</span>fdon<span class="token punctuation">.</span><span class="token function">is_open</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        cout<span class="token operator">&lt;&lt;</span><span class="token string">"Fichier "</span><span class="token operator">&lt;&lt;</span>ficdon<span class="token operator">&lt;&lt;</span><span class="token string">" inexistant. Abandon."</span><span class="token operator">&lt;&lt;</span>endl
+        <span class="token function">exit</span><span class="token punctuation">(</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    
+    <span class="token comment">// Lecture des données </span>
+    fdon<span class="token operator">&gt;&gt;</span>donnee1<span class="token punctuation">;</span>
+    fdon<span class="token operator">&gt;&gt;</span>donnee2<span class="token punctuation">;</span>
+
+    fdon<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">// Ouverture d'un flot d'écriture</span>
+    ofstream <span class="token function">fres</span><span class="token punctuation">(</span>ficres<span class="token punctuation">.</span><span class="token function">c_str</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    <span class="token comment">//Ecriture des résultats</span>
+    fres<span class="token operator">&lt;&lt;</span><span class="token string">"Les resultats sont :"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    fres<span class="token punctuation">.</span><span class="token function">close</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h1 id="string">String </h1>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;string&gt;</span></span>
+
+<span class="token comment">// ---------------------- //</span>
+<span class="token keyword keyword-using">using</span> std<span class="token double-colon punctuation">::</span>string<span class="token punctuation">;</span>
+<span class="token keyword keyword-using">using</span> std<span class="token double-colon punctuation">::</span>cout<span class="token punctuation">;</span>
+<span class="token keyword keyword-using">using</span> std<span class="token double-colon punctuation">::</span>endl<span class="token punctuation">;</span>
+<span class="token comment">// ou using namespace std //</span>
+
+string nom <span class="token operator">=</span> <span class="token string">"sansNom"</span><span class="token punctuation">;</span>
+cout<span class="token operator">&lt;&lt;</span>nom<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+</code></pre><h1 id="fonction-virtuelle">Fonction virtuelle </h1>
+<h2 id="notion-de-polymorphisme">Notion de polymorphisme </h2>
+<p>La fonction <code>MaFonction</code> est déclarée ou définie dans la classe de base.<br>
+On souhaite la redéfinir dans une classe dérivée.<br>
+Pour cela, elle est déclarée virtuelle dans la classe de base.</p>
+<p>Dans le fichier <code>.h</code>, lors de la définition de la classe</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-virtual">virtual</span> type <span class="token function">MaFonction</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token comment">// ou</span>
+<span class="token keyword keyword-virtual">virtual</span> type <span class="token function">MaFonction</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span> <span class="token comment">//si inline</span>
+<span class="token comment">// ou </span>
+<span class="token keyword keyword-virtual">virtual</span> type <span class="token function">MaFonction</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span><span class="token punctuation">;</span>
+<span class="token comment">// ou </span>
+<span class="token keyword keyword-virtual">virtual</span> type <span class="token function">MaFonction</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span> <span class="token punctuation">{</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">}</span> <span class="token comment">// si inline </span>
+</code></pre><p><strong>Remarques :</strong></p>
+<ul>
+<li>Le constructeur ne peut pas être virtuel.</li>
+<li>Les fonctions impliquées dans la construction : idem.</li>
+<li>Le destructeurs peut être virtuel. Il doit l'être s'il y a de l'allocation dynamique dans une classe dérivée.</li>
+</ul>
+<h2 id="fonction-virtuelle-pure-et-classe-abstraite">Fonction virtuelle pure et classe abstraite </h2>
+<p>On peut déclarer une fonction "virtuelle pure"</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-virtual">virtual</span> type <span class="token function">MaFonction</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token comment">// ou</span>
+<span class="token keyword keyword-virtual">virtual</span> type <span class="token function">MaFonction</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+</code></pre><p><strong>Conséquences</strong></p>
+<ul>
+<li>La fonction doit être nécessairement redéclarée et définie dans toute classe dérivée.</li>
+<li>On ne peut pas déclarer un objet comme objet de cette classe de base.</li>
+<li>Une classe qui contient au moins une fonction virtuelle pure est dite "classe abstraite".</li>
+</ul>
+<h2 id="exemple-de-classe-abstraite">Exemple de classe abstraite </h2>
+<h3 id="fichier-geometryh">Fichier <code>geometry.h</code> </h3>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">ifndef</span> <span class="token expression">GEOMETRY_H</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">define</span> <span class="token macro-name">GEOMETRY_H</span></span>
+
+<span class="token comment">// Classe abstraite car on a une fonction virtuelle pure (... = 0)</span>
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Geometry</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-protected">protected</span> <span class="token operator">:</span>
+        <span class="token keyword keyword-static">static</span> <span class="token keyword keyword-const">const</span> <span class="token keyword keyword-double">double</span> pi<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span>
+        <span class="token keyword keyword-virtual">virtual</span> <span class="token operator">~</span><span class="token function">Geometry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+        <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-void">void</span> <span class="token function">affiche</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-virtual">virtual</span> <span class="token keyword keyword-double">double</span> <span class="token function">surface</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span> <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Cercle</span><span class="token operator">:</span><span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Geometry</span></span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span> <span class="token operator">:</span>
+        <span class="token keyword keyword-double">double</span> x<span class="token punctuation">,</span>C<span class="token punctuation">,</span> yC<span class="token punctuation">,</span> rayon<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span> <span class="token operator">:</span>
+        <span class="token function">Cercle</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> r<span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Redéfinition pas obligatoire :</span>
+        <span class="token keyword keyword-void">void</span> <span class="token function">affiche</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span><span class="token punctuation">;</span>
+
+        <span class="token comment">// Redéfinition obligatoire :</span>
+        <span class="token keyword keyword-double">double</span> <span class="token function">surface</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span><span class="token punctuation">{</span> <span class="token keyword keyword-return">return</span> p<span class="token operator">*</span>rayon<span class="token operator">*</span>rayon<span class="token punctuation">;</span> <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword keyword-class">class</span> <span class="token class-name">Rectangle</span><span class="token operator">:</span><span class="token base-clause"><span class="token keyword keyword-public">public</span> <span class="token class-name">Geometry</span></span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span><span class="token operator">:</span> 
+        <span class="token keyword keyword-double">double</span> Lo <span class="token punctuation">,</span> la<span class="token punctuation">;</span>
+    <span class="token keyword keyword-public">public</span><span class="token operator">:</span>
+        <span class="token function">Rectangle</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> Lon<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> la<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-void">void</span> <span class="token function">affiche</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span><span class="token punctuation">;</span>
+        <span class="token keyword keyword-double">double</span> <span class="token function">surface</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span> <span class="token punctuation">{</span><span class="token keyword keyword-return">return</span> Lo <span class="token operator">*</span> la<span class="token punctuation">;</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">endif</span></span>
+</code></pre><h3 id="fichier-geometrycpp">Fichier <code>geometry.cpp</code> </h3>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"geometry.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;cmath&gt;</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-const">const</span> <span class="token keyword keyword-double">double</span> Geometry<span class="token double-colon punctuation">::</span>pi4<span class="token operator">*</span><span class="token function">atan</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span><span class="token punctuation">(</span><span class="token number">1.</span><span class="token punctuation">)</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">Geometry</span><span class="token double-colon punctuation">::</span><span class="token function">affiche</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token keyword keyword-const">const</span> <span class="token punctuation">{</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token string">"je suis geometry, pi = "</span><span class="token operator">&lt;&lt;</span>pi<span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+<span class="token class-name">Cercle</span><span class="token double-colon punctuation">::</span><span class="token function">Cercle</span><span class="token punctuation">(</span><span class="token keyword keyword-double">double</span> x<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> y<span class="token punctuation">,</span> <span class="token keyword keyword-double">double</span> r<span class="token punctuation">)</span><span class="token operator">:</span><span class="token function">Geometry</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">xC</span><span class="token punctuation">(</span>x<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">yC</span><span class="token punctuation">(</span>y<span class="token punctuation">)</span><span class="token punctuation">,</span><span class="token function">rayon</span><span class="token punctuation">(</span>r<span class="token punctuation">)</span><span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword keyword-void">void</span> <span class="token class-name">Cercle</span><span class="token double-colon punctuation">::</span><span class="token function">affiche</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token string">"Je suis Cercle,"</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+    <span class="token comment">// Affichage intermediaire </span>
+    cout<span class="token operator">&lt;&lt;</span><span class="token string">"Surface = "</span><span class="token operator">&lt;&lt;</span><span class="token function">surface</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token operator">&lt;&lt;</span>endl<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><h3 id="dans-un-fichier-dutilisation-blablacpp">Dans un fichier d'utilisation <code>blabla.cpp</code> </h3>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">"geometry.h"</span></span>
+<span class="token macro property"><span class="token directive-hash">#</span><span class="token directive keyword">include</span> <span class="token string">&lt;iostream&gt;</span></span>
+<span class="token keyword keyword-using">using</span> <span class="token keyword keyword-namespace">namespace</span> std<span class="token punctuation">;</span>
+
+<span class="token keyword keyword-int">int</span> <span class="token function">main</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token comment">// Geometry geo; // error</span>
+    Cercle <span class="token function">C</span><span class="token punctuation">(</span><span class="token number">3</span><span class="token punctuation">,</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    Rectangle <span class="token function">R</span><span class="token punctuation">(</span><span class="token number">4</span><span class="token punctuation">,</span><span class="token number">5</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    R<span class="token punctuation">.</span><span class="token function">affiche</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+    Geometry<span class="token operator">*</span> p <span class="token operator">=</span> <span class="token keyword keyword-new">new</span> <span class="token function">Cercle</span><span class="token punctuation">(</span><span class="token number">2</span><span class="token punctuation">,</span><span class="token number">1</span><span class="token punctuation">,</span><span class="token number">6</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    p<span class="token operator">-&gt;</span><span class="token function">affiche</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword keyword-delete">delete</span> p<span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+</code></pre><hr>
+<h1 id="exercices">Exercices </h1>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code><span class="token keyword keyword-class">class</span> <span class="token class-name">TheClasse</span><span class="token punctuation">{</span>
+    <span class="token keyword keyword-private">private</span><span class="token operator">:</span>
+        <span class="token keyword keyword-int">int</span> a<span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span class="token punctuation">;</span>
+</code></pre><p>À quoi on a accès avec cet objet ?<br>
+Le constructeur par défaut, constructeur par copie, destructeur, constructeur par move (pas vu dans le cours actuellement) et l'opérateur d'affectation (voir suite)</p>
+<pre data-role="codeBlock" data-info="cpp" class="language-cpp cpp"><code>Complexe <span class="token function">z</span><span class="token punctuation">(</span><span class="token number">1.</span><span class="token punctuation">,</span><span class="token number">0.</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+
+Complexe zz<span class="token punctuation">;</span>
+zz <span class="token operator">=</span> z<span class="token punctuation">;</span>
+<span class="token comment">// Différent de Complexe zz = z;</span>
+</code></pre>
+      </div>
+      
+      
+    
+    
+    
+    
+    
+    
+  
+    </body></html>

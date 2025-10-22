@@ -9,20 +9,47 @@
 
 class Matrice{
 
-    private:
+protected:
+    
+
+public:
+    virtual void affiche(std::string nom);
+    virtual void init(double d);
+    virtual Matrice operator+(const Matrice&);
+    virtual Matrice& operator=(const Matrice& mat);
+    // void read(std::ifstream& fichierentree);
+    // void write(std::ofstream& fichiersorite);
+};
+
+
+
+class MatFull:public Matrice{
+private:
     int nbl;
     int nbc;
     double **val;
-
-    public:
-    Matrice(int nl, int nc);
-    Matrice();
-    void affiche();
+public:
+    void affiche(std::string nom);
     void init(double d);
-    Matrice operator+(const Matrice&);
-    Matrice& operator=(const Matrice& mat);
-    Matrice(const Matrice& mat);
-    ~Matrice();
-    void read(std::ifstream& fichierentree);
-    void write(std::ofstream& fichiersorite);
+    MatFull(int nl, int nc);
+    MatFull();
+    MatFull(const MatFull& mat);
+    ~MatFull();
+    MatFull operator+(const MatFull&);
+    MatFull& operator=(const MatFull& mat);
+};
+
+class MatSym:public Matrice{
+private:
+    int taille;
+    double **val;
+public:
+    MatSym(int n);
+    MatSym(const MatSym&);
+    MatSym();
+    void affiche(std::string nom);
+    void init(double d);
+    ~MatSym();
+    MatSym operator+(const MatSym&);
+    MatSym& operator=(const MatSym& mat);
 };
