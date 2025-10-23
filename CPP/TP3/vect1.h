@@ -14,4 +14,5 @@ class Vect{
     void affiche();
     void modif(int i, double r);
     Vect(int n);
+    trajet ajout(float delta);
 };
