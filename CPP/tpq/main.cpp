@@ -28,7 +28,7 @@ int main(){
     cout<<rr<<endl;
     double sommereel = s + 3.14;
     double produitreel = s * 3.14;
-    cout<<sommereel<<produitreel<<endl;
+    cout<<sommereel<<" "<<produitreel<<endl;
 
     Vect<double> Vdouble=Vect<double>(5);
     Vdouble.init(3.14);
@@ -66,4 +66,21 @@ int main(){
     D=A+B;
     C.affiche();
     D.affiche();
+
+    n=6;
+    Matrice<qq> Aqq = Matrice<qq>(n);
+    r=qq(1,3);
+    Aqq.init(r);
+    Matrice<qq> Bqq = Matrice<qq>(n);
+    s=qq(2,5);
+    Matrice<qq> Cqq(Aqq);
+    Matrice<qq> Dqq;
+    Dqq=Aqq+Bqq;
+    Aqq.affiche();
+    Bqq.affiche();
+    Cqq.affiche();
+    Dqq.affiche();
+    qq det= Dqq.Determinant();
+    cout<<det<<endl;
+
 }

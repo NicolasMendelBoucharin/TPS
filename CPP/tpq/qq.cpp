@@ -10,10 +10,19 @@ qq::qq(){
 }
 
 /*
+Constructeur avec un int (j'en avais besoin pour le determinant)
+*/
+qq::qq(int n){
+    numerator = n;
+    denominator = 1;
+}
+
+/*
 Entrée : p et q
 Retour: p/q
 */
 qq::qq(int p, int q){
+    if (q == 0) throw std::invalid_argument("Dénominateur nul");
     numerator = p;
     denominator =q;
 };
@@ -96,6 +105,7 @@ qq qq::operator+(const qq& frac){
 Surcharge du /
 */
 qq qq::operator/(const qq& frac){
+     if (frac.numerator == 0) throw std::invalid_argument("Division par zéro");
     qq prod =qq((this->numerator)*frac.denominator, (this->denominator)*frac.numerator);
     prod.reduction();
     return prod;
@@ -111,14 +121,34 @@ qq qq::operator-(const qq& frac){
     return somme;
 };
 
+/*
+Surcharge du - unaire
+*/
+qq qq::operator-() const {
+    return qq(-numerator, denominator);
+}
+
+
 
 
 /*
 Operateur d'affectation
 */
-qq& qq::operator&=(const qq& frac){
-    numerator = frac.numerator;
-    denominator = frac.denominator;
+qq& qq::operator&=(const qq &frac){
+    numerator=frac.numerator;
+    denominator=frac.denominator;
+    return *this;
+}
+
+/*
+Surchage du += pour le determinant encore mais ça a un sens
+*/
+qq& qq::operator+=(const qq& frac){
+    int newDenominator = ppcm(denominator, frac.denominator);
+    int newNumerator = numerator*newDenominator/denominator + frac.numerator*newDenominator/frac.denominator;
+    numerator = newNumerator;
+    denominator = newDenominator;
+    reduction();
     return *this;
 };
 
@@ -138,4 +168,18 @@ qq qq::pow(const int n){;
     return power;
 
 }
+/*
+Surcharge du << pour pouvoir ne pas avoir à modifier mes affiche()
+*/
+ostream& operator<< (ostream &flux, qq const &r) {
+    flux<<r.numerator<<"/"<<r.denominator;
+    return flux;
+}
 
+double qq::operator+(const double& d){
+    return d + numerator/denominator;
+};
+
+double qq::operator*(const double& d){
+    return d*numerator/denominator;
+};

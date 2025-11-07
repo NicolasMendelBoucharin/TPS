@@ -127,6 +127,47 @@ Matrice<C>::~Matrice(){
     delete [] val;
 };
 
+//full chat gpt
+template<class C>
+C Matrice<C>::Determinant() {
+    // Cas de base : matrice 1x1
+    if (n == 1) {
+        return val[0][0];
+    }
+    // Cas de base : matrice 2x2
+    if (n == 2) {
+        return val[0][0] * val[1][1] - val[0][1] * val[1][0];
+    }
+
+    C det = 0; // Initialisation à zéro
+
+    for (int j = 0; j < n; ++j) {
+        // Création de la sous-matrice mineure
+        Matrice<C> sousMatrice(n - 1);
+        for (int k = 1; k < n; ++k) {
+            int col = 0;
+            for (int l = 0; l < n; ++l) {
+                if (l == j) continue;
+                sousMatrice.val[k-1][col] = val[k][l];
+                col++;
+            }
+        }
+
+        // Calcul du cofacteur
+        C cofacteur = val[0][j] * sousMatrice.Determinant();
+        // Appliquer le signe (-1)^(0+j)
+        if (j % 2 != 0) {
+            cofacteur = -cofacteur;
+        }
+        det = det + cofacteur;
+    }
+
+    return det;
+}
+
+
+
+//Il faut instancier de base pour pas avoir d'erreur
 template class Matrice<double>;
 template class Matrice<qq>;
 
