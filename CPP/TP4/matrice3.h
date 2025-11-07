@@ -15,7 +15,7 @@ class Matrice{
     double **val;
 
     public:
-    Matrice(int nl, int nc);
+    Matrice(int nl);
     Matrice();
     void affiche();
     void init(double d);

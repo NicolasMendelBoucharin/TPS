@@ -1,7 +1,7 @@
 #include<iostream>
 #include<cassert>
 #include<cmath>
-//throw
+
 
 class qq{
     private:
@@ -24,4 +24,41 @@ class qq{
     operator double() const{return (double) numerator/denominator;}
     qq& operator&=(const qq& frac);
     qq pow(int n);
+};
+
+template<class C>
+class Vect{
+
+    private:
+    int lg;
+    C* val;
+
+    public:
+    void init(C d);
+    void affiche();
+    void modif(int i, C r);
+    explicit Vect(int n=0);
+    Vect(const Vect&);
+    Vect& operator=(const Vect&);
+    Vect operator+(const Vect& U);
+    void add(const Vect& A, const Vect& B);
+    ~Vect();
+};
+
+template<class C>
+class Matrice{
+
+    private:
+    int n;
+    C** val;
+
+    public:
+    Matrice(int n);
+    Matrice();
+    void affiche();
+    void init(C d);
+    Matrice operator+(const Matrice&);
+    Matrice& operator=(const Matrice& mat);
+    Matrice(const Matrice& mat);
+    ~Matrice();
 };

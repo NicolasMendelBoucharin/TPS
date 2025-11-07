@@ -29,4 +29,41 @@ int main(){
     double sommereel = s + 3.14;
     double produitreel = s * 3.14;
     cout<<sommereel<<produitreel<<endl;
+
+    Vect<double> Vdouble=Vect<double>(5);
+    Vdouble.init(3.14);
+    Vect<double> Udouble =Vect<double>(5);
+    Udouble.init(5);
+    cout<<"Vdouble="<<endl;
+    Vdouble.affiche();
+    cout<<"Udouble="<<endl;
+    Udouble.affiche();
+    // 9.a)
+    Vect<double> Wdouble;
+    cout<<"Avec la surcharge d'operateur Wdouble=Udouble+Vdouble="<<endl;
+    Wdouble=Udouble+Vdouble;
+    Wdouble.affiche();
+    
+    
+    cout<<"Avec la fonction de copie Wdouble.add(Vdouble,Udouble) on a :"<<endl;
+    Wdouble.add(Vdouble, Udouble);
+    Wdouble.affiche();
+    r=qq(1,3);
+    Vect<qq> Vqq=Vect<qq>(5);
+    Vqq.init(r);    
+    Vqq.affiche();
+
+
+    int n=5;
+    Matrice<double> A = Matrice<double>(n);
+    A.init(3.14);
+    A.affiche();
+    Matrice<double> B = Matrice<double>(n);
+    B.init(5);
+    B.affiche();
+    Matrice<double> C(A);
+    Matrice<double> D;
+    D=A+B;
+    C.affiche();
+    D.affiche();
 }
