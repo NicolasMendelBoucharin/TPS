@@ -1,7 +1,9 @@
 #include<iostream>
 #include<cassert>
 #include<cmath>
-
+#include <fstream>
+#include <iostream>
+#include <string>
 
 class qq{
 
@@ -72,6 +74,8 @@ class Matrice{
     Matrice(const Matrice& mat);
     ~Matrice();
     C Determinant();
+    Matrice<C> Pivot();
+    void read(std::ifstream& fichiermatrice, std::ifstream& fichierdonnee);
 };
 
 std::ostream& operator<<(std::ostream &flux, const qq &r);

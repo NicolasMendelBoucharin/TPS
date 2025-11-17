@@ -41,5 +41,9 @@ int main (void) {
    cout<<Af[1][1]<<endl;
    cout<<"le coefficient [1][2] est:"<<endl;
    cout<<Af(1,2)<<endl;
+   Af[1][1]=3;
+   Af.affiche("Af");
+
+   
 
 }

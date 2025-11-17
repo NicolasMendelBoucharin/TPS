@@ -82,5 +82,7 @@ int main(){
     Dqq.affiche();
     qq det= Dqq.Determinant();
     cout<<det<<endl;
+    
 
 }
+

@@ -3,9 +3,9 @@ using namespace std;
 
 //___________________Matrices________________________
 
-void Matrice::affiche(std::string nom){};
+void Matrice::affiche(const std::string nom){};
 void Matrice::init(double d){};
-Matrice Matrice::operator+(const Matrice&){return *this;}
+Matrice Matrice::operator+( const Matrice&){return *this;}
 Matrice& Matrice::operator=(const Matrice& mat){return *this;}
 
 double Matrice::operator()(int i, int j){
@@ -27,7 +27,7 @@ Constructeur pour matrice pleine
 entrée : un nombre de lignes et un nombre de colonnes
 sortie : une matrice de la bonne taille (mais vide)
 */
-MatFull::MatFull(int const nl, int const nc){
+MatFull::MatFull(int  nl, int  nc){
     nbl=nl;
     nbc=nc;
     val = new double* [nbl];
@@ -61,7 +61,7 @@ void MatFull::init(double d){
 Affiche une matrice pleine
 J'ai changé par rapport au fichier d'avant parce que sinon c'est un enfer pour les matrices symétrique que ça ait la même tête
 */
-void MatFull::affiche(string nom){
+void MatFull::affiche(const string nom){
     cout<<"La matrice "<< nom << " est :"<<endl;
     for(int i=0; i<nbl; i++){
         for(int j=0; j<nbc; j++){
@@ -74,7 +74,7 @@ void MatFull::affiche(string nom){
 /*
 Surcharge de l'addition pour les matrices pleines.
 */
-MatFull MatFull::operator+(const MatFull& mat){
+MatFull MatFull::operator+( const MatFull& mat){
     if(nbl != mat.nbl || nbc != mat.nbc){
         cerr<<"Pas la même taille de MatFull"<<endl;
         exit(1);
@@ -91,7 +91,7 @@ MatFull MatFull::operator+(const MatFull& mat){
 /*
 Surcharge du constructeur par copie pour matrice pleine
 */
-MatFull::MatFull(const MatFull& mat){
+MatFull::MatFull( const MatFull& mat){
     
     nbl = mat.nbl;
     nbc = mat.nbc;
@@ -191,7 +191,7 @@ double* MatFull::operator[](int i){
 
 
 /*
-Constructeur pour une matrice symetrique de taille n 
+constructeur pour une matrice symetrique de taille n 
 */
 MatSym::MatSym(int n){
     taille=n;
@@ -206,7 +206,7 @@ MatSym::MatSym(int n){
 Constructeur par copie d'une matrice symétrique
 */
 
-MatSym::MatSym(const MatSym& matS){
+MatSym::MatSym( const MatSym& matS){
     if (taille != matS.taille) {
         taille=matS.taille;
         val = new double* [taille];
@@ -233,7 +233,7 @@ void MatSym::init(double d){
 /*
 Affiche la matrice symétrique
 */
-void MatSym::affiche(string nom){
+void MatSym::affiche(const string nom){
     cout<<"La matrice"<< nom << " est :"<<endl;
     for(int i=0; i<taille; i++){
         for(int j=0; j<i+1; j++){
@@ -270,7 +270,7 @@ MatSym::~MatSym(){
 /*
 Surcharge de l'addition pour les matrices symétriques.
 */
-MatSym MatSym::operator+(const MatSym& mat){
+MatSym MatSym::operator+( const MatSym& mat){
     if(taille != mat.taille){
         cerr<<"Pas la même taille de MatSym"<<endl;
         exit(1);

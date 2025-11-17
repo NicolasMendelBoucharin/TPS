@@ -1,0 +1,3 @@
+La classe Vec a accès au données publiques comme tout le monde, mais elle a aussi accès au données membres protected comme elle les hérite. 
+Ici on n'a pas besoin de donnée "taille" dans la classe Vec comme on peut acceder à la taille avec une fonction membre de la classe vector. 
+De même pas besoin de créer nous même un tableau on peut directement pointer dessus grâce à l'héritage, le tableau doit être une donnée protected de la classe vector. 

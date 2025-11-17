@@ -1,5 +1,6 @@
 #include "qq.h"
 using namespace std;
+
 /*
 entrée : un nombre de lignes et un nombre de colonnes
 sortie : une matrice de la bonne taille (mais vide)
@@ -165,10 +166,99 @@ C Matrice<C>::Determinant() {
     return det;
 }
 
+template<class C>
+Matrice<C> Matrice<C>::Pivot() {
+    Matrice<C> M(*this);   // copie de travail
+
+    for (int i = 0; i < n; i++) {
+
+        // --- Pivot partiel ---
+        int pivot = i;
+        double best = std::abs(double(M.val[i][i]));
+
+        for (int r = i + 1; r < n; r++) {
+            double cur = std::abs(double(M.val[r][i]));
+            if (cur > best) {
+                best = cur;
+                pivot = r;
+            }
+        }
+
+        // Échange des lignes si nécessaire
+        if (pivot != i) {
+            std::swap(M.val[i], M.val[pivot]);
+        }
+
+        // Si pivot nul → colonne ignorée (matrice singulière)
+        if (std::abs(double(M.val[i][i])) < 1e-15) {
+            continue;
+        }
+
+        // --- Élimination ---
+        for (int r = i + 1; r < n; r++) {
+            C m = M.val[r][i] / M.val[i][i];
+
+            for (int c = i; c < n; c++) {
+                M.val[r][c] = M.val[r][c] - m * M.val[i][c];
+            }
+        }
+    }
+
+    return M;
+}
+
+template<class C>
+void Matrice<C>::read(std::ifstream& fichiermatrice, std::ifstream& fichierdonnee){
+    int taille;
+    int type;
+    fichierdonnee>>taille;
+    fichierdonnee>>type;
+
+    for(int i=0; i<n; i++){
+        delete [] val[i];
+    }
+    delete [] val;
+    n=taille;
+
+    if(type==0){
+        val = new double* [n];
+        for(int i=0; i<n; i++){
+                val[i] = new C [n];
+            }
+        double d;
+
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                fichiermatrice>>d;
+                val[i][j]=d;
+            }
+        }
+    }
+    else{
+        val = new qq* [n];
+        for(int i=0; i<n; i++){
+                val[i] = new qq [n];
+            }
+        int numerator;
+        int denominator;
+
+        for(int i=0; i<n; i++){
+            for(int j=0; j<n; j++){
+                fichiermatrice>>numerator;
+                fichiermatrice>>denominator;
+                val[i][j]=qq(numerator, denominator);
+            }
+        }
+    }
+}
+
+
 
 
 //Il faut instancier de base pour pas avoir d'erreur
 template class Matrice<double>;
 template class Matrice<qq>;
 
+
+//il faudrait essayer de faire des matrices creuses à terme
 
