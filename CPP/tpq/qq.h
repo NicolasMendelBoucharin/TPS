@@ -5,6 +5,15 @@
 #include <iostream>
 #include <string>
 
+/*
+TODO : 
+    faire un algo de gauss
+    faire un algo de LU
+    faire un algo par gradient maximisé ou jsp quoi
+*/
+
+
+//_______________________________________CLASSE QQ___________________________________________________
 class qq{
 
     private:
@@ -33,8 +42,16 @@ class qq{
     qq& operator+=(const qq& frac);
     qq pow(int n);
     friend std::ostream& operator<<(std::ostream &flux, const qq &r);
+    friend std::istream& operator>>(std::istream& flux, qq& r);
     
 };
+
+std::ostream& operator<<(std::ostream &flux, const qq &r);
+std::istream& operator>>(std::istream& flux, qq& r);
+
+
+//__________________________________________CLASSE VECT_______________________________________________
+
 
 template<class C>
 class Vect{
@@ -53,8 +70,14 @@ class Vect{
     Vect& operator=(const Vect&);
     Vect operator+(const Vect& U);
     void add(const Vect& A, const Vect& B);
+    void scal(const Vect& A, const Vect& B);
     ~Vect();
+    void read(std::ifstream& fichiermatrice, int n);
 };
+
+
+//_________________________________________CLASSE MATRICE_____________________________________________________
+
 
 template<class C>
 class Matrice{
@@ -71,11 +94,32 @@ class Matrice{
     void init(C d);
     Matrice operator+(const Matrice&);
     Matrice& operator=(const Matrice& mat);
+    Matrice operator*(const Matrice&);
     Matrice(const Matrice& mat);
     ~Matrice();
     C Determinant();
     Matrice<C> Pivot();
-    void read(std::ifstream& fichiermatrice, std::ifstream& fichierdonnee);
+    void read(std::ifstream& fichiervecteur, int n);
+
 };
 
-std::ostream& operator<<(std::ostream &flux, const qq &r);
+
+//___________________________________CLASSE_DONNEE__________________________________________
+
+class datas{
+    private:
+    int corps;
+    int taille;
+    int algo;
+    double tolerance;
+    public:
+    int getCorps();
+    int getTaille();
+    int getAlgo();
+    int getTolerance();
+    void read(std::ifstream& fichierdatas);
+
+}
+
+//_______________________________________IMPLEMENTATIONS____________________________________________________
+

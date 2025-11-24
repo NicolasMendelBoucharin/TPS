@@ -175,6 +175,16 @@ ostream& operator<< (ostream &flux, qq const &r) {
     flux<<r.numerator<<"/"<<r.denominator;
     return flux;
 }
+/*
+surcharge du >> pour la lecture
+*/
+std::istream& operator>>(std::istream& flux, qq& r)
+{
+    int num, den;
+    flux >> num >> den;
+    r = qq(num, den);
+    return flux;
+}
 
 double qq::operator+(const double& d){
     return d + numerator/denominator;

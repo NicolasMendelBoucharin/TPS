@@ -115,6 +115,16 @@ void Vect<C>::add(const Vect& A, const Vect& B){
     
 };
 
+
+template<class C>
+void Vect<C>::scal(const Vect& A, const Vect& B){
+    assert(A.lg==B.lg);
+    lg=A.lg;
+    for (int i=0; i<lg; i++){
+        val[i]=A.val[i]*B.val[i];
+    }
+};
+
 /*
 Surcharge de suppression
 */
@@ -124,8 +134,29 @@ Vect<C>::~Vect(){
     delete [] val;
 };
 
+/*
+Lecture d'un vecteur
+*/
+template<class C>
+void Vect<C>::read(std::ifstream& fichiervecteur, int taille){
+    lg=taille;
+    val = new C [lg];
+    C valeur;
+
+    for(int i=0; i<lg; i++){
+        fichiervecteur>>valeur;
+        val[i]=valeur;
+    }
+}
 
 
-//
+//fonction qui multpilie un vecteur par une matrice et qui rends un vecteur
+template<class C>
+Vect<C> Vect<C>::multparmat(const Matrice<C>& M){
+    if(M.n!=lg)
+    
+}
+
+//On instancie les possibilitées de base pour ne pas avoir d'erreur 
 template class Vect<double>;
 template class Vect<qq>;

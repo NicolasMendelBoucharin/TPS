@@ -75,6 +75,29 @@ Matrice<C> Matrice<C>::operator+(const Matrice& mat){
 };
 
 /*
+Surcharge de la multiplication pour les matrices.
+*/
+template<class C>
+Matrice<C> Matrice<C>::operator*(const Matrice& mat){
+    if(n != mat.n){
+        cerr<<"Pas la même taille de matrice"<<endl;
+        exit(1);
+    }
+    Matrice Mresult = Matrice(n);
+    for(int i=0; i<n; i++){
+        for(int j=0; j<n; j++){
+            C c=0;
+            for(int k=0; k<n; k++){
+                c+= val[i][k]*mat.val[k][j];
+            }
+            Mresult.val[i][j] = c;
+        }
+    }
+    return Mresult;
+};
+
+
+/*
 Surcharge du constructeur par copie
 */
 template<class C>
@@ -207,58 +230,30 @@ Matrice<C> Matrice<C>::Pivot() {
     return M;
 }
 
+
+/*
+Fonction pour lire une matrice (j'ai surchargé le >> pour que ce soit propre)
+*/
 template<class C>
-void Matrice<C>::read(std::ifstream& fichiermatrice, std::ifstream& fichierdonnee){
-    int taille;
-    int type;
-    fichierdonnee>>taille;
-    fichierdonnee>>type;
+void Matrice<C>::read(std::ifstream& fichiermatrice, int taille){
+    n=taille;
+    val = new C* [n];
+    for(int i=0; i<n; i++){
+            val[i] = new C [n];
+        }
+    C valeur;
 
     for(int i=0; i<n; i++){
-        delete [] val[i];
-    }
-    delete [] val;
-    n=taille;
-
-    if(type==0){
-        val = new double* [n];
-        for(int i=0; i<n; i++){
-                val[i] = new C [n];
-            }
-        double d;
-
-        for(int i=0; i<n; i++){
-            for(int j=0; j<n; j++){
-                fichiermatrice>>d;
-                val[i][j]=d;
-            }
-        }
-    }
-    else{
-        val = new qq* [n];
-        for(int i=0; i<n; i++){
-                val[i] = new qq [n];
-            }
-        int numerator;
-        int denominator;
-
-        for(int i=0; i<n; i++){
-            for(int j=0; j<n; j++){
-                fichiermatrice>>numerator;
-                fichiermatrice>>denominator;
-                val[i][j]=qq(numerator, denominator);
-            }
+        for(int j=0; j<n; j++){
+            fichiermatrice>>valeur;
+            val[i][j]=valeur;
         }
     }
 }
-
-
-
 
 //Il faut instancier de base pour pas avoir d'erreur
 template class Matrice<double>;
 template class Matrice<qq>;
 
 
-//il faudrait essayer de faire des matrices creuses à terme
 

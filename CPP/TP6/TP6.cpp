@@ -46,21 +46,22 @@ Vec Vec::operator+(const Vec& U){
     return Res;
 }
 
-void Vec::affiche(vector<double> &V, int n){
+void affiche(std::vector<double> &V, int n){
     
       for(int i=0; i<min(n, (int)V.size()); i++){
         cout<<V[i]<< " ";
     }
 }
 
-void Vec::affiche(vector<double> &V ){
+void affiche(std::vector<double> &V ){
 
     for(auto it=V.begin(); it<V.end(); it++){
         cout<<*it<< " ";
     }
+    cout<<endl;
 }
 
-vector<double> Vec::readfromfile(std::ifstream& fichierentree){
+std::vector<double> readFromFile(std::ifstream& fichierentree){
     vector<double> A;
     std::istream_iterator<double> iit(fichierentree);
     while(!fichierentree.eof()){
@@ -70,23 +71,30 @@ vector<double> Vec::readfromfile(std::ifstream& fichierentree){
     return A;
 };
 
-vector<double> Vec::readfromfile2(std::ifstream& fichierentree){
-    vector<double> A;
-    std::istream_iterator<double> iit(fichierentree);
-    while(!fichierentree.eof()){
-        A.push_back(*iit);
-        iit++;
-    }
-    return A;
-};
-
-
-void Vec::somme(vector<double> A, vector<double> B, vector<double> C){
+template <class L, class I>
+void somme(const std::vector<L> &A, const std::vector<I> &B, std::vector<L> &C){
     int i=0;
     for(auto it=C.begin(); it<C.end(); it++){
-        *it=A[i]+B[i];
+        *it=(A[i]+(L)B[i]);
         i++;
     }
 };
+/*
+Créé une matrice de double et affiche toute les valeurs.
+*/
+
+std::vector<std::vector<double>> matricemake(int n, int m, double d){
+    vector<vector<double>> M(n, vector<double> (m, d));
+    return M;
+}
+
+void matriceaffiche(std::vector<std::vector<double>> &M){
+    cout<<endl;
+    for (int i=0; i<M.size(); i++){
+        affiche(M[i]);
+    }
+}
+
+
 
 
