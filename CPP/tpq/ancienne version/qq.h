@@ -116,10 +116,10 @@ class datas{
     int getCorps();
     int getTaille();
     int getAlgo();
-    int getTolerance();
+    double getTolerance();
     void read(std::ifstream& fichierdatas);
 
-}
+};
 
-//_______________________________________IMPLEMENTATIONS____________________________________________________
+
 
