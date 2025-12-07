@@ -1,7 +1,8 @@
 #include "vect.hpp"
 #include <iostream>
 #include <fstream>
-
+#include "qq.h"
+template class Vect<qq>;
 using namespace std;
 
 /*
@@ -120,16 +121,19 @@ void Vect<C>::read(std::ifstream& fichiermatrice, int n){
     }
 };
 
+//getter pour accès externe
 template<class C>
 C Vect<C>::get(int i) const{
     return val[i];
 };
 
+//setter (pas utilisé)
 template<class C>
 void Vect<C>::set(int i, C value){
     val[i] = value;
 };
 
+//getter pour accès externe
 template<class C>
 int Vect<C>::size() const{
     return lg;
@@ -139,6 +143,5 @@ int Vect<C>::size() const{
 template class Vect<double>;
 template class Vect<int>;
 
-// Inclure les déclarations pour les types plus complexes si nécessaire
-#include "qq.h"
-template class Vect<qq>;
+
+

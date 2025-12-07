@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//parser d'arguments pour le programme final
 int main(int argc, char* argv[]){
     
     // --- Vérification des arguments de ligne de commande ---
@@ -14,16 +15,19 @@ int main(int argc, char* argv[]){
         return 1;
     }
     
-    // --- Lecture des fichiers et résolution automatique ---
+    //leture des fichiers
     std::ifstream fichier_data(argv[1]);
     std::ifstream fichier_matrice(argv[2]);
     std::ifstream fichier_vecteur(argv[3]);
     datas d;
     d.read(fichier_data);
+
     int corps = d.getCorps(); // 0 = double, 1 = qq
     int taille = d.getTaille();
     int algo = d.getAlgo(); // 0 = gauss, 1 = LU
-    if (corps == 0) {
+
+    if (corps == 0) { //cas des doubles
+        //ecritures des fichiers dans des matrices vect et datas
         Matrice<double> A(taille);
         Vect<double> B(taille);
         A.read(fichier_matrice, taille);
@@ -33,15 +37,16 @@ int main(int argc, char* argv[]){
         cout << "Vecteur lu : ";
         B.affiche();
         Vect<double> X;
-        if (algo == 0) {
+        if (algo == 0) {//cas de l'algo de gauss
             X = A.gauss(B);
             cout << "Solution X (Gauss) : ";
-        } else {
+        } else { //cas de l'algo LU
             X = A.solveLU(B);
             cout << "Solution X (LU) : ";
         }
         X.affiche();
-    } else if (corps == 1) {
+    } else if (corps == 1) { //cas des rationnels
+        //ecritures des fichiers dans des matrices vect et datas
         Matrice<qq> A(taille);
         Vect<qq> B(taille);
         A.read(fichier_matrice, taille);
@@ -51,10 +56,10 @@ int main(int argc, char* argv[]){
         cout << "Vecteur lu (qq) : ";
         B.affiche();
         Vect<qq> X;
-        if (algo == 0) {
+        if (algo == 0) { //cas gauss
             X = A.gauss(B);
             cout << "Solution X (Gauss, qq) : ";
-        } else {
+        } else { //cas LU
             X = A.solveLU(B);
             cout << "Solution X (LU, qq) : ";
         }
@@ -62,7 +67,7 @@ int main(int argc, char* argv[]){
     } else {
         cout << "Corps non supporté." << endl;
     }
-    // --- Fin lecture/résolution automatique ---
+
     
 }
 

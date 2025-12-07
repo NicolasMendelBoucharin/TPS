@@ -1,5 +1,10 @@
 # README 
 
+## Que fait le programme 
+
+## Utilisation :
+
+
 # Rapport 
 
 ## Ordre du travail
@@ -16,9 +21,11 @@ J'ai fait le choix de préferer faire les fonctions de lecture de fichier avant 
 
 J'ai ensuite fait les algos de gauss et LU avant de me concentrer sur le dernier car je voulais faire mon parser dans le Main et le tester avant de me lancer dans le dernier algo. 
 
-Pour l'algorithme de gauss j'ai eu quelques problèmes décrits dans la section d'après.
+Pour l'algorithme de gauss j'ai eu quelques problèmes décrits dans la section d'après (notamment le besoin de créer des getters et setters).
 
 Une fois le pivot de gauss déjà fait, il suffisait de l'adapter pour le determinant, j'ai donc fait une autre fonction determinant qui utilise elle le pivot de gauss.
+
+Comme les getters et les setters étaient déjà crées je les ai réutilisé pour certaines fonctions pour avoir un code plus propre.
 
 J'ai donc ensuite fait un parser d'argument dans le main pour pouvoir selectionner les trois fichiers données, matrices et vecteur pour la résolution (pour l'instant j'ai choisi de faire en sorte que le résultat s'affiche simplement dans la console).
 
@@ -39,4 +46,12 @@ J'ai utilisé l'IA pour les algorithmes du determinant, de gauss, de LU, et pour
 
 ## Amélioration possibles :
 
-J'ai fait mes getters et setters après la majoritée de mes fonctions des lors j'ai beaucoup de fonction qui utilisent plutot des accès direct aux valeurs. Corriger cela pourrait être interessant. 
+J'ai fait mes getters et setters après la majoritée de mes fonctions. Dès lors j'ai encore des fonctions qui utilisent plutot des accès directs aux valeurs. Corriger cela pourrait être interessant. Ce changement mériterait d'ailleurs d'être étendu aux vecteurs.
+
+Il doit surement y avoir un moyen de surcharger les "<<" ">>" sans avoir à utiliser de friends.
+
+On pourrait aussi rajouter un verbose et une option de output pour ne pas afficher simplement le résultat dans le terminal. 
+
+Toujours dans cette optique de verbose on pourrait la vouloir partielle ou complete : Si la matrice est énorme on pourrait souhaiter de n'afficher que le resultat dans le terminal. 
+
+
