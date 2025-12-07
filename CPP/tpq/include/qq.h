@@ -42,6 +42,10 @@ class qq{
     operator double() const{return (double) numerator/denominator;}
     qq& operator+=(const qq& frac);
     qq pow(int n);
+    bool operator>(const qq& frac) const;
+    bool operator==(const qq& frac) const;
+    bool operator<(const qq& frac) const;
+    qq abs() const;
     friend std::ostream& operator<<(std::ostream &flux, const qq &r);
     friend std::istream& operator>>(std::istream& flux, qq& r);
     
@@ -49,5 +53,12 @@ class qq{
 
 std::ostream& operator<<(std::ostream &flux, const qq &r);
 std::istream& operator>>(std::istream& flux, qq& r);
+
+//surcharge de la valeur absolue de std pour pouvoir mieux faire nos calculs du pivot de gauss
+namespace std {
+    inline qq abs(const qq& x) {
+        return x.abs();
+    }
+}
 
 #endif // QQ_H

@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include "vect.hpp"
 
 template<class C>
 class Matrice{
@@ -23,9 +24,14 @@ class Matrice{
     Matrice(const Matrice& mat);
     ~Matrice();
     C Determinant();
+    C DeterminantParPivot();
     Matrice<C> Pivot();
     void read(std::ifstream& fichiervecteur, int n);
-
+    Vect<C> gauss(Vect<C>& B);
+    Vect<C> solveLU(Vect<C>& B);
+    C get(int i, int j) const;
+    void set(int i, int j, C value);
+    int size() const;
 };
 
 #endif // MATRICE_HPP

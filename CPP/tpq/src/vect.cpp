@@ -120,6 +120,21 @@ void Vect<C>::read(std::ifstream& fichiermatrice, int n){
     }
 };
 
+template<class C>
+C Vect<C>::get(int i) const{
+    return val[i];
+};
+
+template<class C>
+void Vect<C>::set(int i, C value){
+    val[i] = value;
+};
+
+template<class C>
+int Vect<C>::size() const{
+    return lg;
+};
+
 // Instanciations explicites pour les types utilisés
 template class Vect<double>;
 template class Vect<int>;

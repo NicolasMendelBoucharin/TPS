@@ -8,6 +8,7 @@ template<class C>
 class Vect{
 
     private:
+
     int lg;
     C* val;
 
@@ -24,6 +25,9 @@ class Vect{
     void scal(const Vect& A, const Vect& B);
     ~Vect();
     void read(std::ifstream& fichiermatrice, int n);
+    C get(int i) const;
+    void set(int i, C value);
+    int size() const;
 };
 
 #endif // VECT_HPP

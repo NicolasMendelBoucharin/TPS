@@ -1,5 +1,4 @@
 #include "qq.h"
-
 #include "datas.hpp"
 
 int datas::getCorps(){

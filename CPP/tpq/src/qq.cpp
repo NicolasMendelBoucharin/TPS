@@ -193,3 +193,32 @@ double qq::operator+(const double& d){
 double qq::operator*(const double& d){
     return d*numerator/denominator;
 };
+
+/*
+Opérateurs de comparaison pour qq
+Les dénominateurs sont toujours positifs, seuls les numérateurs peuvent être négatifs
+*/
+bool qq::operator>(const qq& frac) const {
+    // a/b > c/d  ⟺  a*d > c*b
+    return numerator * frac.denominator > frac.numerator * denominator;
+}
+
+bool qq::operator==(const qq& frac) const {
+    // a/b == c/d  ⟺  a*d == c*b
+    return numerator * frac.denominator == frac.numerator * denominator;
+}
+
+bool qq::operator<(const qq& frac) const {
+    // a/b < c/d  ⟺  a*d < c*b
+    return numerator * frac.denominator < frac.numerator * denominator;
+}
+
+/*
+Retourne la valeur absolue d'un rationnel
+*/
+qq qq::abs() const {
+    if (numerator < 0) {
+        return qq(-numerator, denominator);
+    }
+    return qq(numerator, denominator);
+}

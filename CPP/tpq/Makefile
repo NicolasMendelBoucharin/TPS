@@ -1,5 +1,4 @@
-# Makefile pour projet C++ avec architecture multi-dossiers
-# Structure : src/ (sources), include/ (headers), obj/ (objets), bin/ (exécutables)
+# Makefile pour projet C++ avec exécutable à la racine
 
 CXX := g++
 CXXFLAGS := -std=c++17 -O2 -Wall -Wextra -g -MMD -MP
@@ -8,51 +7,75 @@ INCLUDES := -I./include
 # Répertoires
 SRC_DIR := src
 OBJ_DIR := obj
-BIN_DIR := bin
 INCLUDE_DIR := include
 
 # Fichiers source et objets
 SOURCES := $(wildcard $(SRC_DIR)/*.cpp)
 OBJECTS := $(patsubst $(SRC_DIR)/%.cpp,$(OBJ_DIR)/%.o,$(SOURCES))
 DEPS := $(OBJECTS:.o=.d)
-TARGET := $(BIN_DIR)/tpq
+TARGET := resolution
 
 # Cibles PHONY (non des fichiers)
-.PHONY: all clean run rebuild help
+.PHONY: all clean run rebuild help test
 
 # Cible par défaut
 all: $(TARGET)
 
-# Lien des objets pour créer l'exécutable
-$(TARGET): $(OBJECTS) | $(BIN_DIR)
+# Lien des objets pour créer l'exécutable à la racine
+$(TARGET): $(OBJECTS) | $(OBJ_DIR)
 	@echo "🔗 Liaison de l'exécutable : $@"
 	$(CXX) $(CXXFLAGS) -o $@ $^
-	@echo "✅ Compilation réussie ! Exécutable : $@"
+	@echo "✅ Compilation réussie ! Exécutable : ./$@"
 
 # Compilation des fichiers objets
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp | $(OBJ_DIR)
 	@echo "⚙️  Compilation : $<"
 	$(CXX) $(CXXFLAGS) $(INCLUDES) -c $< -o $@
 
-# Création des répertoires s'ils n'existent pas
+# Création du répertoire obj s'il n'existe pas
 $(OBJ_DIR):
 	mkdir -p $(OBJ_DIR)
-
-$(BIN_DIR):
-	mkdir -p $(BIN_DIR)
 
 # Inclusion des fichiers de dépendances
 -include $(DEPS)
 
-# Exécute le programme
+# Exécute le programme avec tests internes
 run: $(TARGET)
-	@echo "🚀 Exécution de $(TARGET)..."
+	@echo "🚀 Exécution de ./$(TARGET)..."
 	@./$(TARGET)
+
+# Lance les tests automatiques sur les fichiers du dossier test_files/
+test: $(TARGET)
+	@echo "🧪 Lancement des tests automatiques..."
+	@echo ""
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "Test 1: Double + Gauss"
+	@echo "════════════════════════════════════════════════════════════════"
+	@./$(TARGET) test_files/data_double_gauss.txt test_files/matrice_double.txt test_files/vecteur_double.txt
+	@echo ""
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "Test 2: Double + LU"
+	@echo "════════════════════════════════════════════════════════════════"
+	@./$(TARGET) test_files/data_double_lu.txt test_files/matrice_double.txt test_files/vecteur_double.txt
+	@echo ""
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "Test 3: QQ (Rationnels) + Gauss"
+	@echo "════════════════════════════════════════════════════════════════"
+	@./$(TARGET) test_files/data_qq_gauss.txt test_files/matrice_qq.txt test_files/vecteur_qq.txt
+	@echo ""
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "Test 4: QQ (Rationnels) + LU"
+	@echo "════════════════════════════════════════════════════════════════"
+	@./$(TARGET) test_files/data_qq_lu.txt test_files/matrice_qq.txt test_files/vecteur_qq.txt
+	@echo ""
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "✅ Tous les tests sont terminés !"
+	@echo "════════════════════════════════════════════════════════════════"
 
 # Nettoie les fichiers générés
 clean:
 	@echo "🧹 Nettoyage..."
-	rm -rf $(OBJ_DIR) $(BIN_DIR)
+	rm -rf $(OBJ_DIR) $(TARGET)
 	@echo "✅ Nettoyage terminé"
 
 # Recompile entièrement (clean + all)
@@ -61,18 +84,18 @@ rebuild: clean all
 # Affiche l'aide
 help:
 	@echo "╔════════════════════════════════════════════════════════════════╗"
-	@echo "║               Aide du Makefile - Projet TPQ                   ║"
+	@echo "║               Aide du Makefile - Projet AX=B                   ║"
 	@echo "╠════════════════════════════════════════════════════════════════╣"
-	@echo "║ Cibles disponibles :                                          ║"
-	@echo "║   make         : Compile le projet                           ║"
-	@echo "║   make run     : Compile et exécute le programme             ║"
-	@echo "║   make clean   : Supprime les fichiers générés              ║"
-	@echo "║   make rebuild : Nettoie et recompile complètement          ║"
-	@echo "║   make help    : Affiche cette aide                         ║"
+	@echo "║ Cibles disponibles :                                           ║"
+	@echo "║   make          : Compile le projet                            ║"
+	@echo "║   make run      : Compile et exécute les tests internes        ║"
+	@echo "║   make test     : Lance tous les tests automatiques            ║"
+	@echo "║   make clean    : Supprime les fichiers générés                ║"
+	@echo "║   make rebuild  : Nettoie et recompile complètement            ║"
+	@echo "║   make help     : Affiche cette aide                           ║"
 	@echo "╠════════════════════════════════════════════════════════════════╣"
-	@echo "║ Architecture du projet :                                      ║"
-	@echo "║   src/        : Fichiers source (.cpp)                       ║"
-	@echo "║   include/    : En-têtes (.h)                                ║"
-	@echo "║   obj/        : Fichiers objets (.o) générés                 ║"
-	@echo "║   bin/        : Exécutables générés                          ║"
+	@echo "║ Usage après compilation :                                      ║"
+	@echo "║                                                                ║"
+	@echo "║   ./resolution fichier_donnees.txt fichier_matrice.txt \       ║"
+	@echo "║               fichier_vecteur.txt                              ║"
 	@echo "╚════════════════════════════════════════════════════════════════╝"

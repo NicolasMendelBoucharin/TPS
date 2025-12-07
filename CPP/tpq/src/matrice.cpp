@@ -1,8 +1,10 @@
-// Fichier vide - les implémentations des templates Matrice sont dans include/qq.h
 #include "matrice.hpp"
 #include <iostream>
 #include <fstream>
-
+#include <cmath>
+#include "qq.h"
+template class Matrice<double>;
+template class Matrice<qq>;
 using namespace std;
 
 /*
@@ -38,7 +40,7 @@ template<class C>
 void Matrice<C>::init(C d){
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
-            val[i][j]=d;
+            set(i, j, d);
         }
     }
 };
@@ -52,7 +54,7 @@ void Matrice<C>::affiche(){
     for(int j=0; j<n; j++){
         cout<<"(";
         for(int i=0; i<n; i++){
-            cout<<val[j][i];
+            cout<<get(j, i);
             if(i!=n-1) cout<<", ";
         }
         cout<<")"<<endl;
@@ -67,7 +69,7 @@ Matrice<C> Matrice<C>::operator+(const Matrice& A){
     Matrice res = Matrice(n);
     for (int i=0; i<n; i++){
         for(int j=0; j<n; j++){
-            res.val[i][j]=val[i][j]+A.val[i][j];
+            res.set(i, j, get(i, j) + A.get(i, j));
         }
     }
     return res;
@@ -78,12 +80,12 @@ Surcharge du = pour l'affectation
 */
 template<class C>
 Matrice<C>& Matrice<C>::operator=(const Matrice& mat){
-    if (n != mat.n) {
+    if (n != mat.size()) {
         for(int i=0; i<n; i++){
             delete[] val[i];
         }
         delete[] val;
-        n = mat.n;
+        n = mat.size();
         val = new C* [n];
         for(int i=0; i<n; i++){
             val[i] = new C[n];
@@ -91,7 +93,7 @@ Matrice<C>& Matrice<C>::operator=(const Matrice& mat){
     }
     for(int i=0; i<n; i++){
         for(int j=0; j<n; j++){
-            val[i][j] = mat.val[i][j];
+            set(i, j, mat.get(i, j));
         }
     }
     return *this;
@@ -105,10 +107,11 @@ Matrice<C> Matrice<C>::operator*(const Matrice& A){
     Matrice res = Matrice(n);
     for (int i=0; i<n; i++){
         for(int j=0; j<n; j++){
-            res.val[i][j]=0;
+            C sum = 0;
             for(int k=0; k<n; k++){
-                res.val[i][j]+=val[i][k]*A.val[k][j];
+                sum += get(i, k) * A.get(k, j);
             }
+            res.set(i, j, sum);
         }
     }
     return res;
@@ -141,30 +144,69 @@ Matrice<C>::~Matrice(){
 };
 
 /*
+Determinant par méthode des comatrices
+*/
+template<class C>
+C Matrice<C>::Determinant() {
+    // Cas de base : matrice 1x1
+    if (n == 1) {
+        return val[0][0];
+    }
+    // Cas de base : matrice 2x2
+    if (n == 2) {
+        return val[0][0] * val[1][1] - val[0][1] * val[1][0];
+    }
+
+    C det = 0; // Initialisation à zéro
+
+    for (int j = 0; j < n; ++j) {
+        // Création de la sous-matrice mineure
+        Matrice<C> sousMatrice(n - 1);
+        for (int k = 1; k < n; ++k) {
+            int col = 0;
+            for (int l = 0; l < n; ++l) {
+                if (l == j) continue;
+                sousMatrice.val[k-1][col] = val[k][l];
+                col++;
+            }
+        }
+
+        // Calcul du cofacteur
+        C cofacteur = val[0][j] * sousMatrice.Determinant();
+        // Appliquer le signe (-1)^(0+j)
+        if (j % 2 != 0) {
+            cofacteur = -cofacteur;
+        }
+        det = det + cofacteur;
+    }
+
+    return det;
+}
+/*
 Calcule le determinant d'une matrice par la methode de Gauss
 */
 template<class C>
-C Matrice<C>::Determinant(){
+C Matrice<C>::DeterminantParPivot(){
     Matrice<C> A = *this;
     C det = 1;
     for(int i=0; i<n; i++){
         int piv=i;
         for(int j=i+1; j<n; j++){
-            if((double)A.val[j][i] > (double)A.val[piv][i]) piv=j;
+            if(std::abs(A.get(j, i)) > std::abs(A.get(piv, i))) piv=j;
         }
-        if((double)A.val[piv][i] == 0) return 0;
+        if(A.get(piv, i) == C(0)) return C(0);
         if(piv!=i) det = -det;
         
-        C pivot = A.val[i][i];
-        det = det * A.val[i][i];
+        C pivot = A.get(i, i);
+        det = det * A.get(i, i);
         for(int j=i; j<n; j++){
-            A.val[i][j] = A.val[i][j]  / pivot;
+            A.set(i, j, A.get(i, j) / pivot);
         }
         
         for(int j=i+1; j<n; j++){
-            C coef = A.val[j][i];
+            C coef = A.get(j, i);
             for(int k=i; k<n; k++){
-                A.val[j][k] = A.val[j][k] - coef*A.val[i][k];
+                A.set(j, k, A.get(j, k) - coef*A.get(i, k));
             }
         }
     }
@@ -192,29 +234,180 @@ Matrice<C> Matrice<C>::Pivot(){
     for(int i=0; i<n; i++){
         int piv=i;
         for(int j=i+1; j<n; j++){
-            if((double)A.val[j][i] > (double)A.val[piv][i]) piv=j;
+            if(std::abs(A.get(j, i)) > std::abs(A.get(piv, i))) piv=j;
         }
-        if((double)A.val[piv][i] == 0) return A;
+        if(A.get(piv, i) == C(0)) return A;
         
-        C pivot = A.val[i][i];
+        C pivot = A.get(i, i);
         for(int j=i; j<n; j++){
-            A.val[i][j] = A.val[i][j]  / pivot;
+            A.set(i, j, A.get(i, j) / pivot);
         }
         
         for(int j=i+1; j<n; j++){
-            C coef = A.val[j][i];
+            C coef = A.get(j, i);
             for(int k=i; k<n; k++){
-                A.val[j][k] = A.val[j][k] - coef*A.val[i][k];
+                A.set(j, k, A.get(j, k) - coef*A.get(i, k));
             }
         }
     }
     return A;
 };
 
-// Instanciations explicites pour les types utilisés
-template class Matrice<double>;
-template class Matrice<int>;
+/*
+Algorithme de Gauss pour résoudre AX=B
+Entrée : M (matrice A), B (vecteur B)
+Sortie : Vect X tel que A*X = B
+*/
+template<class C>
+Vect<C> Matrice<C>::gauss(Vect<C>& B){
+    // Créer une copie de la matrice et du vecteur
+    Matrice<C> A = *this;
+    Vect<C> b = B;
+    
+    // Phase de remontée (forward elimination)
+    for(int i=0; i<n; i++){
+        // Trouver le pivot (celui avec la plus grande valeur absolue)
+        int piv=i;
+        for(int j=i+1; j<n; j++){
+            if(std::abs(A.get(j, i)) > std::abs(A.get(piv, i))) piv=j;
+        }
+        
+        // Échanger les lignes si nécessaire
+        if(piv != i){
+            for(int k=i; k<n; k++){
+                C temp = A.get(i, k);
+                A.set(i, k, A.get(piv, k));
+                A.set(piv, k, temp);
+            }
+            C temp = b.get(i);
+            b.set(i, b.get(piv));
+            b.set(piv, temp);
+        }
+        
+        // Vérifier que le pivot n'est pas zéro
+        if(A.get(i, i) == C(0)){
+            std::cout << "Erreur: matrice singulière!" << std::endl;
+            return b;
+        }
+        
+        // Élimination
+        for(int j=i+1; j<n; j++){
+            C coef = A.get(j, i) / A.get(i, i);
+            for(int k=i; k<n; k++){
+                A.set(j, k, A.get(j, k) - coef*A.get(i, k));
+            }
+            b.set(j, b.get(j) - coef*b.get(i));
+        }
+    }
+    
+    // Phase de descente (back substitution)
+    Vect<C> X(n);
+    for(int i=n-1; i>=0; i--){
+        C sum = b.get(i);
+        for(int j=i+1; j<n; j++){
+            sum = sum - A.get(i, j)*X.get(j);
+        }
+        X.set(i, sum / A.get(i, i));
+    }
+    
+    return X;
+};
 
-// Inclure les déclarations pour les types plus complexes si nécessaire
-#include "qq.h"
-template class Matrice<qq>;
+/*
+Résout AX=B en utilisant la décomposition LU
+La matrice A est décomposée en L*U où L est triangulaire inférieure et U triangulaire supérieure
+Ensuite on résout Ly=B (substitution avant) puis Ux=y (substitution arrière)
+*/
+template<class C>
+Vect<C> Matrice<C>::solveLU(Vect<C>& B){
+    // Créer une copie de la matrice pour la décomposition LU
+    Matrice<C> A = *this;
+    Vect<C> b = B;
+    
+    // Décomposition LU avec pivot partiel
+    // A sera modifiée en place : la partie basse contient L-I, la partie supérieure contient U
+    for(int i=0; i<n; i++){
+        // Trouver le pivot
+        int piv=i;
+        for(int j=i+1; j<n; j++){
+            if(std::abs(A.get(j, i)) > std::abs(A.get(piv, i))) piv=j;
+        }
+        
+        // Échanger les lignes si nécessaire
+        if(piv != i){
+            for(int k=0; k<n; k++){
+                C temp = A.get(i, k);
+                A.set(i, k, A.get(piv, k));
+                A.set(piv, k, temp);
+            }
+            C temp = b.get(i);
+            b.set(i, b.get(piv));
+            b.set(piv, temp);
+        }
+        
+        // Vérifier que le pivot n'est pas zéro
+        if(A.get(i, i) == C(0)){
+            std::cout << "Erreur: matrice singulière!" << std::endl;
+            return b;
+        }
+        
+        // Calcul des multiplicateurs (facteurs de L)
+        for(int j=i+1; j<n; j++){
+            C multiplier = A.get(j, i) / A.get(i, i);
+            A.set(j, i, multiplier);
+            
+            // Élimination : U(j, k) = A(j, k) - multiplier * A(i, k)
+            for(int k=i+1; k<n; k++){
+                A.set(j, k, A.get(j, k) - multiplier*A.get(i, k));
+            }
+        }
+    }
+    
+    // Forward substitution : Ly = b
+    // L est stockée dans la partie basse de A avec diagonale = 1
+    Vect<C> y(n);
+    for(int i=0; i<n; i++){
+        C sum = b.get(i);
+        for(int j=0; j<i; j++){
+            sum = sum - A.get(i, j)*y.get(j);
+        }
+        y.set(i, sum);
+    }
+    
+    // Back substitution : Ux = y
+    // U est stockée dans la partie supérieure de A
+    Vect<C> X(n);
+    for(int i=n-1; i>=0; i--){
+        C sum = y.get(i);
+        for(int j=i+1; j<n; j++){
+            sum = sum - A.get(i, j)*X.get(j);
+        }
+        X.set(i, sum / A.get(i, i));
+    }
+    
+    return X;
+};
+
+/*
+Getters pour pas avoir à mettre en public les données membres
+*/
+template<class C>
+C Matrice<C>::get(int i, int j) const{
+    return val[i][j];
+};
+
+template<class C>
+int Matrice<C>::size() const{
+    return n;
+};
+
+/*
+Setter pour la même raison
+*/
+template<class C>
+void Matrice<C>::set(int i, int j, C value){
+    val[i][j] = value;
+};
+
+
+

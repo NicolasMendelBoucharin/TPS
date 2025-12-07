@@ -5,88 +5,64 @@
 
 using namespace std;
 
-int main(){
-    qq r = qq(49, -7);
-    r.affiche();
-    qq s = qq(5,21);
-    s.affiche();
-    qq prod = r*s;
-    prod.affiche();
-    qq somme = r+s;
-    somme.affiche();
-    qq rprime = somme-s;
-    rprime.affiche();
-    qq rprimeprime = prod/s;
-    rprimeprime.affiche();
-    //double rdouble = r.converttodouble();
-    //cout<<rdouble<<endl;
-    //double proddouble = rdouble*s;
-    s.affiche();
-    qq power1 = s.pow(1);
-    power1.affiche();
-    qq power2 = s.pow(2);
-    power2.affiche();
-    qq powerinv = s.pow(-1);
-    powerinv.affiche();
-    double rr=s;
-    cout<<rr<<endl;
-    double sommereel = s + 3.14;
-    double produitreel = s * 3.14;
-    cout<<sommereel<<" "<<produitreel<<endl;
-
-    Vect<double> Vdouble=Vect<double>(5);
-    Vdouble.init(3.14);
-    Vect<double> Udouble =Vect<double>(5);
-    Udouble.init(5);
-    cout<<"Vdouble="<<endl;
-    Vdouble.affiche();
-    cout<<"Udouble="<<endl;
-    Udouble.affiche();
-    // 9.a)
-    Vect<double> Wdouble;
-    cout<<"Avec la surcharge d'operateur Wdouble=Udouble+Vdouble="<<endl;
-    Wdouble=Udouble+Vdouble;
-    Wdouble.affiche();
+int main(int argc, char* argv[]){
     
+    // --- Vérification des arguments de ligne de commande ---
+    if (argc != 4) {
+        std::cerr << "Usage: " << argv[0] << " <fichier_donnees.txt> <fichier_matrice.txt> <fichier_vecteur.txt>" << std::endl;
+        std::cerr << "Exemple: " << argv[0] << " data_double_gauss.txt matrice_double.txt vecteur_double.txt" << std::endl;
+        return 1;
+    }
     
-    cout<<"Avec la fonction de copie Wdouble.add(Vdouble,Udouble) on a :"<<endl;
-    Wdouble.add(Vdouble, Udouble);
-    Wdouble.affiche();
-    r=qq(1,3);
-    Vect<qq> Vqq=Vect<qq>(5);
-    Vqq.init(r);    
-    Vqq.affiche();
-
-
-    int n=5;
-    Matrice<double> A = Matrice<double>(n);
-    A.init(3.14);
-    A.affiche();
-    Matrice<double> B = Matrice<double>(n);
-    B.init(5);
-    B.affiche();
-    Matrice<double> C(A);
-    Matrice<double> D;
-    D=A+B;
-    C.affiche();
-    D.affiche();
-
-    n=6;
-    Matrice<qq> Aqq = Matrice<qq>(n);
-    r=qq(1,3);
-    Aqq.init(r);
-    Matrice<qq> Bqq = Matrice<qq>(n);
-    s=qq(2,5);
-    Matrice<qq> Cqq(Aqq);
-    Matrice<qq> Dqq;
-    Dqq=Aqq+Bqq;
-    Aqq.affiche();
-    Bqq.affiche();
-    Cqq.affiche();
-    Dqq.affiche();
-    qq det= Dqq.Determinant();
-    cout<<det<<endl;
+    // --- Lecture des fichiers et résolution automatique ---
+    std::ifstream fichier_data(argv[1]);
+    std::ifstream fichier_matrice(argv[2]);
+    std::ifstream fichier_vecteur(argv[3]);
+    datas d;
+    d.read(fichier_data);
+    int corps = d.getCorps(); // 0 = double, 1 = qq
+    int taille = d.getTaille();
+    int algo = d.getAlgo(); // 0 = gauss, 1 = LU
+    if (corps == 0) {
+        Matrice<double> A(taille);
+        Vect<double> B(taille);
+        A.read(fichier_matrice, taille);
+        B.read(fichier_vecteur, taille);
+        cout << "Matrice lue :" << endl;
+        A.affiche();
+        cout << "Vecteur lu : ";
+        B.affiche();
+        Vect<double> X;
+        if (algo == 0) {
+            X = A.gauss(B);
+            cout << "Solution X (Gauss) : ";
+        } else {
+            X = A.solveLU(B);
+            cout << "Solution X (LU) : ";
+        }
+        X.affiche();
+    } else if (corps == 1) {
+        Matrice<qq> A(taille);
+        Vect<qq> B(taille);
+        A.read(fichier_matrice, taille);
+        B.read(fichier_vecteur, taille);
+        cout << "Matrice lue (qq) :" << endl;
+        A.affiche();
+        cout << "Vecteur lu (qq) : ";
+        B.affiche();
+        Vect<qq> X;
+        if (algo == 0) {
+            X = A.gauss(B);
+            cout << "Solution X (Gauss, qq) : ";
+        } else {
+            X = A.solveLU(B);
+            cout << "Solution X (LU, qq) : ";
+        }
+        X.affiche();
+    } else {
+        cout << "Corps non supporté." << endl;
+    }
+    // --- Fin lecture/résolution automatique ---
     
-
 }
 
