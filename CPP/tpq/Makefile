@@ -49,24 +49,49 @@ test: $(TARGET)
 	@echo "🧪 Lancement des tests automatiques..."
 	@echo ""
 	@echo "════════════════════════════════════════════════════════════════"
-	@echo "Test 1: Double + Gauss"
+	@echo "Test 1: Rationnels 5*5 + algo Gauss"
 	@echo "════════════════════════════════════════════════════════════════"
-	@./$(TARGET) test_files/data_double_gauss.txt test_files/matrice_double.txt test_files/vecteur_double.txt
+	@./$(TARGET) test_files/data_5_qq_gauss.txt test_files/laplacien1D_rationnel_5mailles.txt test_files/vecteur_5_qq.txt
 	@echo ""
 	@echo "════════════════════════════════════════════════════════════════"
-	@echo "Test 2: Double + LU"
+	@echo "Test 2: Rationnels 5*5 + LU"
 	@echo "════════════════════════════════════════════════════════════════"
-	@./$(TARGET) test_files/data_double_lu.txt test_files/matrice_double.txt test_files/vecteur_double.txt
+	@./$(TARGET) test_files/data_5_qq_LU.txt test_files/laplacien1D_rationnel_5mailles.txt test_files/vecteur_5_qq.txt
 	@echo ""
 	@echo "════════════════════════════════════════════════════════════════"
-	@echo "Test 3: QQ (Rationnels) + Gauss"
+	@echo "Test 3: Rationnels 5*5 + grad"
 	@echo "════════════════════════════════════════════════════════════════"
-	@./$(TARGET) test_files/data_qq_gauss.txt test_files/matrice_qq.txt test_files/vecteur_qq.txt
+	@./$(TARGET) test_files/data_5_qq_grad.txt test_files/laplacien1D_rationnel_5mailles.txt test_files/vecteur_5_qq.txt
 	@echo ""
 	@echo "════════════════════════════════════════════════════════════════"
-	@echo "Test 4: QQ (Rationnels) + LU"
+	@echo "Test 4: Rationnels 100*100 + algo Gauss"
 	@echo "════════════════════════════════════════════════════════════════"
-	@./$(TARGET) test_files/data_qq_lu.txt test_files/matrice_qq.txt test_files/vecteur_qq.txt
+	@./$(TARGET) test_files/data_100_qq_gauss.txt test_files/laplacien1D_rationnel_100mailles.txt test_files/vecteur_100_qq.txt
+	@echo ""
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "Test 5: Rationnels 100*100 + LU"
+	@echo "════════════════════════════════════════════════════════════════"
+	@./$(TARGET) test_files/data_100_qq_LU.txt test_files/laplacien1D_rationnel_100mailles.txt test_files/vecteur_100_qq.txt
+	@echo ""
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "Test 6: Rationnels 100*100 + Gradient"
+	@echo "════════════════════════════════════════════════════════════════"
+	@./$(TARGET) test_files/data_100_qq_grad.txt test_files/laplacien1D_rationnel_100mailles.txt test_files/vecteur_100_qq.txt
+	@echo ""
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "Test 7: Double 100*100 + algo Gauss"
+	@echo "════════════════════════════════════════════════════════════════"
+	@./$(TARGET) test_files/data_100_double_gauss.txt test_files/laplacien1D_double_100mailles.txt test_files/vecteur_100_double.txt
+	@echo ""
+	@echo "════════════════════════════════════════════════════════════════"
+	@echo "Test 8: Double 100*100 + LU"
+	@echo "════════════════════════════════════════════════════════════════"
+	@./$(TARGET) test_files/data_100_double_LU.txt test_files/laplacien1D_double_100mailles.txt test_files/vecteur_100_double.txt
+	@echo ""
+	@echo "════════════════════════════════════════════════════════════════"
+	echo "Test 9: Double 100*100 + Gradient"
+	@echo "════════════════════════════════════════════════════════════════"
+	@./$(TARGET) test_files/data_100_double_grad.txt test_files/laplacien1D_double_100mailles.txt test_files/vecteur_100_double.txt
 	@echo ""
 	@echo "════════════════════════════════════════════════════════════════"
 	@echo "✅ Tous les tests sont terminés !"

@@ -409,5 +409,62 @@ void Matrice<C>::set(int i, int j, C value){
     val[i][j] = value;
 };
 
+/*
+Produit Matrice Vecteur
+*/
 
+template<class C>
+Vect<C> Matrice<C>::produit_matrice_vecteur(Vect<C> B){
+    if (B.size() != n) {
+        throw std::invalid_argument("Taille du vecteur incompatible avec la matrice");
+    }
+    Vect<C> res;
+    res = Vect<C>(n);
+    for (int i = 0; i < n; i++) {
+        C sum = 0;
+        for (int j = 0; j < n; j++) {
+            sum = sum + get(i, j) * B.get(j);;
+        }
+        res.set(i, sum);
+    }
+    return res;
+};
 
+/* Descente de gradient */
+
+template<class C>
+Vect<C> Matrice<C>::descente_de_gradient(const Vect<C>& B, double tolerance) {
+    // Initialisation de X à zéro
+    Vect<C> X(n);
+    X.init(C(0));
+    
+    // Calcul du résidu initial: r = B - A*X = B
+    Vect<C> r = B;
+    
+    // Boucle d'itération jusqu'à convergence
+    while (true) {
+        // Calcul de A*r
+        Vect<C> Ar = produit_matrice_vecteur(r);
+        
+        // Calcul de alpha = <r,r> / <r,A*r>
+        C r_scal_r = r.scal(r);
+        C r_scal_Ar = r.scal(Ar);
+        
+        C alpha = r_scal_r / r_scal_Ar;
+        
+        // Mise à jour de X: X = X + alpha * r
+        X = X + r.produit_externe(alpha);
+        
+        // Mise à jour du résidu: r = r - alpha * A*r
+        r = r - Ar.produit_externe(alpha);
+        
+        // Vérifier la convergence: ||r|| < tolerance
+        double r_norm = std::sqrt(std::abs(static_cast<double>(r.scal(r))));
+        if (r_norm < tolerance) {
+            break;
+        }
+    }
+    
+    return X;
+}
+// faire la différence

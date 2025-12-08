@@ -12,6 +12,7 @@ TODO :
     faire un algo de gauss
     faire un algo de LU
     faire un algo par gradient maximisé ou jsp quoi
+    verification d'erreur de AX - B à la fin de chaque test
 */
 
 //_______________________________________CLASSE QQ___________________________________________________

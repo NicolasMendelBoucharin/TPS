@@ -20,14 +20,17 @@ class Vect{
     explicit Vect(int n=0);
     Vect(const Vect&);
     Vect& operator=(const Vect&);
-    Vect operator+(const Vect& U);
+    Vect operator+(const Vect& U) const;
+    Vect operator-(const Vect& U) const;
     void add(const Vect& A, const Vect& B);
-    void scal(const Vect& A, const Vect& B);
+    C scal(const Vect& B);
     ~Vect();
     void read(std::ifstream& fichiermatrice, int n);
     C get(int i) const;
     void set(int i, C value);
     int size() const;
+    Vect<C> produit_externe(C);
+    C difference_norme(const Vect<C>& B);
 };
 
 #endif // VECT_HPP

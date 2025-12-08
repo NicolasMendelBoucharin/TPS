@@ -29,9 +29,11 @@ class Matrice{
     void read(std::ifstream& fichiervecteur, int n);
     Vect<C> gauss(Vect<C>& B);
     Vect<C> solveLU(Vect<C>& B);
+    Vect<C> produit_matrice_vecteur(Vect<C> B);
     C get(int i, int j) const;
     void set(int i, int j, C value);
     int size() const;
+    Vect<C> descente_de_gradient(const Vect<C>& B, double tolerance);
 };
 
 #endif // MATRICE_HPP

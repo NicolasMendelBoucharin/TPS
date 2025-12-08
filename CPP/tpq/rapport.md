@@ -4,10 +4,16 @@
 
 ## Utilisation :
 
+## Conventions :
+
+- 0 pour les rationnels et 1 pour les doubles 
+- 0 pour Gauss, 1 pour LU, 2 pour l'autre
+- 
+
 
 # Rapport 
 
-## Ordre du travail
+## Organisation du travail
 
 D'abord j'ai fait la classe qq en faisant en sorte que "tout fonctionne". C'est à dire les opérations de base, les affectations, les copies... Mais le gros de la classe j'ai du la remplir au fur et à mesure en fonction des besoins des autres classes. J'ai aussi dès le début fait en sorte que mes rationnels soient réduits à chaque opérations et que le signe soit uniquement porté par le numérateur
 
@@ -31,6 +37,8 @@ J'ai donc ensuite fait un parser d'argument dans le main pour pouvoir selectionn
 
 Une fois le parser fait, j'ai rajoué au makefile une option test qui va juste faire les tests avec des fichiers déjà dans mon dossier test_tiles.
 
+Pour la methode du gradient j'ai du ensuite faire un produit matrice*vecteur et un produit $\lambda$V pour les vecteurs aussi. Une fois ce produit fait avant de continuer j'en ai profité pour rajouter à mon programme une verification de l'erreur une fois la résolution faite.
+
 ## Difficulté :
 
 J'ai du surchargé le abs et faire un "0" dans ma classe qq pour les determinants. De même pour le pivot de Gauss
@@ -39,7 +47,13 @@ De la même façon pour bien pouvoir lire et écrire les fichiers j'ai du surcha
 
 J'ai aussi du créer beaucoup de getter et setter pour simplifier les interactions entre les classes, notamment pour l'algorithme de Gauss qui avait besoin de beaucoup des données de deux classes différentes.
 
+J'avais au début fait un unique header mais cela a vite était un problème et j'ai du séparer comme il faut tout mes headers et j'ai eu du mal avec les imbrications de headers. 
 
+J'ai du fixer une limite pour l'affichage des matrices pour pas que tout soit affiché pour les matrices énormes. Je parle de solutions plus élégantes dans les amélioration possibles. 
+
+Au moment de la surcharge du - pour les vecteurs j'ai eu un problème à cause du fait que je n'avais pas mis tout les const.
+
+Pour la descente du gradient, l'algo a un fonctionnement pathologique sur les matrices laplaciennes : il donne trop vite un résultat proche et donc on a des résulats aussi proches qu'on veut (en norme 2) mais pas le bon résultat pour autant.
 ## Outils :
 
 J'ai utilisé l'IA pour les algorithmes du determinant, de gauss, de LU, et pour la création du makefile.
@@ -53,5 +67,11 @@ Il doit surement y avoir un moyen de surcharger les "<<" ">>" sans avoir à util
 On pourrait aussi rajouter un verbose et une option de output pour ne pas afficher simplement le résultat dans le terminal. 
 
 Toujours dans cette optique de verbose on pourrait la vouloir partielle ou complete : Si la matrice est énorme on pourrait souhaiter de n'afficher que le resultat dans le terminal. 
+
+Pour un code plus propre et plus sûr il faudrait aussi rajouter plus de const un peu partout.
+
+Il faudrait aussi faire une fonction de test pour savoir si la matrice est bien définie positive avant de faire la méthode de descente de gradient. 
+
+
 
 

@@ -81,13 +81,27 @@ Vect<C>& Vect<C>::operator=(const Vect& V) {
 Surcharge de l'operateur +
 */
 template<class C>
-Vect<C> Vect<C>::operator+(const Vect& U){
+Vect<C> Vect<C>::operator+(const Vect& U) const{
     Vect W = Vect(lg);
     for(int i=0; i<lg ;i++){
         W.val[i]=val[i]+U.val[i];
     }
     Vect V=U;
-    V.affiche();
+    //V.affiche()
+    return W;
+};
+
+/*
+Surcharge de l'opérateur -
+*/
+template<class C>
+Vect<C> Vect<C>::operator-(const Vect& U) const { 
+    Vect W = Vect(lg);
+    for(int i=0; i<lg ;i++){
+        W.val[i]=val[i]-U.val[i];
+    }
+    Vect V=U;
+    //V.affiche();
     return W;
 };
 
@@ -99,6 +113,9 @@ Vect<C>::~Vect(){
     delete[] val;
 };
 
+/*
+Fonction d'addition de vecteurs
+*/
 template<class C>
 void Vect<C>::add(const Vect& A, const Vect& B){
     for(int i=0; i<lg; i++){
@@ -106,14 +123,21 @@ void Vect<C>::add(const Vect& A, const Vect& B){
     }
 };
 
+/*
+Produit scalaire de deux vecteurs
+*/
 template<class C>
-void Vect<C>::scal(const Vect& A, const Vect& B){
-    val[0]=0;
+C Vect<C>::scal(const Vect& B){
+    C result = 0;
     for(int i=0; i<lg; i++){
-        val[0]=val[0]+A.val[i]*B.val[i];
+        result += val[i]*B.val[i];
     }
+    return result;
 };
 
+/*
+Fichier de lecture de fichier
+*/
 template<class C>
 void Vect<C>::read(std::ifstream& fichiermatrice, int n){
     for(int i=0; i<n; i++){
@@ -137,6 +161,32 @@ void Vect<C>::set(int i, C value){
 template<class C>
 int Vect<C>::size() const{
     return lg;
+};
+
+/*produit avec un scalaire*/
+template<class C>
+Vect<C> Vect<C>::produit_externe(C scalar) {
+    Vect<C> result(lg);
+    for (int i = 0; i < lg; i++) {
+        result.val[i] = val[i] * scalar;
+    }
+    return result;
+};
+
+/*différence de norme entre deux vecteurs
+Attention ! renvoie le carré de la norme pas la norme elle-même
+*/
+template<class C>
+C Vect<C>::difference_norme(const Vect<C>& B) {
+    if (lg != B.lg) {
+        throw std::invalid_argument("Les vecteurs doivent avoir la même taille pour calculer la différence de norme.");
+    }
+    C sum = 0;
+    for (int i = 0; i < lg; i++) {
+        C diff = val[i] - B.val[i];
+        sum += diff * diff;
+    }
+    return sum;
 };
 
 // Instanciations explicites pour les types utilisés
