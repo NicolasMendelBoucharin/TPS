@@ -1,0 +1,2 @@
+Le type std::string peut être pris en compte à conditions d'avoir été instancié car la classe vector accepte bien de prendre des strings en argument. Dans le main on a pu voir la creation d'un tel vecteur. 
+Je ne l'ai pas fait dans le main mais je pense que même le plus marche dans la mesure ou j'ai défini avec un template le + entre vec et qu'il y a un operateur + entre les strings (concatenations)

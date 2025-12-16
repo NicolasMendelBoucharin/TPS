@@ -4,11 +4,20 @@
 
 ## Utilisation :
 
+L'utilisateur peut au moment du make soit faire un make simple pour avoir un executable resolution, soit afficher une aide, soit lancer un programme test avec les matrices données sur moodle. 
+
+Pour executer resolution il faut faire ./resolution fichierdonnée.txt fichiermatrice.txt fichiervecteur.txt
+
+Le resultat de la résolution sera affiché dans la console.
+
+En fonction du fichierdonnée.txt le programme resolvera le système soit par pivot de Gauss soit par méthode LU ou bien par méthode des gradients pour une tolérance choisie.
+
+
 ## Conventions :
 
 - 0 pour les rationnels et 1 pour les doubles 
 - 0 pour Gauss, 1 pour LU, 2 pour l'autre
-- 
+  
 
 
 # Rapport 
@@ -72,6 +81,15 @@ Pour un code plus propre et plus sûr il faudrait aussi rajouter plus de const u
 
 Il faudrait aussi faire une fonction de test pour savoir si la matrice est bien définie positive avant de faire la méthode de descente de gradient. 
 
+## Ce que l'IA me conseille de faire : 
 
+- Ajouter des tests unitaires (actuellement basés sur fichiers)
+- Logging/Debug mode (flag pour affichage détaillé)
+- Benchmarking (comparer temps d'exécution des 3 algos)
+- Matrice non-carrée (actuellement n×n seulement)
+- Itérateurs pour Vect et Matrice
+- Move semantics (optimisation C++17)
+
+Effectivement je manque de flags et d'autres méthodes. 
 
 

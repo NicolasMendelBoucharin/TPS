@@ -113,8 +113,8 @@ doublejacob := function(P)
     A := 4*X1*Y1^2;
     B := 3*X1^2 -3*Z1^4;
     
-    X3 := -2A+B^2;
-    Y3 := -8Y1^4 + B(A-X3);
+    X3 := -2*A+B^2;
+    Y3 := -8*Y1^4 + B*(A-X3);
     Z3 := 2*Y1*Z1;
     return [X3, Y3, Z3];
 end function;
@@ -124,4 +124,29 @@ P:=doublejacob(P);
 end for;
 
 //e)
+
+//5)
+
+fenetrejacob := function(P, n)
+    L := Intseq(n);
+    i := #L-2;
+    res := P;
+    while (i ge 0) do 
+        res := doublejacob(res);
+        if (L[i] = 1) then
+            res := jacob(res, P);
+        end if;
+    i := i-1;
+    end while;
+    return res;
+end function;
+
+//Exercice 3 :
+
+"Exercice 3"
+
+//a)
+
+"a)"
+
 

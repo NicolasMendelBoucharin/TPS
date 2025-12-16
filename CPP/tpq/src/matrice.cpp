@@ -467,4 +467,3 @@ Vect<C> Matrice<C>::descente_de_gradient(const Vect<C>& B, double tolerance) {
     
     return X;
 }
-// faire la différence

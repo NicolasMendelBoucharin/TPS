@@ -29,7 +29,7 @@ class Vect{
     C get(int i) const;
     void set(int i, C value);
     int size() const;
-    Vect<C> produit_externe(C);
+    Vect produit_externe(C);
     C difference_norme(const Vect<C>& B);
 };
 
