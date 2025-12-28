@@ -12,6 +12,9 @@ Le resultat de la résolution sera affiché dans la console.
 
 En fonction du fichierdonnée.txt le programme resolvera le système soit par pivot de Gauss soit par méthode LU ou bien par méthode des gradients pour une tolérance choisie.
 
+Il y a aussi un sous dossier tpq_improved avec une meilleure version après avoir donné tout mes fichiers à Claude Haiku et en lui demandant de completer pour en faire une version plus complete et tout corriger/commenter.
+
+Pareillement, il y a un autre dossier test avec un makefile et un fichier test pour les tests unitaires.
 
 ## Conventions :
 
@@ -63,9 +66,12 @@ J'ai du fixer une limite pour l'affichage des matrices pour pas que tout soit af
 Au moment de la surcharge du - pour les vecteurs j'ai eu un problème à cause du fait que je n'avais pas mis tout les const.
 
 Pour la descente du gradient, l'algo a un fonctionnement pathologique sur les matrices laplaciennes : il donne trop vite un résultat proche et donc on a des résulats aussi proches qu'on veut (en norme 2) mais pas le bon résultat pour autant.
+
 ## Outils :
 
 J'ai utilisé l'IA pour les algorithmes du determinant, de gauss, de LU, et pour la création du makefile.
+
+Je m'en suis également servi pour la section test du projet
 
 ## Amélioration possibles :
 
@@ -90,6 +96,7 @@ Il faudrait aussi faire une fonction de test pour savoir si la matrice est bien 
 - Itérateurs pour Vect et Matrice
 - Move semantics (optimisation C++17)
 
-Effectivement je manque de flags et d'autres méthodes. 
+Effectivement je manque de flags et d'autres méthodes. Ceux là ont été rajouté dans la version "improved"
+
 
 
