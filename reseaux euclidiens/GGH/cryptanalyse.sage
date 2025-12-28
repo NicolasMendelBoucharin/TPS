@@ -1,7 +1,8 @@
 load("ggh.sage")
 
 def LLLattack(pubkey, e):
-    LLL_pubkey=pubkey.LLL()
+    # Un simple LLL suffit pour retrouver la clé privée pour des petites dimensions
+    LLL_pubkey = pubkey.LLL()
     v = BabaiNearestPlaneAlgorithm(LLL_pubkey, e)
     m = pubkey.solve_left(v)
     return m
@@ -9,27 +10,26 @@ def LLLattack(pubkey, e):
 
 
 def embeding_attack(pubkey, c):
+    """
+    Embedding attack contre le système GGH.
+    Construit un réseau augmenté contenant le chiffré et cherche l'erreur.
+    """
     n = pubkey.nrows()
 
-    c_aug = vector(ZZ, list(c) + [1])
- 
-    
+    #embedding de la clé publique
     B_embed = pubkey.augment(vector(ZZ, [0]*n))
-   
+    c_aug = vector(ZZ, list(c) + [1])
     B_embed = B_embed.stack(c_aug)
 
+    # Appliquer LLL
     B_embed = B_embed.LLL()
-    e_hack = vector(ZZ, B_embed[0, :n])
+
+    # récupérer l'erreur dans les n premières coordonnées du vecteur le plus court
+    short_vector = B_embed[0]
+    e_hack = vector(ZZ, short_vector[:n])
     
-    # c = m*B + e, donc m*B = c - e
-    # On cherche m tel que m*B = c - e_hack
-    c_minus_e = c - e_hack
-    # B est inversible, donc m = (c - e) * B^{-1}
-    try:
-        m = c_minus_e * pubkey.inverse()
-    except:
-        # Si B^{-1} n'existe pas, on essaie une autre approche
-        m = pubkey.solve_left(c_minus_e)
-    
+    # Récupérer le message: v = c - e
+    v = c - e_hack
+    m = pubkey.solve_left(v)
     return m
 

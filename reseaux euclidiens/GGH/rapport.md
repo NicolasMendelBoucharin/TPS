@@ -24,6 +24,7 @@ Il faut que la mauvaise base soit trop peu orthogonale pour qu'on puisse résoud
 - Il aurait sans doute fallu modifier mes fonctions TextToList et ListToText pour faire en sorte de respecter $M=200$ mais en ascii les caractères les plus utilisés en français sont de toute façon entre 0 et 200.
 - On pourrait également faire un chiffrement "par blocs" pour les messages trop long et ne faire le padding que sur le dernier bloc du coup.
 - J'ai voulu mettre le moins possible de fonctions dans la classe GGH pour pouvoir les appeler sans "tricher" dans la section cryptanalyse.
+- On pourrait choisir de faire des "generate" en boucle jusqu'à avoir des bases avec les meilleurs ratio d'hadamard possible mais j'ai très rarement des erreurs sans.
 
 ## Difficultés rencontrées
 
@@ -33,4 +34,8 @@ J'ai commencé par utiliser la fonction gram_schmidt() de sage et rien ne marcha
 
 Une autre difficulté à été la lecture/écriture de fichier avec sagemath qui demande de tout passser en list avant de faire quoi que ce soit
 
-J'ai aussi mis beaucoup de temps à débugger ma cryptanalyse par embedding.
+J'ai aussi mis beaucoup de temps à débugger ma cryptanalyse par embedding. Au final j'avais stack avant de augment...
+
+Plus généralement c'était dûr de savoir sur quel papier se baser quand, j'ai donc préféré me concentrer uniquement sur le livre de cours plutot que la vrai documentation de 30 pages.
+
+

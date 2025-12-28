@@ -60,7 +60,7 @@ def ListToText(L):
         str+=chr(i)
     return str
 
-#Pas sûr que ça serve à quelque chose
+#Pas sûr que ça serve à quelque chose au final
 def HadamardRatio(B):
     '''
     Entrée : une base B
@@ -87,6 +87,7 @@ def GramSchmidtAlgorithm(B):
         G[i] = vi
     return G
 
+#Je ne m'en sers pas à priori mais je l'ai fait au début du projet
 def BabaiRoundOff(B, t):
     '''
     Entrée : Une base B d'un réseau de R^n et un vecteur cible t de R^n
