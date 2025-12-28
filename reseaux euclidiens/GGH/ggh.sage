@@ -124,9 +124,9 @@ class GGH:
         Crée une instance du système GGH de taille n, avec génération des clés.
         '''
         self.n = n
-        self.privkey, self.pubkey = self._generate(n)
+        self.privkey, self.pubkey = self.keygen(n)
     
-    def _generate(self, n):
+    def keygen(self, n):
         l = 4 #On fait la deuxième méthode suggeré page 418 du livre
         k = round(sqrt(n)) * l
         I = matrix.identity(n)

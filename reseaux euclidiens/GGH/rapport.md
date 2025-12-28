@@ -17,6 +17,10 @@ Il faut que la mauvaise base soit trop peu orthogonale pour qu'on puisse résoud
 - Il y a aussi un fichier avec des tests pour les fonctions de base de mon fichier ggh.sage qui s'appelle ggh_test.sage
 - Pareillement il y a un fichier cryptanalyse_test.sage
 
+## Construction du répertoire
+
+- Un fichier ggh.sage avec une classe GGH pour le cryptosytème et des fonctions auxilliaires pour keygen, encrypt, decrypt.
+
 ## Choix et limitations
 
 - Les papiers se contredisent un peu sur la dimension alors dans le doute j'ai prix le plus large c'est à dire $n=200$. Pareillement la documentation recommande de prendre sigma = 3, et de choisir la borne $M$ des messages comme $M=n$
@@ -38,4 +42,4 @@ J'ai aussi mis beaucoup de temps à débugger ma cryptanalyse par embedding. Au 
 
 Plus généralement c'était dûr de savoir sur quel papier se baser quand, j'ai donc préféré me concentrer uniquement sur le livre de cours plutot que la vrai documentation de 30 pages.
 
-
+J'ai mis beaucoup de temps à comprendre comment fonctionnait l'attaque de NGuyens.
