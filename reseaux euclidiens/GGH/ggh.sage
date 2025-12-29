@@ -26,7 +26,7 @@ def random_unimodular_matrix(n):
 
     return T
 
-
+#Au final je suis pas sûr que ce soit le meilleur choix de vecteur random, pas certain qu'il respecète bien la condition sur la variance du papier
 def random_error_vector(n, delta=3):
         '''
         Entrée : un entier n et un entier delta
@@ -39,7 +39,7 @@ def random_error_vector(n, delta=3):
         return r
 
 
-#Pour de la lecture et ecriture de fichiers
+#Pour de la lecture et ecriture de fichiers plus tard
 def TextToList(str):
     '''
     Entrée : une chaîne de caractères
@@ -141,7 +141,7 @@ class GGH:
         return B, Bprime
     
     def set_keypair(self, R, B):
-        #Pour changer notre paire de clés après une génération
+        #setter de paire de clés 
         self.privkey = R
         self.pubkey = B
         self.n = R.ncols()

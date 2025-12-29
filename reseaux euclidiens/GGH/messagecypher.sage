@@ -1,7 +1,9 @@
 load("gghIntoFile.sage")
+save=True #Si true on garde les clés dans le dossier keys.
 
-# Création et sauvegarde d'un système GGH
+
 n = 200  # Dimension du système
+if save:
     ggh = create_ggh_and_save(n, privkey_file="./keys/privkey.txt", pubkey_file="./keys/pubkey.txt")
     encrypt_message_from_file(ggh, "./messages/message.txt", "./messages/ciphertext.txt", delta=3)
     ggh2 = load_ggh_from_files(privkey_file="./keys/privkey.txt", pubkey_file="./keys/pubkey.txt")

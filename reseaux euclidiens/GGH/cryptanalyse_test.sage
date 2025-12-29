@@ -105,9 +105,20 @@ def test_embeding_attack():
 
 
 def test_nguyen_attack():
-    print("Pas encore fait")
+    n=100
+    badggh= BAD_GGH(n)
+    pubkey= badggh.pubkey
+    m= vector(ZZ, [randint(-n, n) for _ in range(n)])
+    c= badggh.encrypt(m, delta=3)
+    m_decrypted= nguyen_attack(pubkey, c, sigma=3)
+    try:
+        assert m == m_decrypted
+    except AssertionError:
+        print(f"Déchiffrement échoué avec une attaque de Nguyen pour un code de taille {n}")
+    else:
+        print(f"Chiffrement/Déchiffrement réussi après une attaque de Nguyen pour un code de taille {n}")
 
 test_LLL_attack()
 test_embeding_attack()
-test_nguyen_attack()
+#test_nguyen_attack()
 

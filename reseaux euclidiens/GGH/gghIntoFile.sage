@@ -85,6 +85,7 @@ def load_ggh_from_files(privkey_file="privkey.txt", pubkey_file="pubkey.txt"):
     ggh.set_keypair(privkey, pubkey)  # Remplace par les clés chargées
     return ggh
 
+
 def encrypt_message_from_file(ggh, input_file, output_file="ciphertext.txt", delta=3):
     '''
     Entrée:
@@ -105,21 +106,21 @@ def encrypt_message_from_file(ggh, input_file, output_file="ciphertext.txt", del
     # Padding
     if len(ascii_values) > ggh.n:
         print(f"Attention: le message est trop long (>'{ggh.n})")
-        ascii_values = ascii_values[:ggh.n]
+        ascii_values = ascii_values[:ggh.n] #On tronque plutôt que de faire des blocs pour l'instant
     else:
-        padding_needed = ggh.n - len(ascii_values)
-        ascii_values.extend([0] * padding_needed)
-    
-    
-    # Créer le vecteur message
+        padding = ggh.n - len(ascii_values)
+        ascii_values.extend([0] * padding)
+
+
+    #message
     m = vector(ZZ, ascii_values)
     print(f"Vecteur message: {m}")
     
-    # Chiffrer
+    # Chiffré
     c = ggh.encrypt(m, delta=delta)
     print(f"Chiffré généré: {c}")
-    
-    # Sauvegarder le chiffré
+
+    # écriture du chiffré
     with open(output_file, 'w') as f:
         f.write(f"{ggh.n}\n")
         f.write(" ".join(str(int(x)) for x in c) + "\n")
@@ -145,22 +146,22 @@ def decrypt_message_from_file(ggh, ciphertext_file, output_file="decrypted.txt")
     
     c = vector(ZZ, c_values)
     print(f"Chiffré lu: {c}")
+    
     # Déchiffrer
     m = ggh.decrypt(c)
     print(f"vecteur déchiffré (vecteur): {m}")
     
-    # Convertir en list pour pouvoir enlever le padding
+    
     m_list = [int(val) for val in m]
     
-    # Supprimer le padding
+    #padding
     while m_list and m_list[-1] == 0:
         m_list.pop()
     
-    # Convertir en texte
     text = ListToText(m_list)
     print(f"Message déchiffré: {text}")
     
-    # Sauvegarder le message déchiffré
+    # écriture du déchiffré
     with open(output_file, 'w') as f:
         f.write(text)
     
