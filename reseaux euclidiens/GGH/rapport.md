@@ -16,6 +16,7 @@ Il faut que la mauvaise base soit trop peu orthogonale pour qu'on puisse résoud
 - On peut modifier le fichier /messages/message.txt pour y mettre un message court (moins de 200 caractères) et ensuite lancer le fichier messagecypher.sage pour le chiffrer puis le déchiffrer dans le même dossier
 - Il y a aussi un fichier avec des tests pour les fonctions de base de mon fichier ggh.sage qui s'appelle ggh_test.sage
 - Pareillement il y a un fichier cryptanalyse_test.sage
+- On peut aussi changer en False le paramètre de sauvegarde des clés dans un fichier si on ne veux pas les sauvegarder.
 
 ## Construction du répertoire
 
@@ -36,10 +37,12 @@ J'ai mis du temps à trouver comment faire les matrices unimodulaires suffisamen
 
 J'ai commencé par utiliser la fonction gram_schmidt() de sage et rien ne marchait en dimension grande. Avec ma version plus de problème. Les temps de calculs sont beaucoup plus faible.
 
-Une autre difficulté à été la lecture/écriture de fichier avec sagemath qui demande de tout passser en list avant de faire quoi que ce soit
+Une autre difficulté à été la lecture/écriture de fichier avec sagemath qui demande de tout passer en list avant de faire quoi que ce soit. J'ai fait faire le gros du travail à une LLM pour cette partie estimant que ce n'était pas là l'essentiel du projet.
 
 J'ai aussi mis beaucoup de temps à débugger ma cryptanalyse par embedding. Au final j'avais stack avant de augment...
 
 Plus généralement c'était dûr de savoir sur quel papier se baser quand, j'ai donc préféré me concentrer uniquement sur le livre de cours plutot que la vrai documentation de 30 pages.
 
-J'ai mis beaucoup de temps à comprendre comment fonctionnait l'attaque de NGuyens.
+J'ai mis beaucoup de temps à comprendre comment fonctionnait l'attaque de NGuyens car elle ne s'applique pas dans ma version de GGH que j'avais déjà corrigé pour avoir une erreur dans $[-\sigma; \sigma]$ et pas dans $\{-\sigma;\sigma\}$. 
+
+En conséquence de la remarque précédente j'ai du créer une nouvelle classe BAD_GGH dans mon fichier cryptanalyse_test.sage.

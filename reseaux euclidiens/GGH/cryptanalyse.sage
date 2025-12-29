@@ -1,9 +1,9 @@
 load("ggh.sage")
 
-def LLLattack(pubkey, e):
+def LLLattack(pubkey, c):
     # Un simple LLL suffit pour retrouver la clé privée pour des petites dimensions
     LLL_pubkey = pubkey.LLL()
-    v = BabaiNearestPlaneAlgorithm(LLL_pubkey, e)
+    v = BabaiNearestPlaneAlgorithm(LLL_pubkey, c)
     m = pubkey.solve_left(v)
     return m
 
@@ -33,3 +33,9 @@ def embeding_attack(pubkey, c):
     m = pubkey.solve_left(v)
     return m
 
+def nguyen_attack(pubkey, c):
+    """
+    Attaque de Nguyen contre le système GGH.
+    """
+    print("Pas encore implémenté")
+    return None

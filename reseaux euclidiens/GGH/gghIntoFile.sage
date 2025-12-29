@@ -30,6 +30,7 @@ def load_keys_from_files(privkey_file="privkey.txt", pubkey_file="pubkey.txt"):
     Sortie:
         - (privkey, pubkey) : tuple avec les deux matrices
     '''
+    
     # Charger la clé privée
     with open(privkey_file, 'r') as f:
         lines = f.readlines()
