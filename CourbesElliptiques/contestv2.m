@@ -12,21 +12,43 @@ E :=EllipticCurve([a,b]) ;
 
 
 Somme := function(P, Q, x)
-// pareil qu'en haut
-    X3 := Fp!(((Q[1]-Q[2])*(P[1] + P [2]) + (Q[1] + Q[2])*(P[1]-P[2]))^2);
-    Z3 := Fp!(x*((Q[1]-Q[2])*(P[1] + P [2]) - (Q[1] + Q[2])*(P[1]-P[2]))^2);
+// ajouts : on fouille qu'une fois les listes
+//on précalcules les produits internes 
+    q1:=Q[1];
+    q2:=Q[2];
+    p1:=P[1];
+    p2:=P[2];
+    //q1p1 := q1*p1; ça sert à rien au final
+    //q1p2 := q1*p2;
+    //q2p1 := q2*p1;
+    //q2p2 := q2*p2;
+    //X3 := 4*q1p1^2 - 8*q1p1*q2p2 + 4*(q2p2)^2 //nouvelle version développé (pas sûr que ça soit plus efficace au final)
+    //on précalcule plutot les additions et soustractions réutilisé
+    sp:=p1-p2;
+    sq:=q1-q2;
+    ap:=p1+p2;
+    aq:=q1+q2;
+    sqap := sq*ap;
+    aqsp := aq*sp;
+    X3 := Fp!((sqap + aqsp)^2);
+    Z3 := Fp!(x*(sq*ap - aq*sp)^2);
     return [X3, Z3];
 end function;
 
 
 
 Doublage := function(P)
-//J'ai mis le prod à part pour que ça calcule pas de fois
-//faudrait faire le 2ab à part, et les deux carrés
-//Faudrait  ptet faire un karatsuba ou un bail comme ça aussi 
-    prod := Fp!((P[1] + P[2]) ^ 2 - (P[1]-P[2])^2);
-    X3 := Fp!(((P[1] + P[2])^2) * ((P[1] - P[2])^2));
-    Z3 := Fp!(prod*( ((P[1] - P[2])^2) + ((A+2)/4)*prod));
+//pareil qu'en haut en gros
+    p1:=P[1];
+    p2:=P[2];
+    ap:=p1+p2;
+    sp:=p1-p2;
+    apsquared:=ap^2;
+    spsquared:=sp^2;
+    prod := Fp!(apsquared - spsquared);
+    X3 := Fp!(apsquared * spsquared);
+    //Z3 := Fp!(prod*((spsquared) + ((A+2)/4)*prod)); //pour ne pas recaculer X3 qui est caché dans le produit*(p1-p2)^2
+    Z3 := Fp!(X3-spsquared*spsquared + ((A+2)/4)*prod); //pour ne pas recaculer X3 qui est caché dans le produit*(p1-p2)^2
     return [X3, Z3];
 end function;
 
