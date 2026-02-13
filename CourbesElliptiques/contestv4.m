@@ -13,16 +13,11 @@ E :=EllipticCurve([a,b]) ;
 
 Somme := function(P, Q, x)
 // ajouts : on fouille qu'une fois les listes
-//on précalcules les produits internes 
+//on précalcule les produits internes 
     q1:=Q[1];
     q2:=Q[2];
     p1:=P[1];
     p2:=P[2];
-    //q1p1 := q1*p1; ça sert à rien au final
-    //q1p2 := q1*p2;
-    //q2p1 := q2*p1;
-    //q2p2 := q2*p2;
-    //X3 := 4*q1p1^2 - 8*q1p1*q2p2 + 4*(q2p2)^2 //nouvelle version développé (pas sûr que ça soit plus efficace au final)
     //on précalcule plutot les additions et soustractions réutilisé
     sp:=p1-p2;
     sq:=q1-q2;
@@ -30,11 +25,16 @@ Somme := function(P, Q, x)
     aq:=q1+q2;
     sqap := sq*ap;
     aqsp := aq*sp;
-    X3 := Fp!((sqap + aqsp)^2);
-    Z3 := Fp!(x*(sq*ap - aq*sp)^2);
+
+    X3 := ((sqap + aqsp)^2);
+    Z3 := (x*(sqap - aqsp)^2); //J'avais oublié de remplacer un aq*sp
+
     return [X3, Z3];
 end function;
 
+
+//pour pas les refaire à chaque calculs comme c'est constant
+A_plus_2_div_4 := (A+2)/4;
 
 
 Doublage := function(P)
@@ -45,17 +45,17 @@ Doublage := function(P)
     sp:=p1-p2;
     apsquared:=ap^2;
     spsquared:=sp^2;
-    prod := Fp!(apsquared - spsquared);
-    X3 := Fp!(apsquared * spsquared);
-    //Z3 := Fp!(prod*((spsquared) + ((A+2)/4)*prod)); //pour ne pas recaculer X3 qui est caché dans le produit*(p1-p2)^2
-    Z3 := Fp!(X3-spsquared*spsquared + ((A+2)/4)*prod); //pour ne pas recaculer X3 qui est caché dans le produit*(p1-p2)^2
-    return [X3, Z3];
+    prod := (apsquared - spsquared);
+    X3 := (apsquared * spsquared);
+    Z3 := (prod*(spsquared + A_plus_2_div_4*prod));
+    return[X3, Z3];
 end function;
 
 
 
 Ladder := function(n, P)
 //celle du cours en gros
+//Moins lisible mais on m'a dit que ça vallait plus le coups de faire tout dans la même fonctoin
     T1 :=[Fp!1, 0];
     T2 := [Fp!P[1], 1];
     x:=P[1];
@@ -74,21 +74,27 @@ Ladder := function(n, P)
 end function;
 
 
+//comme ça c'est fait à l'avance
+Binv := B^(-1);
+Afois3Binv := A*(3*B)^(-1);
 
 M2W := function(P)
-//pareil il faudrait sans doute faire les inversions à part pour pas les faire deux fois
-    x:= P[1]*B^(-1) + A *(3*B)^(-1);
-    y:= P[2]*B^(-1);
+
+    x:= P[1]*Binv + Afois3Binv;
+    y:= P[2]*Binv;
     return [Fp!x, y];
 end function;
-//
+
+
+
 
 m2w:= function(xP)
-    return Fp!(xP*B^(-1) + A *(3*B)^(-1));
+    return Fp!(xP*Binv + Afois3Binv);
 end function;
 
 //Test de validité
-//pas compris pourquoi on se contente d'une coordonnée
+//Merci du retour sur le pourquoi une coordonnée 
+//mais au final j'avais compris en révisant le partiel j'avais juste oublié de mettre à jour le commentaire
 k:=Random(n); 
 (k*E!M2W(G))[1] eq m2w(Ladder(k,G));
 
